@@ -10,4 +10,21 @@
   <string name="menu_home">Home</string>
   <string name="menu_gallery">Gallery</string>
   <string name="menu_slideshow">Slideshow</string>
+
+  <string name="category1">Conversations</string>
+  <string name="category2">Dates &amp; Fun</string>
+  <string name="category3">Intimacy Builder</string>
+  <string name="category4">Sensual</string>
+
+
+
+  <string name="q000">This is a question 0?</string>
+  <string name="q001">This is a question 1?</string>
+
+  <string-array name="questionsStrings">
+	 <item>@string/q000</item>
+	 <item>@string/q001</item>
+  </string-array>
+
+
 </resources>

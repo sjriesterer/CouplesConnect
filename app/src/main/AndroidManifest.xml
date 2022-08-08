@@ -10,7 +10,7 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.CouplesConnect">
 	 <activity
-		  android:name=".MainActivity"
+		  android:name=".activities.ActivityMain"
 		  android:exported="true"
 		  android:label="@string/app_name"
 		  android:theme="@style/Theme.CouplesConnect.NoActionBar">

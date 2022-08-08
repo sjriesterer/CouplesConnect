@@ -7,4 +7,118 @@
   <color name="teal_700">#FF018786</color>
   <color name="black">#FF000000</color>
   <color name="white">#FFFFFFFF</color>
+
+
+  <!--  Buttons -->
+  <color name="button_selected">#AED5B0</color>
+  <color name="button_outline">#123181</color>
+  <color name="button_rounded_selected">#87CEEB</color>
+  <color name="button_confirm"></color>
+
+  <color name="button_outline_off">#123181</color>
+  <color name="button_outline_on">#123181</color>
+  <color name="confirmation_button">#000000</color>
+  <color name="button_gradient_top_off">#54549E</color>
+  <color name="button_gradient_top_on">#CFCFE3</color>
+  <color name="button_gradient_bottom_off">#FFFFFF</color>
+  <color name="button_gradient_bottom_on">#FFFFFF</color>
+
+
+  <!--Category Colors -->
+  <color name="conversations">#FFFFFF</color>
+  <color name="dates_and_fun">#FFEB3B</color>
+  <color name="intimacy_builder">#FFC107</color>
+  <color name="sensual">#F44336</color>
+
+  <array name="category_colors">
+	 <item>@color/conversations</item>
+	 <item>@color/dates_and_fun</item>
+	 <item>@color/intimacy_builder</item>
+	 <item>@color/sensual</item>
+  </array>
+
+
+  <!--SubCategory Colors -->
+  <color name="subColor0">#FFFFFF</color>
+  <color name="subColor1">#FFEB3B</color>
+  <color name="subColor2">#FFC107</color>
+  <color name="subColor3">#F44336</color>
+  <color name="subColor4">#F44336</color>
+  <color name="subColor5">#F44336</color>
+  <color name="subColor6">#F44336</color>
+  <color name="subColor7">#F44336</color>
+  <color name="subColor8">#F44336</color>
+  <color name="subColor9">#F44336</color>
+
+  
+  <array name="subcategory_colors">
+	 <item>@color/subColor0</item>
+	 <item>@color/subColor1</item>
+	 <item>@color/subColor2</item>
+	 <item>@color/subColor3</item>
+	 <item>@color/subColor4</item>
+	 <item>@color/subColor5</item>
+	 <item>@color/subColor6</item>
+	 <item>@color/subColor7</item>
+	 <item>@color/subColor8</item>
+	 <item>@color/subColor9</item>
+  </array>
+
+  <!--  Basic Base Colors-->
+  <color name="gray">#7F7F7F</color>
+  <color name="red">#FF0000</color>
+  <color name="orange">#FF8000</color>
+  <color name="yellow">#FFFF00</color>
+  <color name="yellow_green">#BFFF00</color>
+  <color name="green">#00FF00</color>
+  <color name="green_blue">#00FF80</color>
+  <color name="cyan">#00FFFF</color>
+  <color name="light_blue">#0080FF</color>
+  <color name="blue">#0000FF</color>
+  <color name="purple">#7F00FF</color>
+  <color name="fuchsia">#FF00FF</color>
+  <color name="magenta">#FF0080</color>
+
+  <!--Range Group Colors -->
+  <color name="color0">#F44336</color>
+  <color name="color1">#FF9800</color>
+  <color name="color2">#FFEB3B</color>
+  <color name="color3">#A9E762</color>
+  <color name="color4">#009688</color>
+  <color name="color5">#22D5EC</color>
+  <color name="color6">#2196F3</color>
+  <color name="color7">#B937CF</color>
+  <color name="color8">#6A43B1</color>
+  <color name="color9">#ffffffff</color>
+
+  <array name="group_colors">
+	 <item>@color/color0</item>
+	 <item>@color/color1</item>
+	 <item>@color/color2</item>
+	 <item>@color/color3</item>
+	 <item>@color/color4</item>
+	 <item>@color/color5</item>
+	 <item>@color/color6</item>
+	 <item>@color/color7</item>
+	 <item>@color/color8</item>
+	 <item>@color/color9</item>
+  </array>
+
+  <array name="color_gradient">
+	 <item>@color/black</item>
+	 <item>@color/red</item>
+	 <item>@color/orange</item>
+	 <item>@color/yellow</item>
+	 <item>@color/yellow_green</item>
+	 <item>@color/green</item>
+	 <item>@color/green_blue</item>
+	 <item>@color/cyan</item>
+	 <item>@color/light_blue</item>
+	 <item>@color/blue</item>
+	 <item>@color/purple</item>
+	 <item>@color/fuchsia</item>
+	 <item>@color/magenta</item>
+	 <item>@color/red</item>
+  </array>
+
 </resources>

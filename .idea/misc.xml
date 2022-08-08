@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/button_confirmation_off.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/button_confirmation_on.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/button_confirmation_sel.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/activity_main.xml" value="0.32222222222222224" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/app_bar_main.xml" value="0.3385416666666667" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/content_main.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_gallery.xml" value="0.3385416666666667" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_home.xml" value="0.3385416666666667" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_question.xml" value="0.5" />
       </map>
     </option>
   </component>
