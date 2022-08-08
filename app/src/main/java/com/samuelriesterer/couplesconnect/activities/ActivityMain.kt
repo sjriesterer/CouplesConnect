@@ -48,7 +48,7 @@ class ActivityMain : AppCompatActivity() {
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
 		appBarConfiguration = AppBarConfiguration(setOf(
-			R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions), drawerLayout)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		navView.setupWithNavController(navController)
 	}
@@ -70,6 +70,21 @@ class ActivityMain : AppCompatActivity() {
 		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 
+	/*=======================================================================================================*/
+	/* ON NAVIGATION ITEM SELECTED                                                                           */
+	/*=======================================================================================================*/
+//	override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
+//		// Handle navigation view item clicks here.
+//		when (item.itemId) {
+//			R.id.nav_home -> {
+//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": fragment home clicked: ")
+//				switchFragments(getFragment(C.FRAG_HOME))
+//			}
+//		}
+//		drawerLayout.closeDrawer(GravityCompat.START)
+//		return true
+//	}
 	/*=======================================================================================================*/
 	/* COMPANION OBJECTS                                                                                     */
 	/*=======================================================================================================*/

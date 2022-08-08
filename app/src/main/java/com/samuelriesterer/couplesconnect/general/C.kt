@@ -53,7 +53,10 @@ class C {
 		const val SUB_FOREPLAY = 32
 		const val SUB_SEX = 33
 
-
+		/* Types of filters */
+		const val FAVORITES_ONLY = 0
+		const val UNRATED_ONLY = 1
+		const val ALL_TYPES = 2
 
 	}
 }

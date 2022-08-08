@@ -6,25 +6,50 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.samuelriesterer.couplesconnect.databinding.FragmentSlideshowBinding
+import com.samuelriesterer.couplesconnect.databinding.FragmentCategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 
-class SlideshowFragment : Fragment() {
-	private var _binding: FragmentSlideshowBinding? = null
+class FragmentCategories : Fragment() {
+	private var _binding: FragmentCategoriesBinding? = null
 	private val binding get() = _binding!!
-	val TAG: String = "~*FRAGMENT_SLIDESHOW"
+	val TAG: String = "~*FRAGMENT_CATEGORIES"
 
 	/*=======================================================================================================*/
 	/* ON CREATE                                                                                             */
 	/*=======================================================================================================*/
+	override fun onCreate(savedInstanceState: Bundle?) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
+		super.onCreate(savedInstanceState)
+		//		setHasOptionsMenu(false)
+	}
+
+	/*=======================================================================================================*/
+	/* ON CREATE VIEW                                                                                        */
+	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
-		_binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+		_binding = FragmentCategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
-		val textView: TextView = binding.textSlideshow
 		return root
 	}
+	/*=======================================================================================================*/
+	/* ON VIEW CREATED                                                                                       */
+	/*=======================================================================================================*/
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		super.onViewCreated(view, savedInstanceState)
+		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Variables */
+
+		//		val formatter = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
+		/* Setup Views */
+
+
+		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+	}
+
 
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */

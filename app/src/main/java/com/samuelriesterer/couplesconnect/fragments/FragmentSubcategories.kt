@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.samuelriesterer.couplesconnect.databinding.FragmentQuestionBinding
+import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 
-class FragmentQuestion : Fragment() {
-	private var _binding: FragmentQuestionBinding? = null
+class FragmentSubcategories : Fragment() {
+	private var _binding: FragmentSubcategoriesBinding? = null
 	private val binding get() = _binding!!
-	val TAG: String = "~*FRAGMENT_QUESTION"
+	val TAG: String = "~*FRAGMENT_CATEGORIES"
 
 	/*=======================================================================================================*/
 	/* ON CREATE                                                                                             */
@@ -21,34 +20,35 @@ class FragmentQuestion : Fragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
 		super.onCreate(savedInstanceState)
-//		setHasOptionsMenu(false)
+		//		setHasOptionsMenu(false)
 	}
+
 	/*=======================================================================================================*/
 	/* ON CREATE VIEW                                                                                        */
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
-		_binding = FragmentQuestionBinding.inflate(inflater, container, false)
+		_binding = FragmentSubcategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 		return root
 	}
-
 	/*=======================================================================================================*/
 	/* ON VIEW CREATED                                                                                       */
 	/*=======================================================================================================*/
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
-//		super.onViewCreated(view, savedInstanceState)
+		//		super.onViewCreated(view, savedInstanceState)
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
 
-//		val formatter = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
+		//		val formatter = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
 		/* Setup Views */
 
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	}
+
 
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */

@@ -1,36 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 xmlns:tools="http://schemas.android.com/tools"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
 	 tools:context=".fragments.FragmentQuestion">
 
-
   <TextView
+		android:id="@+id/questions_category"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Conversations"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="25dp"
 		android:layout_marginLeft="15dp"
+		android:layout_marginTop="25dp"
 		android:layout_marginRight="15dp"
 		android:layout_marginBottom="25dp"
+		android:background="@drawable/category"
 		android:gravity="center"
 		android:padding="20dp"
-		android:background="@drawable/category"
-		/>
+		android:text="Conversations" />
 
+  <TextView
+		android:id="@+id/questions_subcategory"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/questions_category"
+		android:gravity="center"
+		android:padding="5dp"
+		android:text="Life" />
 
+  <TextView
+		android:id="@+id/questions_position"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/questions_subcategory"
+		android:gravity="center"
+		android:text="12/37" />
 
-<!--  <Button-->
-<!--		app:backgroundTint="@null"-->
-<!--		style="@style/ConfirmationButton"-->
-<!--		android:layout_width="wrap_content"-->
-<!--		android:layout_height="@dimen/ConfirmationButtonHeight"-->
-<!--		android:text="Button"-->
-<!--		/>-->
+  <TextView
+		android:id="@+id/question_question"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@id/questions_dice"
+		android:layout_below="@id/questions_position"
+		android:layout_margin="10dp"
+		android:background="@drawable/parchment"
+		android:gravity="center"
+		android:text="This is a question?"
+		android:textSize="20sp" />
 
+  <ImageView
+		android:id="@+id/question_favorite"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_alignBottom="@+id/question_question"
+		android:layout_alignRight="@id/question_question"
+		android:padding="20dp"
+		android:scaleType="center"
+		android:soundEffectsEnabled="true"
+		android:src="@drawable/ic_heart_off_sel" />
+
+  <TextView
+		android:id="@+id/question_id"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignLeft="@+id/question_question"
+		android:layout_alignTop="@id/question_question"
+		android:padding="20dp"
+		android:textSize="10sp"
+		android:soundEffectsEnabled="true"
+		android:text="134" />
+
+  <ImageView
+		android:id="@+id/question_filter"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_alignTop="@+id/question_question"
+		android:layout_alignRight="@id/question_question"
+		android:padding="20dp"
+		android:scaleType="center"
+		android:soundEffectsEnabled="true"
+		android:src="@drawable/ic_filter_sel" />
+
+  <ImageView
+		android:id="@+id/questions_dice"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginBottom="20dp"
+		android:backgroundTint="@null"
+		android:padding="5dp"
+		android:soundEffectsEnabled="true"
+		android:src="@drawable/dice" />
+
+  <Button
+		android:id="@+id/questions_back"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="20dp"
+		android:layout_toLeftOf="@+id/questions_dice"
+		android:background="@color/transparent"
+		android:backgroundTint="@null"
+		android:drawableTop="@drawable/ic_back_sel" />
+
+  <Button
+		android:id="@+id/questions_forward"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="20dp"
+		android:layout_toRightOf="@+id/questions_dice"
+		android:background="@color/transparent"
+		android:backgroundTint="@null"
+		android:drawableTop="@drawable/ic_forward_sel" />
+
+  <!--  <Button-->
+  <!--		app:backgroundTint="@null"-->
+  <!--		style="@style/ConfirmationButton"-->
+  <!--		android:layout_width="wrap_content"-->
+  <!--		android:layout_height="@dimen/ConfirmationButtonHeight"-->
+  <!--		android:text="Button"-->
+  <!--		/>-->
 
 </RelativeLayout>

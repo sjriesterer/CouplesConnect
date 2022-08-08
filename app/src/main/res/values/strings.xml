@@ -11,6 +11,12 @@
   <string name="menu_gallery">Gallery</string>
   <string name="menu_slideshow">Slideshow</string>
 
+  <string name="fragment_home">Home</string>
+  <string name="fragment_categories">Categories</string>
+  <string name="fragment_subcategories">Subcategories</string>
+  <string name="fragment_question">Question</string>
+
+
   <string name="category1">Conversations</string>
   <string name="category2">Dates &amp; Fun</string>
   <string name="category3">Intimacy Builder</string>
