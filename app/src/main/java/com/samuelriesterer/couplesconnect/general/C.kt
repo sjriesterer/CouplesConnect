@@ -6,22 +6,17 @@ class C {
 	/*=======================================================================================================*/
 	companion object {
 
-
 		/* Logs */
 		const val LOG_V = 1
 		const val LOG_I = 2
 		const val LOG_D = 3
 		const val LOG_E = 4
 
-
 		/* Fragments */
-		const val FRAG_STARTUP = 0
-		const val FRAG_HOME = 1
-		const val FRAG_CREATE_PLAN = 2
-		const val FRAG_PLANS = 3
-		const val FRAG_READ = 4
-		const val FRAG_ITINERARY = 5
-		const val FRAG_DETAILS = 6
+		const val FRAG_HOME = 0
+		const val FRAG_CATEGORY = 1
+		const val FRAG_SUBCATEGORY = 2
+		const val FRAG_QUESTION = 3
 
 		/* Categories */
 		const val CAT_CONVERSATION = 0

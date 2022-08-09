@@ -1,22 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 xmlns:tools="http://schemas.android.com/tools"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
 	 tools:context=".fragments.FragmentCategories">
 
-  <TextView
-		android:id="@+id/text_slideshow"
+  <ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		android:layout_marginEnd="8dp"
-		android:textAlignment="center"
-		android:textSize="20sp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+		android:layout_height="wrap_content">
+
+	 <RelativeLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent">
+
+		<TextView
+			 android:id="@+id/categories_conversations"
+			 android:layout_width="match_parent"
+			 android:layout_height="60dp"
+			 android:layout_centerHorizontal="true"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_conversations"
+			 android:gravity="center"
+			 android:text="@string/category1" />
+
+		<ImageView
+			 android:layout_width="50dp"
+			 android:layout_height="50dp"
+			 android:layout_alignTop="@+id/categories_conversations"
+			 android:layout_marginLeft="30dp"
+			 android:layout_marginTop="5dp"
+			 android:src="@drawable/im_chat" />
+
+		<ImageView
+			 android:id="@+id/categories_conversations_question"
+			 android:layout_width="25dp"
+			 android:layout_height="25dp"
+			 android:layout_alignTop="@+id/categories_conversations"
+			 android:layout_alignRight="@+id/categories_conversations"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="10dp"
+			 android:src="@drawable/im_question" />
+
+		<LinearLayout
+			 android:id="@+id/categories_conversations_info_layout"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_below="@+id/categories_conversations"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_conversations">
+
+		  <TextView
+				android:id="@+id/categories_conversations_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="2dp"
+				android:background="@color/category_light1"
+				android:padding="5dp"
+				android:text="@string/category1_info" />
+
+		</LinearLayout>
+
+		<TextView
+			 android:id="@+id/categories_date"
+			 android:layout_width="match_parent"
+			 android:layout_height="60dp"
+			 android:layout_below="@+id/categories_conversations_info_layout"
+			 android:layout_centerHorizontal="true"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_dates"
+			 android:gravity="center"
+			 android:text="@string/category2" />
+
+		<ImageView
+			 android:layout_width="50dp"
+			 android:layout_height="50dp"
+			 android:layout_alignTop="@+id/categories_date"
+			 android:layout_marginLeft="30dp"
+			 android:layout_marginTop="5dp"
+			 android:src="@drawable/im_dating" />
+
+		<ImageView
+			 android:id="@+id/categories_date_question"
+			 android:layout_width="25dp"
+			 android:layout_height="25dp"
+			 android:layout_alignTop="@+id/categories_date"
+			 android:layout_alignRight="@+id/categories_date"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="10dp"
+			 android:src="@drawable/im_question" />
+
+		<LinearLayout
+			 android:id="@+id/categories_dates_info_layout"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_below="@+id/categories_date"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_dates">
+
+		  <TextView
+				android:id="@+id/categories_date_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="2dp"
+				android:background="@color/category_light2"
+				android:padding="5dp"
+				android:text="@string/category2_info" />
+
+		</LinearLayout>
+
+		<TextView
+			 android:id="@+id/categories_intimacy"
+			 android:layout_width="match_parent"
+			 android:layout_height="60dp"
+			 android:layout_below="@+id/categories_dates_info_layout"
+			 android:layout_centerHorizontal="true"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_intimacy"
+			 android:gravity="center"
+			 android:text="@string/category3" />
+
+		<ImageView
+			 android:layout_width="50dp"
+			 android:layout_height="50dp"
+			 android:layout_alignTop="@+id/categories_intimacy"
+			 android:layout_marginLeft="30dp"
+			 android:layout_marginTop="5dp"
+			 android:src="@drawable/im_intimacy" />
+
+		<ImageView
+			 android:id="@+id/categories_intimacy_question"
+			 android:layout_width="25dp"
+			 android:layout_height="25dp"
+			 android:layout_alignTop="@+id/categories_intimacy"
+			 android:layout_alignRight="@+id/categories_intimacy"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="10dp"
+			 android:src="@drawable/im_question" />
+
+		<LinearLayout
+			 android:id="@+id/categories_intimacy_info_layout"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_below="@+id/categories_intimacy"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_intimacy">
+
+		  <TextView
+				android:id="@+id/categories_intimacy_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="2dp"
+				android:background="@color/category_light3"
+				android:padding="5dp"
+				android:text="@string/category3_info" />
+
+		</LinearLayout>
+
+		<TextView
+			 android:id="@+id/categories_sensual"
+			 android:layout_width="match_parent"
+			 android:layout_height="60dp"
+			 android:layout_below="@+id/categories_intimacy_info_layout"
+			 android:layout_centerHorizontal="true"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_sensual"
+			 android:gravity="center"
+			 android:text="@string/category4" />
+
+		<ImageView
+			 android:layout_width="50dp"
+			 android:layout_height="50dp"
+			 android:layout_alignTop="@+id/categories_sensual"
+			 android:layout_marginLeft="30dp"
+			 android:layout_marginTop="5dp"
+			 android:src="@drawable/im_lips" />
+
+		<ImageView
+			 android:id="@+id/categories_sensual_question"
+			 android:layout_width="25dp"
+			 android:layout_height="25dp"
+			 android:layout_alignTop="@+id/categories_sensual"
+			 android:layout_alignRight="@+id/categories_sensual"
+			 android:layout_marginTop="25dp"
+			 android:layout_marginRight="10dp"
+			 android:src="@drawable/im_question" />
+
+		<LinearLayout
+			 android:id="@+id/categories_sensual_info_layout"
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_below="@+id/categories_sensual"
+			 android:layout_marginLeft="15dp"
+			 android:layout_marginRight="15dp"
+			 android:background="@drawable/category_sensual">
+
+		  <TextView
+				android:id="@+id/categories_sensual_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="2dp"
+				android:background="@color/category_light4"
+				android:padding="5dp"
+				android:text="@string/category4_info" />
+
+		</LinearLayout>
+
+	 </RelativeLayout>
+
+  </ScrollView>
+
+  <LinearLayout
+		android:id="@+id/create_plan_confirmation_layout"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/ConfirmationButtonHeight"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="10dp"
+		android:orientation="horizontal">
+
+	 <Button
+		  android:id="@+id/categories_all"
+		  app:backgroundTint="@null"
+		  style="@style/ConfirmationButton"
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_marginRight="5dp"
+		  android:layout_weight="1"
+		  android:text="@string/all"
+		  android:textSize="@dimen/ConfirmationButtonTextSize" />
+
+	 <Button
+		  android:id="@+id/categories_custom"
+		  style="@style/ConfirmationButton"
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_marginLeft="5dp"
+		  android:layout_weight="1"
+		  app:backgroundTint="@null"
+		  android:text="@string/custom"
+		  android:textSize="@dimen/ConfirmationButtonTextSize" />
+  </LinearLayout>
+
+</RelativeLayout>

@@ -26,43 +26,55 @@
 
 
   <!--Category Colors -->
-  <color name="conversations">#FFFFFF</color>
-  <color name="dates_and_fun">#FFEB3B</color>
-  <color name="intimacy_builder">#FFC107</color>
-  <color name="sensual">#F44336</color>
+  <color name="category1">#F1ECEC</color>
+  <color name="category2">#FFEB3B</color>
+  <color name="category3">#FFC107</color>
+  <color name="category4">#F44336</color>
 
   <array name="category_colors">
-	 <item>@color/conversations</item>
-	 <item>@color/dates_and_fun</item>
-	 <item>@color/intimacy_builder</item>
-	 <item>@color/sensual</item>
+	 <item>@color/category1</item>
+	 <item>@color/category2</item>
+	 <item>@color/category3</item>
+	 <item>@color/category4</item>
+  </array>
+
+
+  <!--Category Colors -->
+  <color name="category_light1">#F8F5F5</color>
+  <color name="category_light2">#FBF7CF</color>
+  <color name="category_light3">#F6E7BB</color>
+  <color name="category_light4">#F4BFBB</color>
+
+  <array name="category_light_colors">
+	 <item>@color/category_light1</item>
+	 <item>@color/category_light2</item>
+	 <item>@color/category_light3</item>
+	 <item>@color/category_light4</item>
   </array>
 
 
   <!--SubCategory Colors -->
-  <color name="subColor0">#FFFFFF</color>
-  <color name="subColor1">#FFEB3B</color>
-  <color name="subColor2">#FFC107</color>
-  <color name="subColor3">#F44336</color>
-  <color name="subColor4">#F44336</color>
-  <color name="subColor5">#F44336</color>
-  <color name="subColor6">#F44336</color>
-  <color name="subColor7">#F44336</color>
-  <color name="subColor8">#F44336</color>
-  <color name="subColor9">#F44336</color>
+  <color name="subColor0">#2196F3</color>
+  <color name="subColor1">#FF5722</color>
+  <color name="subColor2">#4CAF50</color>
+  <color name="subColor3">#673AB7</color>
+  <color name="subColor4">#FFEB3B</color>
+  <color name="subColor5">#FF9800</color>
+
+  <color name="subColor10">#F44336</color>
+  <color name="subColor11">#F44336</color>
+  <color name="subColor12">#F44336</color>
+
+  <color name="subColor20">#F44336</color>
 
   
-  <array name="subcategory_colors">
+  <array name="subcategory_cat1_colors">
 	 <item>@color/subColor0</item>
 	 <item>@color/subColor1</item>
 	 <item>@color/subColor2</item>
 	 <item>@color/subColor3</item>
 	 <item>@color/subColor4</item>
 	 <item>@color/subColor5</item>
-	 <item>@color/subColor6</item>
-	 <item>@color/subColor7</item>
-	 <item>@color/subColor8</item>
-	 <item>@color/subColor9</item>
   </array>
 
   <!--  Basic Base Colors-->

@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
+import com.samuelriesterer.couplesconnect.databinding.FragmentCustomBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 
-class FragmentSubcategories : Fragment() {
-	private var _binding: FragmentSubcategoriesBinding? = null
+class FragmentCustom : Fragment() {
+	private var _binding: FragmentCustomBinding? = null
 	private val binding get() = _binding!!
-	val TAG: String = "~*FRAGMENT_SUBCATEGORIES"
+	val TAG: String = "~*FRAGMENT_CUSTOM"
 
 	/*=======================================================================================================*/
 	/* ON CREATE                                                                                             */
@@ -28,7 +28,7 @@ class FragmentSubcategories : Fragment() {
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
-		_binding = FragmentSubcategoriesBinding.inflate(inflater, container, false)
+		_binding = FragmentCustomBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 		return root
 	}

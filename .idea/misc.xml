@@ -7,6 +7,10 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/button_confirmation_on.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/button_confirmation_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_conversations.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_dates.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_intimacy.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_back_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_filter_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_forward_sel.xml" value="0.3195" />
@@ -16,6 +20,7 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/app_bar_main.xml" value="0.3385416666666667" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/content_main.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_categories.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_custom.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_gallery.xml" value="0.3385416666666667" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_home.xml" value="0.3385416666666667" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_question.xml" value="0.33" />

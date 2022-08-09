@@ -6,6 +6,6 @@ class Question(
 	var subcategory: Int,
 	var topic: Int,
 	var question: String,
-	favorite: Boolean
+	var favorite: Boolean
 
 )

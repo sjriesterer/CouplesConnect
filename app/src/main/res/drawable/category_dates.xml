@@ -8,6 +8,6 @@
 		android:right="1dp"
 		android:top="1dp" />
   <corners android:radius="6dp" />
-  <solid android:color="@color/dates_and_fun" />
+  <solid android:color="@color/category2" />
 
 </shape>
