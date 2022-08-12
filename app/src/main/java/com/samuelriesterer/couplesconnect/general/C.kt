@@ -17,6 +17,8 @@ class C {
 		const val FRAG_CATEGORY = 1
 		const val FRAG_SUBCATEGORY = 2
 		const val FRAG_QUESTION = 3
+		const val FRAG_CUSTOM = 4
+
 
 		/* Categories */
 		const val CAT_CONVERSATION = 0
@@ -34,14 +36,16 @@ class C {
 
 		const val SUB_FUN = 10
 		const val SUB_DATE = 11
-		const val SUB_ROMANTIC = 12
+		const val SUB_ROMANTIC_DATE = 12
 
 		const val SUB_FEELINGS = 20
 		const val SUB_CONTRAST = 21
-		const val SUB_HANGUPS = 22
-		const val SUB_LANGUAGE = 23
+		const val SUB_COMPLAINTS = 22
+		const val SUB_LOVE_LANGUAGE = 23
 		const val SUB_CHILDHOOD = 24
 		const val SUB_TRAUMA = 25
+		const val SUB_AFFIRMATION = 26
+		const val SUB_NEEDS = 27
 
 		const val SUB_ROMANCE = 30
 		const val SUB_FLIRTATION = 31

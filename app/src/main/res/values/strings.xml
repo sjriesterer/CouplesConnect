@@ -15,6 +15,7 @@
   <string name="fragment_categories">Categories</string>
   <string name="fragment_subcategories">Subcategories</string>
   <string name="fragment_question">Question</string>
+  <string name="fragment_custom">Custom</string>
 
 
 <!--Categories-->
@@ -32,8 +33,26 @@
   <string name="subcategory4">Self</string>
   <string name="subcategory5">Government</string>
 
+  <string name="subcategory10">Fun</string>
+  <string name="subcategory11">Dates</string>
+  <string name="subcategory12">Romantic Dates</string>
 
-<!--General-->
+  <string name="subcategory20">Feelings</string>
+  <string name="subcategory21">Contrast</string>
+  <string name="subcategory22">Complaints</string>
+  <string name="subcategory23">Love Language</string>
+  <string name="subcategory24">Trauma</string>
+  <string name="subcategory25">Childhood</string>
+  <string name="subcategory26">Affirmations</string>
+  <string name="subcategory27">Needs</string>
+
+  <string name="subcategory30">Romance</string>
+  <string name="subcategory31">Flirtation</string>
+  <string name="subcategory32">Foreplay</string>
+  <string name="subcategory33">Sex</string>
+
+
+  <!--General-->
   <string name="all">All</string>
   <string name="custom">Custom</string>
 
@@ -45,12 +64,51 @@
   <string name="category4_info">Category 4 info</string>
 
 <!--Questions-->
-  <string name="q000">This is a question 0?</string>
-  <string name="q001">This is a question 1?</string>
+  <string name="q000">This is a conversation Life question 0?</string>
+  <string name="q001">This is a conversation Love question 1?</string>
+  <string name="q002">This is a conversation Relationship question 1?</string>
+  <string name="q003">This is a conversation Religion question 1?</string>
+  <string name="q004">This is a conversation Self question 1?</string>
+  <string name="q005">This is a conversation Government question 1?</string>
+  <string name="q006">This is a date fun example.</string>
+  <string name="q007">This is a date date example.</string>
+  <string name="q008">This is a date romantic date example.</string>
+  <string name="q009">This is an intimacy feeling discussion.</string>
+  <string name="q010">This is an intimacy contrast discussion.</string>
+  <string name="q011">This is an intimacy complaint discussion.</string>
+  <string name="q012">This is an intimacy love language discussion.</string>
+  <string name="q013">This is an intimacy childhood discussion.</string>
+  <string name="q014">This is an intimacy trauma discussion.</string>
+  <string name="q015">This is an intimacy affirmation discussion.</string>
+  <string name="q016">This is an intimacy needs discussion.</string>
+  <string name="q017">This is a sensual romance suggestion.</string>
+  <string name="q018">This is a sensual flirtation suggestion.</string>
+  <string name="q019">This is a sensual foreplay suggestion.</string>
+  <string name="q020">This is a sensual sex suggestion.</string>
 
+  
   <string-array name="questionsStrings">
 	 <item>@string/q000</item>
 	 <item>@string/q001</item>
+	 <item>@string/q002</item>
+	 <item>@string/q003</item>
+	 <item>@string/q004</item>
+	 <item>@string/q005</item>
+	 <item>@string/q006</item>
+	 <item>@string/q007</item>
+	 <item>@string/q008</item>
+	 <item>@string/q009</item>
+	 <item>@string/q010</item>
+	 <item>@string/q011</item>
+	 <item>@string/q012</item>
+	 <item>@string/q013</item>
+	 <item>@string/q014</item>
+	 <item>@string/q015</item>
+	 <item>@string/q016</item>
+	 <item>@string/q017</item>
+	 <item>@string/q018</item>
+	 <item>@string/q019</item>
+	 <item>@string/q020</item>
   </string-array>
 
 

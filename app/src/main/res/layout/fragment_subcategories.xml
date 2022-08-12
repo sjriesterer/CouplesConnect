@@ -14,98 +14,11 @@
 		  android:orientation="vertical"
 		  android:layout_height="match_parent">
 
-<!--		CONVERSATIONS-->
-		<LinearLayout
-			 android:id="@+id/subcategories_conversations"
-			 android:layout_width="match_parent"
-			 android:orientation="vertical"
-			 android:layout_height="wrap_content">
+	<include
+		 android:id="@+id/subcategory_conversations"
+		 layout="@layout/subcategory_conversations"/>
 
-		  <LinearLayout
-				android:layout_width="match_parent"
-				android:orientation="horizontal"
-				android:layout_height="wrap_content">
 
-			 <TextView
-				  android:id="@+id/subcategories_conversations_life"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:text="@string/subcategory0"
-				  android:background="@color/subColor0"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-			 <TextView
-				  android:id="@+id/subcategories_conversations_love"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:text="@string/subcategory1"
-				  android:background="@color/subColor1"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-		  </LinearLayout>
-
-		  <LinearLayout
-				android:layout_width="match_parent"
-				android:orientation="horizontal"
-				android:layout_height="wrap_content">
-
-			 <TextView
-				  android:id="@+id/subcategories_conversations_relationships"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:text="@string/subcategory2"
-				  android:background="@color/subColor2"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-			 <TextView
-				  android:id="@+id/subcategories_conversations_self"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:text="@string/subcategory3"
-				  android:background="@color/subColor3"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-		  </LinearLayout>
-
-		  <LinearLayout
-				android:layout_width="match_parent"
-				android:orientation="horizontal"
-				android:layout_height="wrap_content">
-
-			 <TextView
-				  android:id="@+id/subcategories_conversations_government"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:text="@string/subcategory4"
-				  android:background="@color/subColor4"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-			 <TextView
-				  android:id="@+id/subcategories_conversations_empty"
-				  android:layout_width="0dp"
-				  android:layout_height="50dp"
-				  android:layout_weight="1"
-				  android:layout_margin="25dp"
-				  android:gravity="center"
-				  />
-
-		  </LinearLayout>
-		</LinearLayout>
 
 	 </LinearLayout>
 

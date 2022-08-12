@@ -22,5 +22,10 @@
 		  android:icon="@drawable/ic_menu_slideshow"
 		  android:title="@string/fragment_question" />
 
+	 <item
+		  android:id="@+id/nav_custom"
+		  android:icon="@drawable/ic_menu_slideshow"
+		  android:title="@string/fragment_custom" />
+
   </group>
 </menu>

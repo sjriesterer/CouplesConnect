@@ -21,11 +21,12 @@ class Settings {
 		const val appAcronym = "CC"
 		const val sharedPreferenceKey: String = "${appAcronym}_SP"
 
+		var currentFragment = C.FRAG_HOME
 
 		fun setup(context: Context) {
 
 			categoryColors = context.resources.getIntArray(R.array.category_colors).toList()
-			subcategoryColors = context.resources.getIntArray(R.array.subcategory_colors).toList()
+			subcategoryColors = context.resources.getIntArray(R.array.subcategory_cat1_colors).toList()
 
 		}
 

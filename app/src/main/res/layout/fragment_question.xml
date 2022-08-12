@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
 	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 xmlns:tools="http://schemas.android.com/tools"
+	 android:background="?android:windowBackground"
+	 android:id="@+id/fragment_question_layout"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
 	 tools:context=".fragments.FragmentQuestion">
 
   <TextView
 		android:id="@+id/questions_category"
+		style="@style/category_heading"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="60dp"
 		android:layout_centerHorizontal="true"
 		android:layout_marginLeft="15dp"
 		android:layout_marginTop="25dp"
 		android:layout_marginRight="15dp"
-		android:layout_marginBottom="25dp"
-		android:background="@drawable/category_conversations"
+		android:clickable="true"
+		android:background="@drawable/category_conversations_sel"
 		android:gravity="center"
-		android:padding="20dp"
-		android:text="Conversations" />
+		android:text="@string/category1" />
+
+  <ImageView
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_alignTop="@+id/questions_category"
+		android:layout_marginLeft="30dp"
+		android:layout_marginTop="5dp"
+		android:src="@drawable/im_conversations" />
+
 
   <TextView
 		android:id="@+id/questions_subcategory"
@@ -118,12 +130,11 @@
 		android:backgroundTint="@null"
 		android:drawableTop="@drawable/ic_forward_sel" />
 
-    <Button
-  		app:backgroundTint="@null"
-  		style="@style/ConfirmationButton"
-  		android:layout_width="wrap_content"
-  		android:layout_height="@dimen/ConfirmationButtonHeight"
-  		android:text="Button"
-  		/>
+<!--  <Button-->
+<!--		style="@style/ConfirmationButton"-->
+<!--		android:layout_width="wrap_content"-->
+<!--		android:layout_height="@dimen/ConfirmationButtonHeight"-->
+<!--		android:text="Button"-->
+<!--		app:backgroundTint="@null" />-->
 
 </RelativeLayout>

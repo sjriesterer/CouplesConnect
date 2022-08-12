@@ -74,19 +74,19 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 		const val LOG_E = 3
 
 		/*==========================================================================================================*/
-		fun log(logType: Int, tag: String, string: String) {
+		fun log(logType: Int, callingClass: String, callingMethod: String?, message: String) {
 			/// Logs current message and then appends it to external file
 			when (logType) {
-				LOG_V -> Log.v(tag, string)
-				LOG_D -> Log.d(tag, string)
-				LOG_I -> Log.i(tag, string)
-				LOG_E -> Log.e(tag, string)
+				LOG_V -> Log.v(callingClass, "$callingMethod : $message")
+				LOG_D -> Log.d(callingClass, "$callingMethod : $message")
+				LOG_I -> Log.i(callingClass, "$callingMethod : $message")
+				LOG_E -> Log.e(callingClass, "$callingMethod : $message")
 			}
 			if(exportLog && programFolderInitialized && debugFilesInitiated) {
 				val sdf6 = SimpleDateFormat("mm:ss:SSS", Locale.getDefault())
 				val currentDateAndTime = sdf6.format(Date())
 				val s = "@: $currentDateAndTime~: " + Integer.toString(android.os.Process.myPid()) + "~: " + android.os.Process.myTid()
-					.toString() + "~: " + tag + "~: " + string + "\n"
+					.toString() + "~: " + callingClass + "~: " + message + "\n"
 				exportToFile(debugFile, s, true)
 			}
 		}
@@ -114,7 +114,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 		/*=======================================================================================================*/
 		fun deleteLog() {
-			log(LOG_I, TAG, "deleteLog: Start")
+			log(LOG_I, TAG, "deleteLog", "Start")
 
 			if(programFolderInitialized && programDebugLogFilePath != "" && debugFilesInitiated) {
 				exportToFile(debugFile, "", false) /// Erases  log
@@ -132,7 +132,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 	//<editor-fold desc="Methods">
 	private fun logToString(path: String): String {
 		/// Reads the current log in external file and makes a task from it
-		log(LOG_I, TAG, "logToString: Start")
+		log(LOG_I, TAG, "logToString", "Start")
 		val file = File(path)
 		val fileInputStream: FileInputStream
 		val inputStreamReader: InputStreamReader
@@ -143,7 +143,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 			bufferedReader = BufferedReader(inputStreamReader)
 		}
 		catch (e: IOException) {
-			log(LOG_E, TAG, e.toString())
+			log(LOG_E, TAG, "logToString", e.toString())
 			return "Unable to init bufferReader\n$e"
 		}
 		val sb = StringBuilder()
@@ -157,7 +157,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 			}
 		}
 		catch (e: IOException) {
-			log(LOG_E, TAG, e.toString())
+			log(LOG_E, TAG, "logToString", e.toString())
 			sb.append("\nError reading from log file")
 			sb.append(e.toString())
 			return sb.toString()
@@ -168,7 +168,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 		}
 		catch (e: IOException) {
 			e.printStackTrace()
-			log(LOG_E, TAG, e.toString())
+			log(LOG_E, TAG, "logToString", e.toString())
 			sb.append("\nError closing log file\n")
 			sb.append(e.toString())
 			return sb.toString()
@@ -182,11 +182,11 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 		if(exportLog) {
 			/// Two different processes for different API levels
 			if(android.os.Build.VERSION.SDK_INT < 23) {
-				log(LOG_D, TAG, "attemptFolderCreation: API < 23")
+				log(LOG_D, TAG, "attemptFolderCreation", "API < 23")
 				initProgramFolder()
 			}
 			else {
-				log(LOG_D, TAG, "attemptFolderCreation: API >= 23")
+				log(LOG_D, TAG, "attemptFolderCreation", "API >= 23")
 				initProgramFolderRequestPermission()
 			}
 		}
@@ -194,11 +194,11 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-		log(LOG_I, TAG, "onRequestPermissionsResult: Start")
+		log(LOG_I, TAG, "onRequestPermissionsResult", "Start")
 		when (requestCode) {
 			MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE -> {
 				if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					log(LOG_D, TAG, "onRequestPermissionsResult: Permission granted")
+					log(LOG_D, TAG, "onRequestPermissionsResult", "Permission granted")
 					writePermission = true
 					/// Handle the result of the permission request:
 					initProgramFolder()
@@ -206,12 +206,12 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 				else
 				/// Permission is denied
 				{
-					log(LOG_D, TAG, "onRequestPermissionsResult: Permission not granted")
+					log(LOG_D, TAG, "onRequestPermissionsResult", "Permission not granted")
 					writePermission = false
 					if(!writePermissionDeniedAlready)
 					/// Permission has already been denied previously
 					{
-						log(LOG_D, TAG, "onRequestPermissionsResult: Permission already denied")
+						log(LOG_D, TAG, "onRequestPermissionsResult","Permission already denied")
 					}
 					writePermissionDeniedAlready = true
 					putSettingBoolean(writePermissionDeniedAlreadyString, writePermissionDeniedAlready)
@@ -229,7 +229,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun analyseStorage(context: Context) {
-		log(LOG_I, TAG, "analyseStorage: Start")
+		log(LOG_I, TAG, "analyseStorage", "Start")
 		var totalSize: Long = 0
 		val appBaseFolder = context.filesDir.parentFile
 		if(appBaseFolder?.listFiles() != null)
@@ -244,18 +244,18 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 				}
 			}
 		}
-		log(LOG_D, TAG, "analyseStorage: App uses $totalSize total bytes")
+		log(LOG_D, TAG, "analyseStorage", "App uses $totalSize total bytes")
 	}
 
 	/*=======================================================================================================*/
 	private fun browseFiles(dir: File): Long {
 		/// Returns the size in bytes of dir
-		log(LOG_I, TAG, "browseFiles: Start: dir = $dir")
+		log(LOG_I, TAG, "browseFiles", "Start: dir = $dir")
 		var dirSize: Long = 0
 		if(dir.listFiles() != null) {
 			for(f in dir.listFiles()) {
 				dirSize += f.length()
-				log(LOG_D, TAG, dir.absolutePath + "/" + f.name + " weighs " + f.length())
+				log(LOG_D, TAG, "browseFiles", dir.absolutePath + "/" + f.name + " weighs " + f.length())
 				if(f.isDirectory) {
 					dirSize += browseFiles(f)
 				}
@@ -267,24 +267,24 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun initProgramFolderRequestPermission() {
-		log(LOG_D, TAG, "initProgramFolderRequestPermission: API >= 23")
+		log(LOG_D, TAG, "initProgramFolderRequestPermission", "API >= 23")
 		// Write permission granted
 		if(ContextCompat.checkSelfPermission(activityMain, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-			log(LOG_D, TAG, "initProgramFolderRequestPermission: Write permission already granted")
+			log(LOG_D, TAG, "initProgramFolderRequestPermission", "Write permission already granted")
 			initProgramFolder()
 		}
 		/// Write permission not granted yet
 		else {
-			log(LOG_D, TAG, "initProgramFolderRequestPermission: permission not explicitly granted; must request permission")
+			log(LOG_D, TAG, "initProgramFolderRequestPermission", "permission not explicitly granted; must request permission")
 			/// If user has denied permission, give explanation
 			if(ActivityCompat.shouldShowRequestPermissionRationale(activityMain, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-				log(LOG_D, TAG, "initProgramFolderRequestPermission: Explanation needed to request permission")
+				log(LOG_D, TAG, "initProgramFolderRequestPermission", "Explanation needed to request permission")
 				ActivityCompat.requestPermissions(activityMain, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
 			}
 			else
 			/// User has not denied permission yet: No explanation needed to user
 			{
-				log(LOG_D, TAG, "initProgramFolderRequestPermission: permission: No explanation needed; request permission")
+				log(LOG_D, TAG, "initProgramFolderRequestPermission", "permission: No explanation needed; request permission")
 				ActivityCompat.requestPermissions(activityMain, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
 			}
 		}
@@ -292,34 +292,34 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun makeFolder(folderName: String): Int {
-		log(LOG_I, TAG, "makeFolder: Start: folderName = $folderName")
+		log(LOG_I, TAG, "makeFolder", "Start: folderName = $folderName")
 		val state = Environment.getExternalStorageState() /// Gets environment state
-		log(LOG_D, TAG, "makeFolder: ExternalStorageDirectory = " + Environment.getExternalStorageDirectory() + "; fil path " + activityMain.getExternalFilesDir(null))
+		log(LOG_D, TAG, "makeFolder", "ExternalStorageDirectory = " + Environment.getExternalStorageDirectory() + "; fil path " + activityMain.getExternalFilesDir(null))
 		programFolderPath = Environment.getExternalStorageDirectory().toString() + "/" + folderName /// Saves path to local folder
 		//		val p = activityMain.getExternalFilesDir(null)
-		//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": external file dir path = $p")
+		//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + "", "external file dir path = $p")
 
-		log(LOG_D, TAG, "makeFolder: ext fil dir = " + activityMain.getExternalFilesDir(null))
+		log(LOG_D, TAG, "makeFolder", "ext fil dir = " + activityMain.getExternalFilesDir(null))
 
 		if(Environment.MEDIA_MOUNTED != state)
 		/// If media storage is not mounted with phone
 		{
-			log(LOG_D, TAG, "makeFolder: external storage is unavailable")
+			log(LOG_D, TAG, "makeFolder", "external storage is unavailable")
 			return MEDIA_UNAVAILABLE
 		}
 		if(Environment.MEDIA_MOUNTED_READ_ONLY == state)
 		/// Media is read only
 		{
-			log(LOG_D, TAG, "makeFolder: external storage is read only.")
+			log(LOG_D, TAG, "makeFolder", "external storage is read only.")
 			return MEDIA_READ_ONLY
 		}
-		log(LOG_D, TAG, "makeFolder: External storage is available and writeable")
+		log(LOG_D, TAG, "makeFolder", "External storage is available and writeable")
 		val folder = File(Environment.getExternalStorageDirectory(), folderName)
 		var result: Int
 		if(folder.exists())
 		/// Folder already exists
 		{
-			log(LOG_D, TAG, "makeFolder: folder exists:$folder")
+			log(LOG_D, TAG, "makeFolder", "folder exists:$folder")
 			programFolderPath = folder.toString()
 			putSettingString(programFolderPathString, programFolderPath)
 			result = FOLDER_ALREADY_EXISTS
@@ -329,20 +329,20 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 		{
 			try {
 				if(folder.mkdir()) {
-					log(LOG_D, TAG, "makeFolder: folder created:$folder")
+					log(LOG_D, TAG, "makeFolder", "folder created:$folder")
 					programFolderPath = folder.toString()
 					putSettingString(programFolderPathString, programFolderPath)
 					result = FOLDER_CREATED
 				}
 				else {
-					log(LOG_D, TAG, "makeFolder: create folder failed:$folder")
+					log(LOG_D, TAG, "makeFolder", "create folder failed:$folder")
 					result = MEDIA_UNKNOWN_ERROR
 				}
 			}
 			catch (e: Exception) {
-				log(LOG_D, TAG, "makeFolder: create folder failed (exception):$folder")
+				log(LOG_D, TAG, "makeFolder", "create folder failed (exception):$folder")
 				result = MEDIA_UNKNOWN_ERROR
-				log(LOG_E, TAG, e.toString())
+				log(LOG_E, TAG, "makeFolder", e.toString())
 			}
 		}
 		return result
@@ -356,16 +356,16 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 			debugFilesInitiated = true
 		}
 		catch (e: IOException) {
-			log(LOG_E, TAG, e.toString())
+			log(LOG_E, TAG, "initDebugFiles", e.toString())
 			debugFilesInitiated = false
 		}
 	}
 
 	/*=======================================================================================================*/
 	private fun initProgramFolder() {
-		log(LOG_I, TAG, "initProgramFolder: start: ")
+		log(LOG_I, TAG, "initProgramFolder", "Start: ")
 		val makeFolderResult = makeFolder(appDirectory) /// Attempts to make program folder on phone storage
-		log(LOG_D, TAG, "initProgramFolder: makeFolderResult = $makeFolderResult")
+		log(LOG_D, TAG, "initProgramFolder", "makeFolderResult = $makeFolderResult")
 		if(makeFolderResult == FOLDER_ALREADY_EXISTS || makeFolderResult == FOLDER_CREATED) {
 			programFolderInitialized = true /// Sets switch
 			val debugFilename = "debugLog"
@@ -375,7 +375,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 		else
 		/// Make folder attempt failed
 		{
-			log(LOG_D, TAG, "initProgramFolder: Make program folder failed")
+			log(LOG_D, TAG, "initProgramFolder", "Make program folder failed")
 			programFolderInitialized = false
 			programDebugLogFilePath = ""
 			programFolderPath = ""
@@ -388,7 +388,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun putSettingBoolean(stringID: String, value: Boolean) {
-		log(LOG_I, TAG, "putSettingBoolean: Start: stringID = $stringID; value = $value")
+		log(LOG_I, TAG, "putSettingBoolean", "Start: stringID = $stringID; value = $value")
 		val spSettings = activityMain.getSharedPreferences(sharedPreferenceKey, MODE_PRIVATE)
 		val editor = spSettings.edit()
 		editor.putBoolean(stringID, value)
@@ -397,7 +397,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun putSettingString(stringID: String, value: String) {
-		log(LOG_I, TAG, "putSettingString: Start: stringID = $stringID; value = $value")
+		log(LOG_I, TAG, "putSettingString", "Start: stringID = $stringID; value = $value")
 		val spSettings = activityMain.getSharedPreferences(sharedPreferenceKey, MODE_PRIVATE)
 		val editor = spSettings.edit()
 		editor.putString(stringID, value)
@@ -412,7 +412,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun getSettings() {
-		log(LOG_I, TAG, "getSettings: Start")
+		log(LOG_I, TAG, "getSettings", "Start")
 		val spSettings = activityMain.getSharedPreferences(sharedPreferenceKey, MODE_PRIVATE)
 		/// Settings:
 		programFolderInitialized = spSettings.getBoolean(programFolderInitializedString, false)

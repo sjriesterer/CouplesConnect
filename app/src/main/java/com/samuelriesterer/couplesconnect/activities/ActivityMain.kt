@@ -10,16 +10,26 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.ActivityMainBinding
+import com.samuelriesterer.couplesconnect.fragments.*
 import com.samuelriesterer.couplesconnect.general.C
+import com.samuelriesterer.couplesconnect.general.FragStack
 import com.samuelriesterer.couplesconnect.general.Logger
 import com.samuelriesterer.couplesconnect.general.Settings
+import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
+import java.util.*
 
-class ActivityMain : AppCompatActivity() {
+class ActivityMain : AppCompatActivity(), InterfaceMain {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
+	lateinit var drawerLayout: DrawerLayout
+
+	private lateinit var fragmentStack: Stack<FragStack>
+	lateinit var navView: NavigationView
 	lateinit var logger: Logger
 	val TAG: String = "~*ACTIVITY_MAIN"
 
@@ -31,26 +41,30 @@ class ActivityMain : AppCompatActivity() {
 		/* Setup Logger and storage */
 		logger = Logger(this, Settings.sharedPreferenceKey, Settings.appDirectory, false)
 		Logger.deleteLog()
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
-
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
 		/* Setup Settings and SharedPreferences */
 		super.onCreate(savedInstanceState)
 		Settings.setup(this)
 		Questions.setup(this)
+		fragmentStack = Stack()
 
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
 		setSupportActionBar(binding.appBarMain.toolbar)
+		drawerLayout = binding.drawerLayout
+		navView = binding.navView
 
-		val drawerLayout: DrawerLayout = binding.drawerLayout
-		val navView: NavigationView = binding.navView
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
+
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
 		appBarConfiguration = AppBarConfiguration(setOf(
-			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions), drawerLayout)
+			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom), drawerLayout)
+
 		setupActionBarWithNavController(navController, appBarConfiguration)
+
 		navView.setupWithNavController(navController)
+//		navView.setNavigationItemSelectedListener(this)
 	}
 
 	/*=======================================================================================================*/
@@ -73,55 +87,196 @@ class ActivityMain : AppCompatActivity() {
 	/*=======================================================================================================*/
 	/* ON NAVIGATION ITEM SELECTED                                                                           */
 	/*=======================================================================================================*/
-//	override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
-//		// Handle navigation view item clicks here.
-//		when (item.itemId) {
-//			R.id.nav_home -> {
-//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": fragment home clicked: ")
-//				switchFragments(getFragment(C.FRAG_HOME))
+	//	override fun onNavigationItemSelected(item: MenuItem): Boolean {
+	//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+	//		// Handle navigation view item clicks here.
+	//		when (item.itemId) {
+	//			R.id.nav_home -> {
+	//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+	//				switchFragments(getFragment(C.FRAG_HOME))
+	//			}
+	//		}
+	//		drawerLayout.closeDrawer(GravityCompat.START)
+	//		return true
+	//	}
+	/*=======================================================================================================*/
+	/* FRAGMENT METHODS                                                                                      */
+	/*=======================================================================================================*/
+	//<editor-fold desc="Fragment Methods">
+	override fun onBackPressed() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		super.onBackPressed()
+		
+	}
+	/*=======================================================================================================*/
+
+	override fun getFragment(fragID: Int): FragStack {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start, fragID = $fragID")
+		when (fragID) {
+			C.FRAG_HOME -> {
+				return FragStack(fragID, FragmentHome())
+			}
+			C.FRAG_CATEGORY -> {
+				return FragStack(fragID, FragmentCategories())
+			}
+			C.FRAG_SUBCATEGORY -> {
+				return FragStack(fragID, FragmentSubcategories())
+			}
+			C.FRAG_QUESTION -> {
+				return FragStack(fragID, FragmentQuestion())
+			}
+			C.FRAG_CUSTOM -> {
+				return FragStack(fragID, FragmentCustom())
+			}
+		}
+		return FragStack(fragID, FragmentHome())
+	}
+
+	/*=======================================================================================================*/
+	override fun switchFragments(fragStack: FragStack) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		// Remove fragment from stack if it is there previously:
+		for(i in (fragmentStack.size - 1) downTo 0) {
+			if(fragmentStack[i].id == fragStack.id) {
+				fragmentStack.removeAt(i)
+				break
+			}
+		}
+		// Push fragment to top of stack:
+		fragmentStack.push(fragStack)
+		Settings.currentFragment = fragStack.id
+
+		// Remove all fragments from container:
+//		for(fragment in supportFragmentManager.fragments) {
+//			if(fragment != null) {
+//				supportFragmentManager.beginTransaction().remove(fragment).commit()
 //			}
 //		}
-//		drawerLayout.closeDrawer(GravityCompat.START)
-//		return true
-//	}
+		// Set navigation drawer checked item:
+//		when (fragStack.id) {
+//			C.FRAG_HOME -> {
+//				navView.setCheckedItem(R.id.nav_home)
+//			}
+//			C.FRAG_CATEGORY -> {
+//				navView.setCheckedItem(R.id.nav_categories)
+//			}
+//			C.FRAG_SUBCATEGORY -> {
+//				navView.setCheckedItem(R.id.nav_subcategories)
+//			}
+//			C.FRAG_QUESTION -> {
+//				navView.setCheckedItem(R.id.nav_questions)
+//			}
+//		}
+		// Save backstack state:
+		//		Settings.saveState.fragmentList = fragStackToIntArray(fragmentStack)
+		//		DatabaseOps.databaseSaveSaveState(Settings.saveState)
+		// Switch fragments:
+		val transition = this.supportFragmentManager.beginTransaction()
+
+		when(fragStack.id) {
+			C.FRAG_CATEGORY ->
+				transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).addToBackStack(getString(R.string.fragment_categories)).commit()
+			C.FRAG_QUESTION ->
+				transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).addToBackStack(getString(R.string.fragment_question)).commit()
+		}
+	}
+
+	/*=======================================================================================================*/
+	fun fragStackToIntArray(stack: Stack<FragStack>): MutableList<Int> {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start, stack.size = ${stack.size}")
+		val list: MutableList<Int> = mutableListOf()
+		for(i in 0 until stack.size) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragStack id $i = ${stack[i].id}")
+			when (stack[i].id) {
+				C.FRAG_HOME -> {
+					list.add(C.FRAG_HOME)
+				}
+				C.FRAG_CATEGORY -> {
+					list.add(C.FRAG_CATEGORY)
+				}
+				C.FRAG_SUBCATEGORY -> {
+					list.add(C.FRAG_SUBCATEGORY)
+				}
+				C.FRAG_QUESTION -> {
+					list.add(C.FRAG_QUESTION)
+				}
+				C.FRAG_CUSTOM -> {
+					list.add(C.FRAG_CUSTOM)
+				}
+			}
+		}
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, " ${list}")
+		return list
+	}
+
+	/*=======================================================================================================*/
+	fun intArrayToFragStack(list: MutableList<Int>): Stack<FragStack> {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		val stack: Stack<FragStack> = Stack()
+		var i = 0
+		while(i < list.size) {
+			when (list[i]) {
+				C.FRAG_HOME -> {
+					stack.add(FragStack(C.FRAG_HOME, FragmentHome()))
+				}
+				C.FRAG_CATEGORY -> {
+					stack.add(FragStack(C.FRAG_CATEGORY, FragmentCategories()))
+				}
+				C.FRAG_SUBCATEGORY -> {
+					stack.add(FragStack(C.FRAG_SUBCATEGORY, FragmentSubcategories()))
+				}
+				C.FRAG_QUESTION -> {
+					i++
+					stack.add(FragStack(C.FRAG_QUESTION, FragmentQuestion()))
+				}
+				C.FRAG_CUSTOM -> {
+					i++
+					stack.add(FragStack(C.FRAG_CUSTOM, FragmentCustom()))
+				}
+			}
+			i++
+		}
+
+		return stack
+	}
+
+	//</editor-fold>
 	/*=======================================================================================================*/
 	/* COMPANION OBJECTS                                                                                     */
 	/*=======================================================================================================*/
 	//<editor-fold desc="Companion Objects">
 	//	companion object {}
-
 	//</editor-fold>
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */
 	/*=======================================================================================================*/
 	//<editor-fold desc="Override Lifecycle Methods">
 	override fun onPause() {
-//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onPause()
 	}
 
 	/*=======================================================================================================*/
 	override fun onResume() {
-//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onResume()
 	}
 
 	/*=======================================================================================================*/
 	override fun onStart() {
-//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onStart()
 	}
 
 	/*=======================================================================================================*/
 	override fun onStop() {
-//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onStop()
 	}
 
 	/*=======================================================================================================*/
 	override fun onDestroy() {
-//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		//		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onDestroy()
 	}
 	/*=======================================================================================================*/

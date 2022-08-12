@@ -27,6 +27,18 @@
 
   <style name="Theme.CouplesConnect.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+  <style name="category_heading">
+	 <item name="android:textSize">15sp</item>
+	 <item name="android:textColor">@color/black</item>
+	 <item name="android:clickable">true</item>
+	 <item name="android:soundEffectsEnabled">true</item>
+
+  </style>
+
+  <style name="category_info">
+	 <item name="android:textSize">12sp</item>
+	 <item name="android:textColor">@color/black</item>
+  </style>
 
   <style name="ConfirmationButton" parent="Widget.MaterialComponents.Button">
 	 <item name="android:textStyle">bold</item>

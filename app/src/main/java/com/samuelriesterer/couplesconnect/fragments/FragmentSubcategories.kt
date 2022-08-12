@@ -18,7 +18,7 @@ class FragmentSubcategories : Fragment() {
 	/* ON CREATE                                                                                             */
 	/*=======================================================================================================*/
 	override fun onCreate(savedInstanceState: Bundle?) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, ": start: ")
 		super.onCreate(savedInstanceState)
 		//		setHasOptionsMenu(false)
 	}
@@ -27,7 +27,7 @@ class FragmentSubcategories : Fragment() {
 	/* ON CREATE VIEW                                                                                        */
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
 		_binding = FragmentSubcategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 		return root
@@ -36,7 +36,7 @@ class FragmentSubcategories : Fragment() {
 	/* ON VIEW CREATED                                                                                       */
 	/*=======================================================================================================*/
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		//		super.onViewCreated(view, savedInstanceState)
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
@@ -55,31 +55,31 @@ class FragmentSubcategories : Fragment() {
 	/*=======================================================================================================*/
 	//<editor-fold desc="Override Lifecycle Methods">
 	override fun onPause() {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onPause()
 	}
 
 	/*=======================================================================================================*/
 	override fun onResume() {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onResume()
 	}
 
 	/*=======================================================================================================*/
 	override fun onStart() {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onStart()
 	}
 
 	/*=======================================================================================================*/
 	override fun onStop() {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onStop()
 	}
 
 	/*=======================================================================================================*/
 	override fun onDestroy() {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name + ": start")
+		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onDestroy()
 		_binding = null
 	}
