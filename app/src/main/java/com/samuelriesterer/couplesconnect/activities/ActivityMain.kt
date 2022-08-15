@@ -24,6 +24,7 @@ import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 import java.util.*
 
+
 class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNavigationItemSelectedListener {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
