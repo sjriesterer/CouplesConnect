@@ -6,6 +6,15 @@ class C {
 	/*=======================================================================================================*/
 	companion object {
 
+		/* Settings */
+		const val SETTING_INT1 = 0
+		const val SETTING_INT2 = 1
+		const val SETTING_INT3 = 2
+
+		const val SETTING_BOOLEAN1 = 0
+		const val SETTING_BOOLEAN2 = 1
+		const val SETTING_BOOLEAN3 = 2
+
 		/* Logs */
 		const val LOG_V = 1
 		const val LOG_I = 2

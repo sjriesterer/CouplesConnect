@@ -1,5 +1,6 @@
 package com.samuelriesterer.couplesconnect.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -41,20 +42,19 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		/* Setup Logger and storage */
 		logger = Logger(this, Settings.sharedPreferenceKey, Settings.appDirectory, false)
 		Logger.deleteLog()
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
-		/* Setup Settings and SharedPreferences */
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		/* Setup Settings & Data */
 		super.onCreate(savedInstanceState)
 		Settings.setup(this)
 		Questions.setup(this)
 		fragmentStack = Stack()
 
+		/* Setup View & Navigation */
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
-
 		setSupportActionBar(binding.appBarMain.toolbar)
 		drawerLayout = binding.drawerLayout
 		navView = binding.navView
-
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
@@ -62,14 +62,9 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom), drawerLayout)
 
 		setupActionBarWithNavController(navController, appBarConfiguration)
-
 		navView.setupWithNavController(navController)
-//		val navListener: NavigationView.OnNavigationItemSelectedListener
-			navView.setNavigationItemSelectedListener(this)
-
+		navView.setNavigationItemSelectedListener(this)
 		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
-		Settings.currentFragment = C.FRAG_HOME
-		printFragmentStack()
 	}
 
 	/*=======================================================================================================*/
@@ -93,7 +88,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	/* ON NAVIGATION ITEM SELECTED                                                                           */
 	/*=======================================================================================================*/
 		override fun onNavigationItemSelected(item: MenuItem): Boolean {
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			// Handle navigation view item clicks here.
 			when (item.itemId) {
 				R.id.nav_home -> {
@@ -132,7 +127,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	}
 	/*=======================================================================================================*/
 	override fun onBackPressed() {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 
 		if(drawerLayout.isDrawerOpen(GravityCompat.START)) // Drawer is open
 			drawerLayout.closeDrawer(GravityCompat.START) // Close drawer
@@ -172,7 +167,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 
 	/*=======================================================================================================*/
 	override fun switchFragments(fragmentID: Int) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		// Get the requested fragment:
 		val fragStack = getFragment(fragmentID)
 
@@ -278,6 +273,33 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 
 		return stack
 	}
+	/*=======================================================================================================*/
+	/* SHARED PREFERENCES                                                                                    */
+	/*=======================================================================================================*/
+	/*=======================================================================================================*/
+	/* SHARED PREFERENCES METHODS                                                                            */
+	/*=======================================================================================================*/
+	//<editor-fold desc="Shared Preference Methods">
+	/*=======================================================================================================*/
+	override fun putSettingBoolean(key: String, stringID: String, value: Boolean) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: $stringID = $value")
+		val spSettings = getSharedPreferences(key, Context.MODE_PRIVATE)
+		val editor = spSettings.edit()
+		editor.putBoolean(stringID, value)
+		editor.apply()
+	}
+
+	/*=======================================================================================================*/
+	override fun putSettingInt(key: String, stringID: String, value: Int) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: $stringID = $value")
+		val spSettings = getSharedPreferences(key, Context.MODE_PRIVATE)
+		val editor = spSettings.edit()
+		editor.putInt(stringID, value)
+		editor.apply()
+	}
+
+	//</editor-fold>
+
 
 	//</editor-fold>
 	/*=======================================================================================================*/

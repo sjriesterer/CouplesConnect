@@ -19,7 +19,7 @@ class FragmentHome : Fragment() {
 	/* ON CREATE                                                                                             */
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		_binding = FragmentHomeBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 		val textView: TextView = binding.textHome

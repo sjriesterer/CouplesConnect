@@ -363,7 +363,7 @@ class Logger (private val activityMain: ActivityMain, sharedPreferenceKey: Strin
 
 	/*=======================================================================================================*/
 	private fun initProgramFolder() {
-		log(LOG_I, TAG, "initProgramFolder", "Start: ")
+		log(LOG_I, TAG, "initProgramFolder", "start")
 		val makeFolderResult = makeFolder(appDirectory) /// Attempts to make program folder on phone storage
 		log(LOG_D, TAG, "initProgramFolder", "makeFolderResult = $makeFolderResult")
 		if(makeFolderResult == FOLDER_ALREADY_EXISTS || makeFolderResult == FOLDER_CREATED) {

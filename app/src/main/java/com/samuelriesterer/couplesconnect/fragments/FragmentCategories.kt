@@ -42,7 +42,7 @@ class FragmentCategories : Fragment() {
 	/* ON CREATE                                                                                             */
 	/*=======================================================================================================*/
 	override fun onCreate(savedInstanceState: Bundle?) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onCreate(savedInstanceState)
 		//		setHasOptionsMenu(false)
 	}
@@ -51,7 +51,7 @@ class FragmentCategories : Fragment() {
 	/* ON CREATE VIEW                                                                                        */
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		_binding = FragmentCategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 
