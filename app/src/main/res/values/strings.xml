@@ -33,12 +33,19 @@
   <string name="category4">Sensual</string>
 
 
-<!--Subcategories  -->
+  <!--Category Info  -->
+  <string name="category1_info">Category 1 info</string>
+  <string name="category2_info">Category 2 info</string>
+  <string name="category3_info">Category 3 info</string>
+  <string name="category4_info">Category 4 info</string>
+
+
+  <!--Subcategories  -->
   <string name="subcategory0">Life</string>
   <string name="subcategory1">Love</string>
   <string name="subcategory2">Relationships</string>
-  <string name="subcategory3">Religion</string>
-  <string name="subcategory4">Self</string>
+  <string name="subcategory3">Self</string>
+  <string name="subcategory4">Religion</string>
   <string name="subcategory5">Government</string>
 
   <string name="subcategory10">Fun</string>
@@ -60,16 +67,36 @@
   <string name="subcategory33">Sex</string>
 
 
+<!--  Subcategory Info-->
+  <string name="subcategory_info0">Life info</string>
+  <string name="subcategory_info1">Love info</string>
+  <string name="subcategory_info2">Relationships info</string>
+  <string name="subcategory_info3">Self info</string>
+  <string name="subcategory_info4">Religion info</string>
+  <string name="subcategory_info5">Government info</string>
+
+  <string name="subcategory_info10">Fun info</string>
+  <string name="subcategory_info11">Dates info</string>
+  <string name="subcategory_info12">Romantic Dates info</string>
+
+  <string name="subcategory_info20">Feelings info</string>
+  <string name="subcategory_info21">Contrast info</string>
+  <string name="subcategory_info22">Complaints info</string>
+  <string name="subcategory_info23">Love Language info</string>
+  <string name="subcategory_info24">Trauma info</string>
+  <string name="subcategory_info25">Childhood info</string>
+  <string name="subcategory_info26">Affirmations info</string>
+  <string name="subcategory_info27">Needs info</string>
+
+  <string name="subcategory_info30">Romance info</string>
+  <string name="subcategory_info31">Flirtation info</string>
+  <string name="subcategory_info32">Foreplay info</string>
+  <string name="subcategory_info33">Sex info</string>
+  
   <!--General-->
   <string name="all">All</string>
   <string name="custom">Custom</string>
-
-
-<!--Category Info  -->
-  <string name="category1_info">Category 1 info</string>
-  <string name="category2_info">Category 2 info</string>
-  <string name="category3_info">Category 3 info</string>
-  <string name="category4_info">Category 4 info</string>
+  <string name="ok">OK</string>
 
 <!--Questions-->
   <string name="q000">This is a conversation Life question 0?</string>

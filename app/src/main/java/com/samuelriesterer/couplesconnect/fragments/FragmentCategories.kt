@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.FragmentCategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
-import com.samuelriesterer.couplesconnect.general.FragStack
 import com.samuelriesterer.couplesconnect.general.Logger
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
@@ -54,7 +52,12 @@ class FragmentCategories : Fragment() {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		_binding = FragmentCategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
+		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Variables */
 
+		/* Setup Views */
+
+		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Category Click */
 		binding.categoriesConversations.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
@@ -76,31 +79,18 @@ class FragmentCategories : Fragment() {
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 
-
 		/* Question Click */
 		binding.categoriesConversationsQuestion.setOnClickListener {
-			if(binding.categoriesConversationsInfo.visibility == TextView.VISIBLE)
-			binding.categoriesConversationsInfo.visibility = TextView.GONE
-			else
-				binding.categoriesConversationsInfo.visibility = TextView.VISIBLE
+			dialogInfo(getString(R.string.category1), getString(R.string.category1_info))
 		}
 		binding.categoriesDatesQuestion.setOnClickListener {
-			if(binding.categoriesDatesInfo.visibility == TextView.VISIBLE)
-				binding.categoriesDatesInfo.visibility = TextView.GONE
-			else
-				binding.categoriesDatesInfo.visibility = TextView.VISIBLE
+			dialogInfo(getString(R.string.category2), getString(R.string.category2_info))
 		}
 		binding.categoriesIntimacyQuestion.setOnClickListener {
-			if(binding.categoriesIntimacyInfo.visibility == TextView.VISIBLE)
-				binding.categoriesIntimacyInfo.visibility = TextView.GONE
-			else
-				binding.categoriesIntimacyInfo.visibility = TextView.VISIBLE
+			dialogInfo(getString(R.string.category3), getString(R.string.category3_info))
 		}
 		binding.categoriesSensualQuestion.setOnClickListener {
-			if(binding.categoriesSensualInfo.visibility == TextView.VISIBLE)
-				binding.categoriesSensualInfo.visibility = TextView.GONE
-			else
-				binding.categoriesSensualInfo.visibility = TextView.VISIBLE
+			dialogInfo(getString(R.string.category4), getString(R.string.category4_info))
 		}
 		return root
 	}
@@ -109,22 +99,21 @@ class FragmentCategories : Fragment() {
 	/*=======================================================================================================*/
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		//		super.onViewCreated(view, savedInstanceState)
-		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Variables */
-
-		//		val formatter = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
-		/* Setup Views */
-		binding.categoriesConversationsInfo.visibility = TextView.GONE
-		binding.categoriesDatesInfo.visibility = TextView.GONE
-		binding.categoriesIntimacyInfo.visibility = TextView.GONE
-		binding.categoriesSensualInfo.visibility = TextView.GONE
-
-		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
+		super.onViewCreated(view, savedInstanceState)
 	}
 
+	/*=======================================================================================================*/
+	fun dialogInfo(title: String, message: String) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, ": start")
+		val builder = AlertDialog.Builder(requireContext())
 
+		builder.setTitle(title)
+		builder.setMessage(message)
+		builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+			dialog.dismiss()
+		}
+		builder.show()
+	}
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */
 	/*=======================================================================================================*/

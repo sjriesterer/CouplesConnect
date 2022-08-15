@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 xmlns:tools="http://schemas.android.com/tools"
-	 android:background="?android:windowBackground"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
+	 android:background="?android:windowBackground"
 	 tools:context=".fragments.FragmentCategories">
 
   <ScrollView
@@ -18,186 +18,84 @@
 		<!--		Conversations-->
 		<TextView
 			 android:id="@+id/categories_conversations"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="60dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:clickable="true"
-			 android:layout_marginTop="25dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/CategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="center"
 			 android:text="@string/category1" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryIcon"
 			 android:layout_alignTop="@+id/categories_conversations"
-			 android:layout_marginLeft="30dp"
-			 android:layout_marginTop="5dp"
 			 android:src="@drawable/im_conversations" />
 
 		<ImageView
 			 android:id="@+id/categories_conversations_question"
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryQuestionIcon"
 			 android:layout_alignTop="@+id/categories_conversations"
 			 android:layout_alignRight="@+id/categories_conversations"
-			 android:layout_marginTop="5dp"
-			 android:layout_marginRight="5dp"
-			 android:padding="10dp"
 			 android:src="@drawable/im_question" />
-
-		<TextView
-			 android:id="@+id/categories_conversations_info"
-			 style="@style/category_info"
-			 android:layout_width="match_parent"
-			 android:layout_height="wrap_content"
-			 android:layout_below="@+id/categories_conversations"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginRight="15dp"
-			 android:background="@drawable/category_conversations_on"
-			 android:padding="5dp"
-			 android:text="@string/category1_info" />
 
 		<!--		Dates & Fun-->
 		<TextView
 			 android:id="@+id/categories_dates"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="60dp"
-			 android:layout_below="@+id/categories_conversations_info"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="25dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/CategoryHeading"
+			 android:layout_below="@+id/categories_conversations"
 			 android:background="@drawable/category_dates_sel"
-			 android:gravity="center"
 			 android:text="@string/category2" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryIcon"
 			 android:layout_alignTop="@+id/categories_dates"
-			 android:layout_marginLeft="30dp"
-			 android:layout_marginTop="5dp"
 			 android:src="@drawable/im_dates" />
 
 		<ImageView
 			 android:id="@+id/categories_dates_question"
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryQuestionIcon"
 			 android:layout_alignTop="@+id/categories_dates"
 			 android:layout_alignRight="@+id/categories_dates"
-			 android:layout_marginTop="5dp"
-			 android:layout_marginRight="5dp"
-			 android:padding="10dp"
 			 android:src="@drawable/im_question" />
 
-		<TextView
-			 android:id="@+id/categories_dates_info"
-			 style="@style/category_info"
-			 android:layout_width="match_parent"
-			 android:layout_height="wrap_content"
-			 android:layout_below="@+id/categories_dates"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginRight="15dp"
-			 android:background="@drawable/category_dates_on"
-			 android:padding="5dp"
-			 android:text="@string/category2_info" />
-
 		<!--		Intimacy Builder-->
+
 		<TextView
 			 android:id="@+id/categories_intimacy"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="60dp"
-			 android:layout_below="@+id/categories_dates_info"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="25dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/CategoryHeading"
+			 android:layout_below="@+id/categories_dates"
 			 android:background="@drawable/category_intimacy_sel"
-			 android:gravity="center"
 			 android:text="@string/category3" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryIcon"
 			 android:layout_alignTop="@+id/categories_intimacy"
-			 android:layout_marginLeft="30dp"
-			 android:layout_marginTop="5dp"
 			 android:src="@drawable/im_intimacy" />
 
 		<ImageView
 			 android:id="@+id/categories_intimacy_question"
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryQuestionIcon"
 			 android:layout_alignTop="@+id/categories_intimacy"
 			 android:layout_alignRight="@+id/categories_intimacy"
-			 android:layout_marginTop="5dp"
-			 android:layout_marginRight="5dp"
-			 android:padding="10dp"
 			 android:src="@drawable/im_question" />
 
-		<TextView
-			 android:id="@+id/categories_intimacy_info"
-			 style="@style/category_info"
-			 android:layout_width="match_parent"
-			 android:layout_height="wrap_content"
-			 android:layout_below="@+id/categories_intimacy"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginRight="15dp"
-			 android:background="@drawable/category_intimacy_on"
-			 android:padding="5dp"
-			 android:text="@string/category3_info" />
-
 		<!--		Sensual-->
+
 		<TextView
 			 android:id="@+id/categories_sensual"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="60dp"
-			 android:layout_below="@+id/categories_intimacy_info"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="25dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/CategoryHeading"
+			 android:layout_below="@+id/categories_intimacy"
 			 android:background="@drawable/category_sensual_sel"
-			 android:gravity="center"
 			 android:text="@string/category4" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryIcon"
 			 android:layout_alignTop="@+id/categories_sensual"
-			 android:layout_marginLeft="30dp"
-			 android:layout_marginTop="5dp"
 			 android:src="@drawable/im_sensual" />
 
 		<ImageView
 			 android:id="@+id/categories_sensual_question"
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/CategoryQuestionIcon"
 			 android:layout_alignTop="@+id/categories_sensual"
 			 android:layout_alignRight="@+id/categories_sensual"
-			 android:layout_marginTop="5dp"
-			 android:layout_marginRight="5dp"
-			 android:padding="10dp"
+			 android:layout_marginTop="25dp"
 			 android:src="@drawable/im_question" />
-
-		<TextView
-			 android:id="@+id/categories_sensual_info"
-			 style="@style/category_info"
-			 android:layout_width="match_parent"
-			 android:layout_height="wrap_content"
-			 android:layout_below="@+id/categories_sensual"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginRight="15dp"
-			 android:background="@drawable/category_sensual_on"
-			 android:padding="5dp"
-			 android:text="@string/category4_info" />
 
 	 </RelativeLayout>
 
@@ -205,33 +103,20 @@
 
   <LinearLayout
 		android:id="@+id/create_plan_confirmation_layout"
-		android:layout_width="match_parent"
-		android:layout_height="@dimen/ConfirmationButtonHeight"
-		android:layout_alignParentBottom="true"
-		android:layout_margin="10dp"
-		android:orientation="horizontal">
+		style="@style/ConfirmationButtonLayout"
+		>
 
 	 <Button
 		  android:id="@+id/categories_all"
 		  style="@style/ConfirmationButton"
-		  android:layout_width="match_parent"
-		  android:layout_height="match_parent"
-		  android:layout_marginRight="5dp"
-		  android:layout_weight="1"
 		  android:text="@string/all"
-		  android:textSize="@dimen/ConfirmationButtonTextSize"
-		  app:backgroundTint="@null" />
+		  />
 
 	 <Button
 		  android:id="@+id/categories_custom"
 		  style="@style/ConfirmationButton"
-		  android:layout_width="match_parent"
-		  android:layout_height="match_parent"
-		  android:layout_marginLeft="5dp"
-		  android:layout_weight="1"
 		  android:text="@string/custom"
-		  android:textSize="@dimen/ConfirmationButtonTextSize"
-		  app:backgroundTint="@null" />
+		  />
   </LinearLayout>
 
 </RelativeLayout>

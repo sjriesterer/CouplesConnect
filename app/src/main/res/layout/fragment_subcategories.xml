@@ -27,33 +27,19 @@
 
   <LinearLayout
 		android:id="@+id/create_plan_confirmation_layout"
-		android:layout_width="match_parent"
-		android:layout_height="@dimen/ConfirmationButtonHeight"
-		android:layout_alignParentBottom="true"
-		android:layout_margin="10dp"
-		android:orientation="horizontal">
+		style="@style/ConfirmationButtonLayout"
+>
 
 	 <Button
 		  android:id="@+id/categories_all"
-		  app:backgroundTint="@null"
 		  style="@style/ConfirmationButton"
-		  android:layout_width="match_parent"
-		  android:layout_height="match_parent"
-		  android:layout_marginRight="5dp"
-		  android:layout_weight="1"
 		  android:text="@string/all"
-		  android:textSize="@dimen/ConfirmationButtonTextSize" />
+		  />
 
 	 <Button
 		  android:id="@+id/categories_custom"
 		  style="@style/ConfirmationButton"
-		  android:layout_width="match_parent"
-		  android:layout_height="match_parent"
-		  android:layout_marginLeft="5dp"
-		  android:layout_weight="1"
-		  app:backgroundTint="@null"
-		  android:text="@string/custom"
-		  android:textSize="@dimen/ConfirmationButtonTextSize" />
+		  android:text="@string/custom" />
   </LinearLayout>
 
 </RelativeLayout>

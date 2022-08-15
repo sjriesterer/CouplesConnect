@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
-import com.samuelriesterer.couplesconnect.general.FragStack
 import com.samuelriesterer.couplesconnect.general.Logger
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
@@ -50,6 +51,71 @@ class FragmentSubcategories : Fragment() {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		_binding = FragmentSubcategoriesBinding.inflate(inflater, container, false)
 		val root: View = binding.root
+		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Variables */
+
+		/* Setup Views */
+
+		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Subcategory Click */
+		binding.subcategoryConversations.subcategoriesConversationsLife.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_LIFE)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+		binding.subcategoryConversations.subcategoriesConversationsLove.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_LOVE)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+		binding.subcategoryConversations.subcategoriesConversationsRelationships.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_RELATIONSHIPS)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+		binding.subcategoryConversations.subcategoriesConversationsSelf.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_SELF)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+		binding.subcategoryConversations.subcategoriesConversationsReligion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_RELIGION)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+		binding.subcategoryConversations.subcategoriesConversationsGovernment.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_GOVERNMENT)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+
+		/* Question Click */
+		binding.subcategoryConversations.subcategoriesLifeQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info0), "")
+		}
+		binding.subcategoryConversations.subcategoriesLoveQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info1), "")
+		}
+		binding.subcategoryConversations.subcategoriesRelationshipsQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info2), "")
+		}
+		binding.subcategoryConversations.subcategoriesSelfQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info3), "")
+		}
+		binding.subcategoryConversations.subcategoriesReligionQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info4), "")
+		}
+		binding.subcategoryConversations.subcategoriesGovernmentQuestion.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			dialogInfo(getString(R.string.subcategory_info5), "")
+		}
+
+
 		return root
 	}
 	/*=======================================================================================================*/
@@ -57,23 +123,20 @@ class FragmentSubcategories : Fragment() {
 	/*=======================================================================================================*/
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		//		super.onViewCreated(view, savedInstanceState)
-		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Variables */
-
-		//		val formatter = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
-		/* Setup Views */
-
-
-		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		binding.subcategoryConversations.subcategoriesConversationsLife.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Questions.makeDeckSingleSubcategory(C.SUB_LIFE)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-
+		super.onViewCreated(view, savedInstanceState)
 	}
+	/*=======================================================================================================*/
+	fun dialogInfo(title: String, message: String) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, ": start")
+		val builder = AlertDialog.Builder(requireContext())
 
+		builder.setTitle(title)
+		builder.setMessage(message)
+		builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+			dialog.dismiss()
+		}
+		builder.show()
+	}
 
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */
