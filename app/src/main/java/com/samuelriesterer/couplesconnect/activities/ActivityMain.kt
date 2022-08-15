@@ -2,6 +2,7 @@ package com.samuelriesterer.couplesconnect.activities
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,8 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.core.view.GravityCompat
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.ActivityMainBinding
@@ -23,7 +23,7 @@ import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 import java.util.*
 
-class ActivityMain : AppCompatActivity(), InterfaceMain {
+class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNavigationItemSelectedListener {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
 	lateinit var drawerLayout: DrawerLayout
@@ -64,7 +64,12 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 		setupActionBarWithNavController(navController, appBarConfiguration)
 
 		navView.setupWithNavController(navController)
-//		navView.setNavigationItemSelectedListener(this)
+//		val navListener: NavigationView.OnNavigationItemSelectedListener
+			navView.setNavigationItemSelectedListener(this)
+
+		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
+		Settings.currentFragment = C.FRAG_HOME
+		printFragmentStack()
 	}
 
 	/*=======================================================================================================*/
@@ -87,54 +92,90 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 	/*=======================================================================================================*/
 	/* ON NAVIGATION ITEM SELECTED                                                                           */
 	/*=======================================================================================================*/
-	//	override fun onNavigationItemSelected(item: MenuItem): Boolean {
-	//		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
-	//		// Handle navigation view item clicks here.
-	//		when (item.itemId) {
-	//			R.id.nav_home -> {
-	//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
-	//				switchFragments(getFragment(C.FRAG_HOME))
-	//			}
-	//		}
-	//		drawerLayout.closeDrawer(GravityCompat.START)
-	//		return true
-	//	}
+		override fun onNavigationItemSelected(item: MenuItem): Boolean {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+			// Handle navigation view item clicks here.
+			when (item.itemId) {
+				R.id.nav_home -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					switchFragments(C.FRAG_HOME)
+				}
+				R.id.nav_categories -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment category clicked: ")
+					switchFragments(C.FRAG_CATEGORY)
+				}
+				R.id.nav_subcategories -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					switchFragments(C.FRAG_SUBCATEGORY)
+				}
+				R.id.nav_questions -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					switchFragments(C.FRAG_QUESTION)
+				}
+				R.id.nav_custom -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					switchFragments(C.FRAG_CUSTOM)
+				}
+
+			}
+			drawerLayout.closeDrawer(GravityCompat.START)
+			return true
+		}
 	/*=======================================================================================================*/
 	/* FRAGMENT METHODS                                                                                      */
 	/*=======================================================================================================*/
 	//<editor-fold desc="Fragment Methods">
+	fun printFragmentStack() {
+		println("FragmentStack contents:")
+		for(i in fragmentStack.indices)
+			println("FragmentStack[$i] = ${Settings.fragmentNames[fragmentStack[i].id]}")
+	}
+	/*=======================================================================================================*/
 	override fun onBackPressed() {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
-		super.onBackPressed()
-		
-	}
-	/*=======================================================================================================*/
 
-	override fun getFragment(fragID: Int): FragStack {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start, fragID = $fragID")
-		when (fragID) {
-			C.FRAG_HOME -> {
-				return FragStack(fragID, FragmentHome())
+		if(drawerLayout.isDrawerOpen(GravityCompat.START)) // Drawer is open
+			drawerLayout.closeDrawer(GravityCompat.START) // Close drawer
+		else {
+			if(fragmentStack.size == 1) {
+				super.onBackPressed()
 			}
-			C.FRAG_CATEGORY -> {
-				return FragStack(fragID, FragmentCategories())
-			}
-			C.FRAG_SUBCATEGORY -> {
-				return FragStack(fragID, FragmentSubcategories())
-			}
-			C.FRAG_QUESTION -> {
-				return FragStack(fragID, FragmentQuestion())
-			}
-			C.FRAG_CUSTOM -> {
-				return FragStack(fragID, FragmentCustom())
+			else if(fragmentStack.size > 1) {
+				fragmentStack.pop()
+				switchFragments(fragmentStack.lastElement().id)
 			}
 		}
-		return FragStack(fragID, FragmentHome())
+
+	}
+	/*=======================================================================================================*/
+	override fun getFragment(fragmentID: Int): FragStack {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start, fragmentID = $fragmentID : ${Settings.fragmentNames[fragmentID]}")
+		when (fragmentID) {
+			C.FRAG_HOME -> {
+				return FragStack(fragmentID, FragmentHome())
+			}
+			C.FRAG_CATEGORY -> {
+				return FragStack(fragmentID, FragmentCategories())
+			}
+			C.FRAG_SUBCATEGORY -> {
+				return FragStack(fragmentID, FragmentSubcategories())
+			}
+			C.FRAG_QUESTION -> {
+				return FragStack(fragmentID, FragmentQuestion())
+			}
+			C.FRAG_CUSTOM -> {
+				return FragStack(fragmentID, FragmentCustom())
+			}
+		}
+		return FragStack(fragmentID, FragmentHome())
 	}
 
 	/*=======================================================================================================*/
-	override fun switchFragments(fragStack: FragStack) {
+	override fun switchFragments(fragmentID: Int) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: ")
+		// Get the requested fragment:
+		val fragStack = getFragment(fragmentID)
+
 		// Remove fragment from stack if it is there previously:
 		for(i in (fragmentStack.size - 1) downTo 0) {
 			if(fragmentStack[i].id == fragStack.id) {
@@ -170,15 +211,13 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 		// Save backstack state:
 		//		Settings.saveState.fragmentList = fragStackToIntArray(fragmentStack)
 		//		DatabaseOps.databaseSaveSaveState(Settings.saveState)
+
 		// Switch fragments:
 		val transition = this.supportFragmentManager.beginTransaction()
+//		transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).addToBackStack(Settings.fragmentNames[fragStack.id]).commit()
+		transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).commit()
+		printFragmentStack()
 
-		when(fragStack.id) {
-			C.FRAG_CATEGORY ->
-				transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).addToBackStack(getString(R.string.fragment_categories)).commit()
-			C.FRAG_QUESTION ->
-				transition.add(R.id.nav_host_fragment_content_main, fragStack.fragment).addToBackStack(getString(R.string.fragment_question)).commit()
-		}
 	}
 
 	/*=======================================================================================================*/

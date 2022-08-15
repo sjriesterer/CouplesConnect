@@ -1,19 +1,39 @@
 package com.samuelriesterer.couplesconnect.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
+import com.samuelriesterer.couplesconnect.general.FragStack
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentSubcategories : Fragment() {
 	private var _binding: FragmentSubcategoriesBinding? = null
 	private val binding get() = _binding!!
 	val TAG: String = "~*FRAGMENT_SUBCATEGORIES"
+	/*=======================================================================================================*/
+	/* INTERFACE                                                                                             */
+	/*=======================================================================================================*/
+	lateinit var interfaceMain: InterfaceMain
 
+	/*=======================================================================================================*/
+	/* ON ATTACH                                                                                             */
+	/*=======================================================================================================*/
+	override fun onAttach(context: Context) {
+		super.onAttach(context)
+		try {
+			interfaceMain = context as InterfaceMain
+		}
+		catch (e: ClassCastException) {
+			throw ClassCastException("$context must implement interfaceMain")
+		}
+	}
 	/*=======================================================================================================*/
 	/* ON CREATE                                                                                             */
 	/*=======================================================================================================*/
@@ -46,6 +66,11 @@ class FragmentSubcategories : Fragment() {
 
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		binding.subcategoryConversations.subcategoriesConversationsLife.setOnClickListener {v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Questions.makeDeckSingleSubcategory(C.SUB_LIFE)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
 
 	}
 

@@ -58,20 +58,22 @@ class FragmentCategories : Fragment() {
 		/* Category Click */
 		binding.categoriesConversations.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Questions.makeDeckSingleCategory(C.CAT_CONVERSATION)
-			interfaceMain.switchFragments(FragStack(C.FRAG_QUESTION, FragmentQuestion()))
+			interfaceMain.switchFragments(C.FRAG_SUBCATEGORY)
 		}
 		binding.categoriesDates.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-
+			Questions.makeDeckSingleCategory(C.CAT_DATE)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 		binding.categoriesIntimacy.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-
+			Questions.makeDeckSingleCategory(C.CAT_INTIMACY)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 		binding.categoriesSensual.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-
+			Questions.makeDeckSingleCategory(C.CAT_SENSUAL)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 
 

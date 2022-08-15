@@ -69,7 +69,7 @@ class FragmentQuestion : Fragment() {
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		binding.questionsCategory.setOnClickListener {
 			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "clicked category in question")
-			interfaceMain.switchFragments(FragStack(C.FRAG_CATEGORY, FragmentCategories()))
+			interfaceMain.switchFragments(C.FRAG_CATEGORY)
 		}
 	}
 

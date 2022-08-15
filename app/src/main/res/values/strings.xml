@@ -17,6 +17,14 @@
   <string name="fragment_question">Question</string>
   <string name="fragment_custom">Custom</string>
 
+  <string-array name="fragment_names">
+	 <item>@string/fragment_home</item>
+	 <item>@string/fragment_categories</item>
+	 <item>@string/fragment_subcategories</item>
+	 <item>@string/fragment_question</item>
+	 <item>@string/fragment_custom</item>
+
+  </string-array>
 
 <!--Categories-->
   <string name="category1">Conversations</string>

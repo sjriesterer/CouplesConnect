@@ -9,7 +9,7 @@ class Settings {
 		const val TAG: String = "~*SETTINGS"
 		lateinit var categoryColors: List<Int>
 		lateinit var subcategoryColors: List<Int>
-
+		lateinit var fragmentNames: List<String>
 		/* DEBUG +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		// Debug: displays extra debugging print statements if true:
 		//				var debugText = true
@@ -27,7 +27,7 @@ class Settings {
 
 			categoryColors = context.resources.getIntArray(R.array.category_colors).toList()
 			subcategoryColors = context.resources.getIntArray(R.array.subcategory_cat1_colors).toList()
-
+			fragmentNames = context.resources.getStringArray(R.array.fragment_names).toList()
 		}
 
 	}
