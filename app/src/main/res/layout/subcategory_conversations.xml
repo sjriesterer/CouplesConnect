@@ -18,25 +18,21 @@
 
 		<TextView
 			 android:id="@+id/subcategories_conversations_life"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
 			 android:text="@string/subcategory0" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/SubcategoryIcon"
 			 android:layout_alignBottom="@+id/subcategories_conversations_life"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
 			 android:src="@drawable/im_life" />
+
+		<ImageView
+			 android:id="@+id/subcategories_life_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_life"
+			 android:layout_alignBottom="@+id/subcategories_conversations_life"
+			 android:src="@drawable/im_question" />
 
 	 </RelativeLayout>
 
@@ -48,25 +44,22 @@
 
 		<TextView
 			 android:id="@+id/subcategories_conversations_love"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
 			 android:text="@string/subcategory1" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/SubcategoryIcon"
 			 android:layout_alignBottom="@+id/subcategories_conversations_love"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
 			 android:src="@drawable/im_love" />
+
+		<ImageView
+			 android:id="@+id/subcategories_love_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_love"
+			 android:layout_alignBottom="@+id/subcategories_conversations_love"
+			 android:src="@drawable/im_question" />
+
 	 </RelativeLayout>
 
   </LinearLayout>
@@ -85,55 +78,47 @@
 
 		<TextView
 			 android:id="@+id/subcategories_conversations_relationships"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
 			 android:text="@string/subcategory2" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/SubcategoryIcon"
 			 android:layout_alignBottom="@+id/subcategories_conversations_relationships"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
 			 android:src="@drawable/im_relationships" />
 
-	 </RelativeLayout>
+		<ImageView
+			 android:id="@+id/subcategories_relationships_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_relationships"
+			 android:layout_alignBottom="@+id/subcategories_conversations_relationships"
+			 android:src="@drawable/im_question" />
 
-	 <!--	 Religion-->
+	 </RelativeLayout>
+	 <!--	 Self-->
 	 <RelativeLayout
 		  android:layout_width="match_parent"
 		  android:layout_height="match_parent"
 		  android:layout_weight="1">
 
 		<TextView
-			 android:id="@+id/subcategories_conversations_religion"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 android:id="@+id/subcategories_conversations_self"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
-			 android:text="@string/subcategory3" />
+			 android:text="@string/subcategory4" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
-			 android:layout_alignBottom="@+id/subcategories_conversations_religion"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
-			 android:src="@drawable/im_religion" />
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_conversations_self"
+			 android:src="@drawable/im_self" />
+
+		<ImageView
+			 android:id="@+id/subcategories_self_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_self"
+			 android:layout_alignBottom="@+id/subcategories_conversations_self"
+			 android:src="@drawable/im_question" />
+
 	 </RelativeLayout>
 
   </LinearLayout>
@@ -143,37 +128,33 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-	 <!--	 Self-->
+	 <!--	 Religion-->
 	 <RelativeLayout
 		  android:layout_width="match_parent"
 		  android:layout_height="match_parent"
 		  android:layout_weight="1">
 
 		<TextView
-			 android:id="@+id/subcategories_conversations_self"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 android:id="@+id/subcategories_conversations_religion"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
-			 android:text="@string/subcategory4" />
+			 android:text="@string/subcategory3" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
-			 android:layout_alignBottom="@+id/subcategories_conversations_self"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
-			 android:src="@drawable/im_self" />
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_conversations_religion"
+			 android:src="@drawable/im_religion" />
+
+		<ImageView
+			 android:id="@+id/subcategories_religion_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_religion"
+			 android:layout_alignBottom="@+id/subcategories_conversations_religion"
+			 android:src="@drawable/im_question" />
 
 	 </RelativeLayout>
 
-	 <!--	 Love-->
+	 <!--	 Government-->
 	 <RelativeLayout
 		  android:layout_width="match_parent"
 		  android:layout_height="match_parent"
@@ -181,25 +162,22 @@
 
 		<TextView
 			 android:id="@+id/subcategories_conversations_government"
-			 style="@style/category_heading"
-			 android:layout_width="match_parent"
-			 android:layout_height="100dp"
-			 android:layout_centerHorizontal="true"
-			 android:layout_marginLeft="15dp"
-			 android:layout_marginTop="15dp"
-			 android:layout_marginRight="15dp"
+			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:gravity="top|center"
-			 android:paddingTop="5dp"
 			 android:text="@string/subcategory5" />
 
 		<ImageView
-			 android:layout_width="50dp"
-			 android:layout_height="50dp"
+			 style="@style/SubcategoryIcon"
 			 android:layout_alignBottom="@+id/subcategories_conversations_government"
-			 android:layout_centerInParent="true"
-			 android:layout_marginBottom="5dp"
 			 android:src="@drawable/im_government" />
+
+		<ImageView
+			 android:id="@+id/subcategories_government_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_conversations_government"
+			 android:layout_alignBottom="@+id/subcategories_conversations_government"
+			 android:src="@drawable/im_question" />
+
 	 </RelativeLayout>
 
   </LinearLayout>

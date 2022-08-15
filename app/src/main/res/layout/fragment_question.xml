@@ -11,23 +11,14 @@
 
   <TextView
 		android:id="@+id/questions_category"
-		style="@style/category_heading"
-		android:layout_width="match_parent"
+		style="@style/CategoryHeading"
 		android:layout_height="60dp"
-		android:layout_centerHorizontal="true"
-		android:layout_marginLeft="15dp"
-		android:layout_marginTop="25dp"
-		android:layout_marginRight="15dp"
-		android:clickable="true"
 		android:background="@drawable/category_conversations_sel"
-		android:gravity="center"
 		android:text="@string/category1" />
 
   <ImageView
-		android:layout_width="50dp"
-		android:layout_height="50dp"
+		style="@style/CategoryIcon"
 		android:layout_alignTop="@+id/questions_category"
-		android:layout_marginLeft="30dp"
 		android:layout_marginTop="5dp"
 		android:src="@drawable/im_conversations" />
 
