@@ -15,7 +15,8 @@
 		android:id="@+id/nav_categories"
 		android:name="com.samuelriesterer.couplesconnect.fragments.FragmentCategories"
 		android:label="@string/fragment_categories"
-		tools:layout="@layout/fragment_categories" />
+		tools:layout="@layout/fragment_categories" >
+  </fragment>
 
   <fragment
 		android:id="@+id/nav_subcategories"
@@ -34,5 +35,11 @@
 		android:name="com.samuelriesterer.couplesconnect.fragments.FragmentCustom"
 		android:label="@string/fragment_custom"
 		tools:layout="@layout/fragment_custom" />
+
+  <fragment
+	 android:id="@+id/nav_settings"
+		android:name="com.samuelriesterer.couplesconnect.fragments.FragmentSettings"
+		android:label="@string/fragment_settings"
+		tools:layout="@layout/fragment_settings" />
 
 </navigation>

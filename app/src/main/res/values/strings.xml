@@ -11,19 +11,21 @@
   <string name="menu_gallery">Gallery</string>
   <string name="menu_slideshow">Slideshow</string>
 
+<!--  Fragments-->
   <string name="fragment_home">Home</string>
   <string name="fragment_categories">Categories</string>
   <string name="fragment_subcategories">Subcategories</string>
-  <string name="fragment_question">Question</string>
   <string name="fragment_custom">Custom</string>
+  <string name="fragment_question">Question</string>
+  <string name="fragment_settings">Settings</string>
 
   <string-array name="fragment_names">
 	 <item>@string/fragment_home</item>
 	 <item>@string/fragment_categories</item>
 	 <item>@string/fragment_subcategories</item>
-	 <item>@string/fragment_question</item>
 	 <item>@string/fragment_custom</item>
-
+	 <item>@string/fragment_question</item>
+	 <item>@string/fragment_settings</item>
   </string-array>
 
 <!--Categories-->
@@ -97,6 +99,20 @@
   <string name="all">All</string>
   <string name="custom">Custom</string>
   <string name="ok">OK</string>
+  <string name="share_subject">What are your thoughts on this: </string>
+  <string name="share_intent">Share via</string>
+  <string name="show_only">Show Only:</string>
+  <string name="sort_by">Sort By:</string>
+  <string name="shuffle_deck">Shuffle Deck</string>
+
+<!--  Sort & Filter-->
+  <string name="sort_id">ID/Category</string>
+  <string name="sort_alphabetically">Alphabetically</string>
+  <string name="sort_favorites">Favorites</string>
+  <string name="filter_favorites">Favorites</string>
+  <string name="filter_unrated">Unrated</string>
+  <string name="filter_all">All</string>
+
 
 <!--Questions-->
   <string name="q000">This is a conversation Life question 0?</string>

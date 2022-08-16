@@ -31,14 +31,14 @@ class Settings {
 		/* Int Settings */
 		lateinit var settingsInt: IntArray
 		val settingsIntKeys = arrayOf(
-			"SETTING_INT1",
-			"SETTING_INT2",
+			"SETTING_CURRENT_SORT_METHOD",
+			"SETTING_CURRENT_FILTER_METHOD",
 			"SETTING_INT3"
 		)
 		/* Boolean Settings */
 		lateinit var settingsBoolean: BooleanArray
 		val settingsBooleanKeys = arrayOf(
-			"SETTING_BOOLEAN1",
+			"SETTING_KEEP_SORT_SETTING",
 			"SETTING_BOOLEAN2",
 			"SETTING_BOOLEAN3"
 
@@ -86,7 +86,9 @@ class Settings {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			//@formatter:off
 			return intArrayOf(
-				0,0,0
+				C.SORT_ID,
+				C.FILTER_ALL_TYPES,
+				0
 			)
 			//@formatter:on
 		}
@@ -97,7 +99,9 @@ class Settings {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			//@formatter:off
 			return booleanArrayOf(
-				true, true, true
+				true,
+				true,
+				true
 			)
 			//@formatter:on
 		}

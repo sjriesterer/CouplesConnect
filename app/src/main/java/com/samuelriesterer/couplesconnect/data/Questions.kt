@@ -3,17 +3,21 @@ package com.samuelriesterer.couplesconnect.data
 import android.content.Context
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.general.C
+import com.samuelriesterer.couplesconnect.general.Logger
 
 class Questions {
 	companion object {
+		val TAG: String = "~*QUESTIONS"
 		lateinit var listOfQuestionsStrings: List<String>
 		var listOfQuestions: MutableList<Question> = mutableListOf()
 		var numOfQuestions = 0
 		var listOfFavorites: MutableList<Boolean> = mutableListOf()
 		var currentDeck: MutableList<Question> = mutableListOf()
 
+
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			listOfQuestionsStrings = context.resources.getStringArray(R.array.questionsStrings).toList()
 			numOfQuestions = listOfQuestionsStrings.size
 			// get list of favorites from database
@@ -22,6 +26,7 @@ class Questions {
 
 		/*=======================================================================================================*/
 		fun initQuestions() {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			listOfQuestions = mutableListOf(
 				Question(0, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[0], false),
 				Question(1, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[1], false),
@@ -51,9 +56,14 @@ class Questions {
 				Question(20, C.CAT_SENSUAL, C.SUB_SEX, 0, listOfQuestionsStrings[20], false)
 			)
 		}
+		/*=======================================================================================================*/
+		fun filterDeck() {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 
+		}
 		/*=======================================================================================================*/
 		fun makeDeck(categories: List<Boolean>, subcategories: List<Boolean>, favoriteType: Int) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			currentDeck.clear()
 			var include: Boolean
 
@@ -73,9 +83,9 @@ class Questions {
 					include = true
 				/* Check for favorite type */
 				if(include) {
-					include = favoriteType == C.ALL_TYPES ||
-						favoriteType == C.FAVORITES_ONLY && listOfQuestions[i].favorite ||
-						favoriteType == C.UNRATED_ONLY && !listOfQuestions[i].favorite
+					include = favoriteType == C.FILTER_ALL_TYPES ||
+						favoriteType == C.FILTER_FAVORITES_ONLY && listOfQuestions[i].favorite ||
+						favoriteType == C.FILTER_UNRATED_ONLY && !listOfQuestions[i].favorite
 				}
 
 				if(include)
@@ -85,6 +95,7 @@ class Questions {
 
 		/*=======================================================================================================*/
 		fun makeDeckSingleCategory(category: Int) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			currentDeck.clear()
 
 			for(i in listOfQuestions.indices) {
@@ -94,6 +105,7 @@ class Questions {
 		}
 		/*=======================================================================================================*/
 		fun makeDeckSingleSubcategory(subcategory: Int) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			currentDeck.clear()
 
 			for(i in listOfQuestions.indices) {

@@ -7,11 +7,11 @@ class C {
 	companion object {
 
 		/* Settings */
-		const val SETTING_INT1 = 0
-		const val SETTING_INT2 = 1
+		const val SETTING_CURRENT_SORT_METHOD = 0
+		const val SETTING_CURRENT_FILTER_METHOD = 1
 		const val SETTING_INT3 = 2
 
-		const val SETTING_BOOLEAN1 = 0
+		const val SETTING_KEEP_SORT_SETTING = 0
 		const val SETTING_BOOLEAN2 = 1
 		const val SETTING_BOOLEAN3 = 2
 
@@ -25,8 +25,9 @@ class C {
 		const val FRAG_HOME = 0
 		const val FRAG_CATEGORY = 1
 		const val FRAG_SUBCATEGORY = 2
-		const val FRAG_QUESTION = 3
-		const val FRAG_CUSTOM = 4
+		const val FRAG_CUSTOM = 3
+		const val FRAG_QUESTION = 4
+		const val FRAG_SETTINGS =5
 
 
 		/* Categories */
@@ -61,10 +62,17 @@ class C {
 		const val SUB_FOREPLAY = 32
 		const val SUB_SEX = 33
 
+		/* Types of sorts */
+		const val SORT_ID = 0
+		const val SORT_ALPHABETICALLY = 1
+		const val SORT_FAVORITES = 2
+		const val SORT_SHUFFLE = 3
+
 		/* Types of filters */
-		const val FAVORITES_ONLY = 0
-		const val UNRATED_ONLY = 1
-		const val ALL_TYPES = 2
+		const val FILTER_FAVORITES_ONLY = 0
+		const val FILTER_UNRATED_ONLY = 1
+		const val FILTER_ALL_TYPES = 2
+
 
 	}
 }

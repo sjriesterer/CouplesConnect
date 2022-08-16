@@ -60,7 +60,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
 		appBarConfiguration = AppBarConfiguration(setOf(
-			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom), drawerLayout)
+			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom, R.id.nav_settings), drawerLayout)
 
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		navView.setupWithNavController(navController)
@@ -112,7 +112,11 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
 					switchFragments(C.FRAG_CUSTOM)
 				}
+				R.id.nav_settings -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					switchFragments(C.FRAG_SETTINGS)
 
+				}
 			}
 			drawerLayout.closeDrawer(GravityCompat.START)
 			return true
