@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.samuelriesterer.couplesconnect.R
+import com.samuelriesterer.couplesconnect.data.DatabaseApp
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.ActivityMainBinding
 import com.samuelriesterer.couplesconnect.fragments.*
@@ -29,7 +30,6 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
 	lateinit var drawerLayout: DrawerLayout
-
 	private lateinit var fragmentStack: Stack<FragStack>
 	lateinit var navView: NavigationView
 	lateinit var logger: Logger
@@ -46,7 +46,9 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		/* Setup Settings & Data */
 		super.onCreate(savedInstanceState)
-		Settings.setup(this)
+		Settings.setup(this) // Call this first
+		databaseApp = DatabaseApp.getDatabase(this)!! /// Inits the database
+		Settings.databaseFilePath = this.getDatabasePath(Settings.databaseFilename).absolutePath
 		Questions.setup(this)
 		fragmentStack = Stack()
 
@@ -66,6 +68,9 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		navView.setupWithNavController(navController)
 		navView.setNavigationItemSelectedListener(this)
 		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
+
+		Settings.settingsBoolean[C.SETTING_APP_INITIALIZED] = true
+		Settings.saveSettingBoolean(Settings.settingsBoolean[C.SETTING_APP_INITIALIZED], C.SETTING_APP_INITIALIZED)
 	}
 
 	/*=======================================================================================================*/
@@ -310,9 +315,10 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	/*=======================================================================================================*/
 	/* COMPANION OBJECTS                                                                                     */
 	/*=======================================================================================================*/
-	//<editor-fold desc="Companion Objects">
-	//	companion object {}
-	//</editor-fold>
+		companion object {
+		lateinit var databaseApp: DatabaseApp /// The master database
+
+		}
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */
 	/*=======================================================================================================*/

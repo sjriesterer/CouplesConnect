@@ -16,6 +16,8 @@ class Settings {
 		lateinit var fonts: List<Typeface>
 		lateinit var interfaceMain: InterfaceMain
 		var appName = "CouplesConnect"
+		val databaseFilename = "CouplesConnectDB"
+		var databaseFilePath = ""
 		const val appDirectory = "CouplesConnect"
 		const val appAcronym = "CC"
 		const val sharedPreferenceKey: String = "${appAcronym}_SP"
@@ -38,9 +40,9 @@ class Settings {
 		/* Boolean Settings */
 		lateinit var settingsBoolean: BooleanArray
 		val settingsBooleanKeys = arrayOf(
+			"SETTING_APP_INITIALIZED",
 			"SETTING_KEEP_SORT_SETTING",
-			"SETTING_BOOLEAN2",
-			"SETTING_BOOLEAN3"
+			"SETTING_BOOLEAN2"
 
 		)
 		/*=======================================================================================================*/
@@ -99,7 +101,7 @@ class Settings {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			//@formatter:off
 			return booleanArrayOf(
-				true,
+				false,
 				true,
 				true
 			)

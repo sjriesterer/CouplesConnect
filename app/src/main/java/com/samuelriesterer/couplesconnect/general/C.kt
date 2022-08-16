@@ -11,8 +11,8 @@ class C {
 		const val SETTING_CURRENT_FILTER_METHOD = 1
 		const val SETTING_INT3 = 2
 
-		const val SETTING_KEEP_SORT_SETTING = 0
-		const val SETTING_BOOLEAN2 = 1
+		const val SETTING_APP_INITIALIZED = 0
+		const val SETTING_KEEP_SORT_SETTING = 1
 		const val SETTING_BOOLEAN3 = 2
 
 		/* Logs */

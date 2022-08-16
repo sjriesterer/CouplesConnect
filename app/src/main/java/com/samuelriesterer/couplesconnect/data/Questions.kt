@@ -4,6 +4,7 @@ import android.content.Context
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.general.Settings
 
 class Questions {
 	companion object {
@@ -13,17 +14,37 @@ class Questions {
 		var numOfQuestions = 0
 		var listOfFavorites: MutableList<Boolean> = mutableListOf()
 		var currentDeck: MutableList<Question> = mutableListOf()
-
+		lateinit var savedFavorites: MutableList<EntityFavorites>
 
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			listOfQuestionsStrings = context.resources.getStringArray(R.array.questionsStrings).toList()
 			numOfQuestions = listOfQuestionsStrings.size
-			// get list of favorites from database
 			initQuestions()
+			if(!Settings.settingsBoolean[C.SETTING_APP_INITIALIZED])
+			{
+				savedFavorites = initFavorites()
+				DatabaseOps.insertFavorites(savedFavorites)
+			}
+			else
+			{
+				savedFavorites = DatabaseOps.databaseGetFavorites()
+				copyFavoritesToList()
+			}
 		}
-
+		/*=======================================================================================================*/
+		fun initFavorites() : MutableList<EntityFavorites> {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			val list : MutableList<EntityFavorites> = mutableListOf()
+			for(i in listOfQuestionsStrings.indices) list.add(EntityFavorites(i, false))
+			return list
+		}
+		/*=======================================================================================================*/
+		fun copyFavoritesToList() {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			for(i in listOfQuestionsStrings.indices) listOfQuestions[i].favorite = savedFavorites[i].favorite
+		}
 		/*=======================================================================================================*/
 		fun initQuestions() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")

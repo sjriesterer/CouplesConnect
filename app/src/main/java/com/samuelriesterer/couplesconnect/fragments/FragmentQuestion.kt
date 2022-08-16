@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.adapters.ViewPagerAdapter
+import com.samuelriesterer.couplesconnect.data.DatabaseOps
 import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.databinding.DialogSortBinding
 import com.samuelriesterer.couplesconnect.databinding.FragmentQuestionBinding
@@ -70,13 +71,14 @@ class FragmentQuestion : Fragment() {
 
 		/* Setup Views */
 //		binding.questionsBack.visibility = Button.GONE
+		setFavoriteIcon(0)
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {	}
 			override fun onPageSelected(position: Int) {
 				currentPosition = position
-				setFavorite(position)
+				setFavoriteIcon(position)
 			}
 			override fun onPageScrollStateChanged(state: Int) {}
 		})
@@ -99,8 +101,11 @@ class FragmentQuestion : Fragment() {
 		}
 		binding.questionFavorite.setOnClickListener {
 			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Favorite clicked in question")
-			Questions.currentDeck[currentPosition].favorite = !Questions.currentDeck[currentPosition].favorite
-			setFavorite(currentPosition)
+			val newValue = !Questions.currentDeck[currentPosition].favorite
+			Questions.listOfQuestions.find { it.id == Questions.currentDeck[currentPosition].id }?.favorite = newValue
+			Questions.currentDeck[currentPosition].favorite = newValue
+			DatabaseOps.updateFavorite(Questions.currentDeck[currentPosition].id, newValue)
+			setFavoriteIcon(currentPosition)
 		}
 		binding.questionShare.setOnClickListener {
 			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Share clicked in question")
@@ -128,7 +133,8 @@ class FragmentQuestion : Fragment() {
 
 	}
 	/*=======================================================================================================*/
-	fun setFavorite(position: Int) {
+	fun setFavoriteIcon(position: Int){
+		// Sets the favorite icon and returns value
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 //		val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_on_sel)
 		if(Questions.currentDeck[position].favorite)
