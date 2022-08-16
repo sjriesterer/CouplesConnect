@@ -100,6 +100,11 @@
 
 <!--Questions-->
   <string name="q000">This is a conversation Life question 0?</string>
+  <string name="q021">This is a conversation Life question 1?</string>
+  <string name="q022">This is a conversation Life question 2?</string>
+  <string name="q023">This is a conversation Life question 3?</string>
+  <string name="q024">This is a conversation Life question 4?</string>
+  <string name="q025">This is a conversation Life question 5?</string>
   <string name="q001">This is a conversation Love question 1?</string>
   <string name="q002">This is a conversation Relationship question 1?</string>
   <string name="q003">This is a conversation Religion question 1?</string>
@@ -124,6 +129,11 @@
   
   <string-array name="questionsStrings">
 	 <item>@string/q000</item>
+	 <item>@string/q021</item>
+	 <item>@string/q022</item>
+	 <item>@string/q023</item>
+	 <item>@string/q024</item>
+	 <item>@string/q025</item>
 	 <item>@string/q001</item>
 	 <item>@string/q002</item>
 	 <item>@string/q003</item>

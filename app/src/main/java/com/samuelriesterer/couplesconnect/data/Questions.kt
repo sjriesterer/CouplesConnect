@@ -24,6 +24,11 @@ class Questions {
 		fun initQuestions() {
 			listOfQuestions = mutableListOf(
 				Question(0, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[0], false),
+				Question(1, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[1], false),
+				Question(2, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[2], false),
+				Question(3, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[3], false),
+				Question(4, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[4], false),
+				Question(5, C.CAT_CONVERSATION, C.SUB_LIFE, 0, listOfQuestionsStrings[5], false),
 				Question(1, C.CAT_CONVERSATION, C.SUB_LOVE, 0, listOfQuestionsStrings[1], false),
 				Question(2, C.CAT_CONVERSATION, C.SUB_RELATIONSHIPS, 0, listOfQuestionsStrings[2], false),
 				Question(3, C.CAT_CONVERSATION, C.SUB_RELIGION, 0, listOfQuestionsStrings[3], false),
