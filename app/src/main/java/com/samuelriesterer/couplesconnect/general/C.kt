@@ -7,8 +7,8 @@ class C {
 	companion object {
 
 		/* Settings */
-		const val SETTING_CURRENT_SORT_METHOD = 0
-		const val SETTING_CURRENT_FILTER_METHOD = 1
+		const val SETTING_INT1 = 0
+		const val SETTING_INT2 = 1
 		const val SETTING_INT3 = 2
 
 		const val SETTING_APP_INITIALIZED = 0
@@ -44,23 +44,23 @@ class C {
 		const val SUB_SELF = 4
 		const val SUB_GOVERNMENT = 5
 
-		const val SUB_FUN = 10
-		const val SUB_DATE = 11
-		const val SUB_ROMANTIC_DATE = 12
+		const val SUB_FUN = 6
+		const val SUB_DATE = 7
+		const val SUB_ROMANTIC_DATE = 8
 
-		const val SUB_FEELINGS = 20
-		const val SUB_CONTRAST = 21
-		const val SUB_COMPLAINTS = 22
-		const val SUB_LOVE_LANGUAGE = 23
-		const val SUB_CHILDHOOD = 24
-		const val SUB_TRAUMA = 25
-		const val SUB_AFFIRMATION = 26
-		const val SUB_NEEDS = 27
+		const val SUB_FEELINGS = 9
+		const val SUB_CONTRAST = 10
+		const val SUB_COMPLAINTS = 11
+		const val SUB_LOVE_LANGUAGE = 12
+		const val SUB_CHILDHOOD = 13
+		const val SUB_TRAUMA = 14
+		const val SUB_AFFIRMATION = 15
+		const val SUB_NEEDS = 16
 
-		const val SUB_ROMANCE = 30
-		const val SUB_FLIRTATION = 31
-		const val SUB_FOREPLAY = 32
-		const val SUB_SEX = 33
+		const val SUB_ROMANCE = 17
+		const val SUB_FLIRTATION = 18
+		const val SUB_FOREPLAY = 19
+		const val SUB_SEX = 20
 
 		/* Types of sorts */
 		const val SORT_ID = 0

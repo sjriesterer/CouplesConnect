@@ -168,7 +168,13 @@ class FragmentQuestion : Fragment() {
 		val filterCheckBoxes = arrayListOf(bind.dialogFilterFavorites, bind.dialogFilterUnrated, bind.dialogFilterAll)
 
 		/* Setup Views */
-		//TODO: set check marks based on current setting
+		if(Settings.currentConfiguration.currentSortOrder == C.SORT_SHUFFLE)
+			toggleCheckBoxes(sortCheckBoxes, null)
+		else
+			toggleCheckBoxes(sortCheckBoxes, sortCheckBoxes[Settings.currentConfiguration.currentSortOrder])
+
+		toggleCheckBoxes(filterCheckBoxes, filterCheckBoxes[Settings.currentConfiguration.currentFilterType])
+
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Sort */
@@ -185,29 +191,28 @@ class FragmentQuestion : Fragment() {
 		bind.dialogFilterAll.setOnClickListener{toggleCheckBoxes(filterCheckBoxes, bind.dialogFilterAll)}
 
 		/* OK */
+		//TODO only change if a change detectec
 		bind.dialogSortOk.setOnClickListener {
 			// Set Setting:
 			when {
-				bind.dialogSortId.isChecked -> Settings.settingsInt[C.SETTING_CURRENT_SORT_METHOD] = C.SORT_ID
-				bind.dialogSortAlphabet.isChecked -> Settings.settingsInt[C.SETTING_CURRENT_SORT_METHOD] = C.SORT_ALPHABETICALLY
-				bind.dialogSortFavorites.isChecked -> Settings.settingsInt[C.SETTING_CURRENT_SORT_METHOD] = C.SORT_FAVORITES
-				else -> Settings.settingsInt[C.SETTING_CURRENT_SORT_METHOD] = C.SORT_SHUFFLE
+				bind.dialogSortId.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_ID
+				bind.dialogSortAlphabet.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_ALPHABETICALLY
+				bind.dialogSortFavorites.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_FAVORITES
+				else -> Settings.currentConfiguration.currentSortOrder = C.SORT_SHUFFLE
 			}
 
 			when {
-				bind.dialogFilterFavorites.isChecked -> Settings.settingsInt[C.SETTING_CURRENT_FILTER_METHOD] = C.FILTER_FAVORITES_ONLY
-				bind.dialogFilterUnrated.isChecked -> Settings.settingsInt[C.SETTING_CURRENT_FILTER_METHOD] = C.FILTER_UNRATED_ONLY
-				else -> Settings.settingsInt[C.SETTING_CURRENT_FILTER_METHOD] = C.FILTER_ALL_TYPES
+				bind.dialogFilterFavorites.isChecked -> Settings.currentConfiguration.currentFilterType = C.FILTER_FAVORITES_ONLY
+				bind.dialogFilterUnrated.isChecked -> Settings.currentConfiguration.currentFilterType = C.FILTER_UNRATED_ONLY
+				else -> Settings.currentConfiguration.currentFilterType = C.FILTER_ALL_TYPES
 			}
 
 			// Save Setting:
-			Settings.saveSettingInt(Settings.settingsInt[C.SETTING_CURRENT_SORT_METHOD], C.SETTING_CURRENT_SORT_METHOD)
-			Settings.saveSettingInt(Settings.settingsInt[C.SETTING_CURRENT_FILTER_METHOD], C.SETTING_CURRENT_FILTER_METHOD)
-
-			// TODO: Sort/filter/shuffle deck
-			// TODO: Update adapter/questions
-
-
+			DatabaseOps.insertConfiguration(Settings.currentConfiguration)
+			Questions.makeDeckWithCurrentConfigurations()
+			viewPagerAdapter.notifyDataSetChanged()
+			currentPosition = 0
+			setFavoriteIcon(0)
 			dialog.dismiss()
 		}
 

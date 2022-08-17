@@ -15,4 +15,12 @@ interface DAODatabase
 
 	@Query("UPDATE TableFavorites SET favorite =:value WHERE questionID =:ID ")
 	fun updateFavorite(ID: Int, value: Boolean)
+
+	@Query("SELECT * FROM TableConfiguration WHERE id =:ID")
+	fun returnConfiguration(ID: Int): EntityConfiguration
+
+	@Insert(onConflict = OnConflictStrategy.REPLACE)
+	fun insertConfiguration(entity: EntityConfiguration)
+
+
 }

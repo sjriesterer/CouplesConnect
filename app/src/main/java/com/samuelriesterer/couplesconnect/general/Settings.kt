@@ -3,6 +3,10 @@ package com.samuelriesterer.couplesconnect.general
 import android.content.Context
 import android.graphics.Typeface
 import com.samuelriesterer.couplesconnect.R
+import com.samuelriesterer.couplesconnect.activities.ActivityMain
+import com.samuelriesterer.couplesconnect.data.DatabaseOps
+import com.samuelriesterer.couplesconnect.data.EntityConfiguration
+import com.samuelriesterer.couplesconnect.data.Questions
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class Settings {
@@ -28,13 +32,15 @@ class Settings {
 		//				var debugText = true
 		var debugText = false
 
+		/* Data */
+		lateinit var currentConfiguration: EntityConfiguration
 
 		/* SHARED PREFERENCES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Int Settings */
 		lateinit var settingsInt: IntArray
 		val settingsIntKeys = arrayOf(
-			"SETTING_CURRENT_SORT_METHOD",
-			"SETTING_CURRENT_FILTER_METHOD",
+			"SETTING_INT1",
+			"SETTING_INT2",
 			"SETTING_INT3"
 		)
 		/* Boolean Settings */
@@ -42,7 +48,7 @@ class Settings {
 		val settingsBooleanKeys = arrayOf(
 			"SETTING_APP_INITIALIZED",
 			"SETTING_KEEP_SORT_SETTING",
-			"SETTING_BOOLEAN2"
+			"SETTING_BOOLEAN3"
 
 		)
 		/*=======================================================================================================*/
@@ -67,7 +73,16 @@ class Settings {
 			settingsBoolean = getDefaultSettingsBoolean()
 
 			getSettings(context)
-//			fonts =
+
+			currentConfiguration = if(!settingsBoolean[C.SETTING_APP_INITIALIZED]) {
+				getDefaultConfiguration()
+			}
+			else {
+				DatabaseOps.getConfiguration()
+			}
+
+
+			//			fonts =
 //				listOf(
 //					Typeface.SERIF,
 //					ResourcesCompat.getFont(context, R.font.varela)!!,
@@ -82,6 +97,30 @@ class Settings {
 		}
 		/*=======================================================================================================*/
 		/* DEFAULTS                                                                                              */
+		/*=======================================================================================================*/
+		fun getEmptyConfiguration()  : EntityConfiguration {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			//@formatter:off
+			return EntityConfiguration(
+				0,
+				mutableListOf(),
+				mutableListOf(),
+				C.SORT_ID,
+				C.FILTER_ALL_TYPES)
+			//@formatter:on
+		}
+		/*=======================================================================================================*/
+		fun getDefaultConfiguration() : EntityConfiguration {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			//@formatter:off
+			return EntityConfiguration(
+				0,
+				mutableListOf(true, true, true, true),
+				mutableListOf(false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false),
+				C.SORT_ID,
+				C.FILTER_ALL_TYPES)
+			//@formatter:on
+		}
 		/*=======================================================================================================*/
 		fun getDefaultSettingsInt(): IntArray {
 			// Init all default and starting int settings here

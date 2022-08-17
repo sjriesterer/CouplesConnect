@@ -12,7 +12,6 @@ class Questions {
 		lateinit var listOfQuestionsStrings: List<String>
 		var listOfQuestions: MutableList<Question> = mutableListOf()
 		var numOfQuestions = 0
-		var listOfFavorites: MutableList<Boolean> = mutableListOf()
 		var currentDeck: MutableList<Question> = mutableListOf()
 		lateinit var savedFavorites: MutableList<EntityFavorites>
 
@@ -29,7 +28,7 @@ class Questions {
 			}
 			else
 			{
-				savedFavorites = DatabaseOps.databaseGetFavorites()
+				savedFavorites = DatabaseOps.getFavorites()
 				copyFavoritesToList()
 			}
 		}
@@ -78,8 +77,14 @@ class Questions {
 			)
 		}
 		/*=======================================================================================================*/
-		fun filterDeck() {
+		fun shuffleDeck() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+
+		}
+		/*=======================================================================================================*/
+		fun makeDeckWithCurrentConfigurations() {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+
 
 		}
 		/*=======================================================================================================*/
