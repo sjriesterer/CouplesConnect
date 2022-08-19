@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.samuelriesterer.couplesconnect.R
-import com.samuelriesterer.couplesconnect.data.Questions
+import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.FragmentCategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
@@ -65,32 +65,32 @@ class FragmentCategories : Fragment() {
 		}
 		binding.categoriesDates.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Questions.makeDeckSingleCategory(C.CAT_DATE)
+			Data.makeDeckSingleCategory(C.CAT_DATE)
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 		binding.categoriesIntimacy.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Questions.makeDeckSingleCategory(C.CAT_INTIMACY)
+			Data.makeDeckSingleCategory(C.CAT_INTIMACY)
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 		binding.categoriesSensual.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Questions.makeDeckSingleCategory(C.CAT_SENSUAL)
+			Data.makeDeckSingleCategory(C.CAT_SENSUAL)
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 
 		/* Question Click */
 		binding.categoriesConversationsQuestion.setOnClickListener {
-			dialogInfo(getString(R.string.category1), getString(R.string.category1_info))
+			dialogInfo(getString(R.string.category0), getString(R.string.category_info0))
 		}
 		binding.categoriesDatesQuestion.setOnClickListener {
-			dialogInfo(getString(R.string.category2), getString(R.string.category2_info))
+			dialogInfo(getString(R.string.category1), getString(R.string.category_info1))
 		}
 		binding.categoriesIntimacyQuestion.setOnClickListener {
-			dialogInfo(getString(R.string.category3), getString(R.string.category3_info))
+			dialogInfo(getString(R.string.category2), getString(R.string.category_info2))
 		}
 		binding.categoriesSensualQuestion.setOnClickListener {
-			dialogInfo(getString(R.string.category4), getString(R.string.category4_info))
+			dialogInfo(getString(R.string.category3), getString(R.string.category_info3))
 		}
 		return root
 	}

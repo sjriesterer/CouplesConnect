@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.adapters.ViewPagerAdapter
 import com.samuelriesterer.couplesconnect.data.DatabaseOps
-import com.samuelriesterer.couplesconnect.data.Questions
+import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.DialogSortBinding
 import com.samuelriesterer.couplesconnect.databinding.FragmentQuestionBinding
 import com.samuelriesterer.couplesconnect.general.C
@@ -66,18 +66,19 @@ class FragmentQuestion : Fragment() {
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
 		viewPager = binding.pager
-		viewPagerAdapter = ViewPagerAdapter(requireContext(), Questions.currentDeck)
+		viewPagerAdapter = ViewPagerAdapter(requireContext(), Data.currentDeck)
 		viewPager.adapter = viewPagerAdapter
 
 		/* Setup Views */
 //		binding.questionsBack.visibility = Button.GONE
 		setFavoriteIcon(0)
-
+		setQuestionPositionText(currentPosition)
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {	}
 			override fun onPageSelected(position: Int) {
 				currentPosition = position
+				setQuestionPositionText(currentPosition)
 				setFavoriteIcon(position)
 			}
 			override fun onPageScrollStateChanged(state: Int) {}
@@ -101,17 +102,17 @@ class FragmentQuestion : Fragment() {
 		}
 		binding.questionFavorite.setOnClickListener {
 			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Favorite clicked in question")
-			val newValue = !Questions.currentDeck[currentPosition].favorite
-			Questions.listOfQuestions.find { it.id == Questions.currentDeck[currentPosition].id }?.favorite = newValue
-			Questions.currentDeck[currentPosition].favorite = newValue
-			DatabaseOps.updateFavorite(Questions.currentDeck[currentPosition].id, newValue)
+			val newValue = !Data.currentDeck[currentPosition].favorite
+			Data.listOfQuestions.find { it.id == Data.currentDeck[currentPosition].id }?.favorite = newValue
+			Data.currentDeck[currentPosition].favorite = newValue
+			DatabaseOps.updateFavorite(Data.currentDeck[currentPosition].id, newValue)
 			setFavoriteIcon(currentPosition)
 		}
 		binding.questionShare.setOnClickListener {
 			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Share clicked in question")
 			val sharingIntent = Intent(Intent.ACTION_SEND)
 			sharingIntent.type = "text/plain"
-			val shareBody = "${Questions.currentDeck[currentPosition].question} (${getString(R.string.app_name)})"
+			val shareBody = "${Data.currentDeck[currentPosition].question} (${getString(R.string.app_name)})"
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, " shareBody = $shareBody")
 			sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "${getString(R.string.share_subject)} ")
 			sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
@@ -133,11 +134,16 @@ class FragmentQuestion : Fragment() {
 
 	}
 	/*=======================================================================================================*/
+	fun setQuestionPositionText(position: Int) {
+		binding.questionsPosition.text = "${position+1}/${Data.currentDeck.size}"
+		binding.questionId.text = "${Data.currentDeck[position].id + 1}"
+	}
+	/*=======================================================================================================*/
 	fun setFavoriteIcon(position: Int){
 		// Sets the favorite icon and returns value
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 //		val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_on_sel)
-		if(Questions.currentDeck[position].favorite)
+		if(Data.currentDeck[position].favorite)
 			binding.questionFavorite.setBackgroundResource(R.drawable.ic_heart_on_sel)
 		else
 			binding.questionFavorite.setBackgroundResource(R.drawable.ic_heart_off_sel)
@@ -166,14 +172,15 @@ class FragmentQuestion : Fragment() {
 		/* Variables */
 		val sortCheckBoxes = arrayListOf(bind.dialogSortId, bind.dialogSortAlphabet, bind.dialogSortFavorites)
 		val filterCheckBoxes = arrayListOf(bind.dialogFilterFavorites, bind.dialogFilterUnrated, bind.dialogFilterAll)
-
+		val changedConfiguration = Data.currentConfiguration.copy()
+		
 		/* Setup Views */
-		if(Settings.currentConfiguration.currentSortOrder == C.SORT_SHUFFLE)
+		if(Data.currentConfiguration.currentSortOrder == C.SORT_SHUFFLE)
 			toggleCheckBoxes(sortCheckBoxes, null)
 		else
-			toggleCheckBoxes(sortCheckBoxes, sortCheckBoxes[Settings.currentConfiguration.currentSortOrder])
+			toggleCheckBoxes(sortCheckBoxes, sortCheckBoxes[Data.currentConfiguration.currentSortOrder])
 
-		toggleCheckBoxes(filterCheckBoxes, filterCheckBoxes[Settings.currentConfiguration.currentFilterType])
+		toggleCheckBoxes(filterCheckBoxes, filterCheckBoxes[Data.currentConfiguration.currentFilterType])
 
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -191,28 +198,34 @@ class FragmentQuestion : Fragment() {
 		bind.dialogFilterAll.setOnClickListener{toggleCheckBoxes(filterCheckBoxes, bind.dialogFilterAll)}
 
 		/* OK */
-		//TODO only change if a change detectec
 		bind.dialogSortOk.setOnClickListener {
-			// Set Setting:
+			// Set temp settings:
 			when {
-				bind.dialogSortId.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_ID
-				bind.dialogSortAlphabet.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_ALPHABETICALLY
-				bind.dialogSortFavorites.isChecked -> Settings.currentConfiguration.currentSortOrder = C.SORT_FAVORITES
-				else -> Settings.currentConfiguration.currentSortOrder = C.SORT_SHUFFLE
+				bind.dialogSortId.isChecked -> changedConfiguration.currentSortOrder = C.SORT_ID
+				bind.dialogSortAlphabet.isChecked -> changedConfiguration.currentSortOrder = C.SORT_ALPHABETICALLY
+				bind.dialogSortFavorites.isChecked -> changedConfiguration.currentSortOrder = C.SORT_FAVORITES
+				else -> changedConfiguration.currentSortOrder = C.SORT_SHUFFLE
 			}
 
 			when {
-				bind.dialogFilterFavorites.isChecked -> Settings.currentConfiguration.currentFilterType = C.FILTER_FAVORITES_ONLY
-				bind.dialogFilterUnrated.isChecked -> Settings.currentConfiguration.currentFilterType = C.FILTER_UNRATED_ONLY
-				else -> Settings.currentConfiguration.currentFilterType = C.FILTER_ALL_TYPES
+				bind.dialogFilterFavorites.isChecked -> changedConfiguration.currentFilterType = C.FILTER_FAVORITES_ONLY
+				bind.dialogFilterUnrated.isChecked -> changedConfiguration.currentFilterType = C.FILTER_UNRATED_ONLY
+				else -> changedConfiguration.currentFilterType = C.FILTER_ALL_TYPES
 			}
-
-			// Save Setting:
-			DatabaseOps.insertConfiguration(Settings.currentConfiguration)
-			Questions.makeDeckWithCurrentConfigurations()
-			viewPagerAdapter.notifyDataSetChanged()
-			currentPosition = 0
-			setFavoriteIcon(0)
+			// Compare changed settings with original settings:
+			if(!Settings.compareConfigurations(Data.currentConfiguration, changedConfiguration))
+			{
+				// Set Setting if not the same:
+				Data.currentConfiguration = changedConfiguration
+				// Save Setting:
+				DatabaseOps.insertConfiguration(Data.currentConfiguration)
+				Data.makeDeck(Data.currentConfiguration)
+				viewPagerAdapter.notifyDataSetChanged()
+				currentPosition = 0
+				viewPager.setCurrentItem(currentPosition)
+				setQuestionPositionText(currentPosition)
+				setFavoriteIcon(0)
+			}
 			dialog.dismiss()
 		}
 

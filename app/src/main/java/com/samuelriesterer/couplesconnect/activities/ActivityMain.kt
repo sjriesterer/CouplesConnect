@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.DatabaseApp
-import com.samuelriesterer.couplesconnect.data.Questions
+import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.ActivityMainBinding
 import com.samuelriesterer.couplesconnect.fragments.*
 import com.samuelriesterer.couplesconnect.general.C
@@ -46,10 +46,10 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		/* Setup Settings & Data */
 		super.onCreate(savedInstanceState)
-		Settings.setup(this) // Call this first
-		databaseApp = DatabaseApp.getDatabase(this)!! /// Inits the database
+		databaseApp = DatabaseApp.getDatabase(this)!! /// Inits the database (Call this first)
+		Settings.setup(this) // Call this second
 		Settings.databaseFilePath = this.getDatabasePath(Settings.databaseFilename).absolutePath
-		Questions.setup(this)
+		Data.setup(this)
 		fragmentStack = Stack()
 
 		/* Setup View & Navigation */

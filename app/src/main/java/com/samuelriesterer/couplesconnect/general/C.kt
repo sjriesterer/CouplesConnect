@@ -6,11 +6,12 @@ class C {
 	/*=======================================================================================================*/
 	companion object {
 
-		/* Settings */
+		/* Int Settings */
 		const val SETTING_INT1 = 0
 		const val SETTING_INT2 = 1
 		const val SETTING_INT3 = 2
 
+		/* Boolean Settings */
 		const val SETTING_APP_INITIALIZED = 0
 		const val SETTING_KEEP_SORT_SETTING = 1
 		const val SETTING_BOOLEAN3 = 2

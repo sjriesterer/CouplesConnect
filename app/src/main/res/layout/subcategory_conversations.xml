@@ -105,7 +105,7 @@
 			 android:id="@+id/subcategories_conversations_self"
 			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:text="@string/subcategory4" />
+			 android:text="@string/subcategory3" />
 
 		<ImageView
 			 style="@style/SubcategoryIcon"
@@ -113,7 +113,7 @@
 			 android:src="@drawable/im_self" />
 
 		<ImageView
-			 android:id="@+id/subcategories_self_question"
+			 android:id="@+id/subcategories_religion_question"
 			 style="@style/CategoryQuestionIconSmall"
 			 android:layout_alignRight="@+id/subcategories_conversations_self"
 			 android:layout_alignBottom="@+id/subcategories_conversations_self"
@@ -138,7 +138,7 @@
 			 android:id="@+id/subcategories_conversations_religion"
 			 style="@style/SubcategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:text="@string/subcategory3" />
+			 android:text="@string/subcategory4" />
 
 		<ImageView
 			 style="@style/SubcategoryIcon"
@@ -146,14 +146,13 @@
 			 android:src="@drawable/im_religion" />
 
 		<ImageView
-			 android:id="@+id/subcategories_religion_question"
+			 android:id="@+id/subcategories_self_question"
 			 style="@style/CategoryQuestionIconSmall"
 			 android:layout_alignRight="@+id/subcategories_conversations_religion"
 			 android:layout_alignBottom="@+id/subcategories_conversations_religion"
 			 android:src="@drawable/im_question" />
 
 	 </RelativeLayout>
-
 	 <!--	 Government-->
 	 <RelativeLayout
 		  android:layout_width="match_parent"

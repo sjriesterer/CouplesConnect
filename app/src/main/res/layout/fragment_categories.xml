@@ -20,7 +20,7 @@
 			 android:id="@+id/categories_conversations"
 			 style="@style/CategoryHeading"
 			 android:background="@drawable/category_conversations_sel"
-			 android:text="@string/category1" />
+			 android:text="@string/category0" />
 
 		<ImageView
 			 style="@style/CategoryIcon"
@@ -40,7 +40,7 @@
 			 style="@style/CategoryHeading"
 			 android:layout_below="@+id/categories_conversations"
 			 android:background="@drawable/category_dates_sel"
-			 android:text="@string/category2" />
+			 android:text="@string/category1" />
 
 		<ImageView
 			 style="@style/CategoryIcon"
@@ -61,7 +61,7 @@
 			 style="@style/CategoryHeading"
 			 android:layout_below="@+id/categories_dates"
 			 android:background="@drawable/category_intimacy_sel"
-			 android:text="@string/category3" />
+			 android:text="@string/category2" />
 
 		<ImageView
 			 style="@style/CategoryIcon"
@@ -82,7 +82,7 @@
 			 style="@style/CategoryHeading"
 			 android:layout_below="@+id/categories_intimacy"
 			 android:background="@drawable/category_sensual_sel"
-			 android:text="@string/category4" />
+			 android:text="@string/category3" />
 
 		<ImageView
 			 style="@style/CategoryIcon"

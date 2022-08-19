@@ -14,7 +14,7 @@
 		style="@style/CategoryHeading"
 		android:layout_height="60dp"
 		android:background="@drawable/category_conversations_sel"
-		android:text="@string/category1" />
+		android:text="@string/category0" />
 
   <ImageView
 		style="@style/CategoryIcon"
@@ -94,19 +94,19 @@
 
   <ImageView
 		android:id="@+id/question_favorite"
-		style="@style/QuestionButton"
+		style="@style/ShareFavoriteSortButton"
 		android:layout_centerHorizontal="true"
 		android:src="@drawable/ic_heart_off_sel" />
 
   <ImageView
 		android:id="@+id/question_share"
-		style="@style/QuestionButton"
+		style="@style/ShareFavoriteSortButton"
 		android:layout_toLeftOf="@+id/question_favorite"
 		android:src="@drawable/ic_share_sel" />
 
   <ImageView
 		android:id="@+id/question_sort"
-		style="@style/QuestionButton"
+		style="@style/ShareFavoriteSortButton"
 		android:layout_toRightOf="@+id/question_favorite"
 		android:src="@drawable/ic_sort_sel" />
 
