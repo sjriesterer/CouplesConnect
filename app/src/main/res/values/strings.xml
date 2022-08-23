@@ -163,6 +163,7 @@
   <string name="show_only">Show Only:</string>
   <string name="sort_by">Sort By:</string>
   <string name="shuffle_deck">Shuffle Deck</string>
+  <string name="no_cat_turned_on">There is no content! You must select at least one category or subcategory in Custom page.</string>
 
 <!--  Sort & Filter-->
   <string name="sort_id">ID/Category</string>

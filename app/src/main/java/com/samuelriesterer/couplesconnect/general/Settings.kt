@@ -3,7 +3,6 @@ package com.samuelriesterer.couplesconnect.general
 import android.content.Context
 import android.graphics.Typeface
 import com.samuelriesterer.couplesconnect.R
-import com.samuelriesterer.couplesconnect.data.DatabaseOps
 import com.samuelriesterer.couplesconnect.data.EntityConfiguration
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
@@ -12,8 +11,6 @@ class Settings {
 		const val TAG: String = "~*SETTINGS"
 
 		/* App */
-		lateinit var categoryColors: List<Int>
-		lateinit var subcategoryColors: List<Int>
 		lateinit var fragmentNames: List<String>
 		lateinit var fonts: List<Typeface>
 		lateinit var interfaceMain: InterfaceMain
@@ -61,8 +58,6 @@ class Settings {
 
 
 			currentFragment = C.FRAG_HOME
-			categoryColors = context.resources.getIntArray(R.array.category_colors).toList()
-			subcategoryColors = context.resources.getIntArray(R.array.subcategory_cat1_colors).toList()
 			fragmentNames = context.resources.getStringArray(R.array.fragment_names).toList()
 			appName = context.resources.getString(R.string.app_name)
 			settingsInt = getDefaultSettingsInt()
@@ -94,33 +89,6 @@ class Settings {
 		fun getDefaultFilterType() : Int {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			return C.FILTER_ALL_TYPES
-		}
-		/*=======================================================================================================*/
-		fun getEmptyConfiguration(): EntityConfiguration {
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-			//@formatter:off
-			return EntityConfiguration(
-				0,
-				mutableListOf(),
-				mutableListOf(),
-				getDefaultSortOrder(),
-				getDefaultFilterType()
-			)
-			//@formatter:on
-		}
-
-		/*=======================================================================================================*/
-		fun getDefaultConfiguration(): EntityConfiguration {
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-			//@formatter:off
-			return EntityConfiguration(
-				0,
-				mutableListOf(true, true, true, true),
-				mutableListOf(false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false),
-				getDefaultSortOrder(),
-				getDefaultFilterType()
-			)
-			//@formatter:on
 		}
 
 		/*=======================================================================================================*/
@@ -185,18 +153,5 @@ class Settings {
 		/*=======================================================================================================*/
 		/* GENERAL METHODS                                                                                       */
 		/*=======================================================================================================*/
-		fun compareConfigurations(config1: EntityConfiguration, config2: EntityConfiguration): Boolean {
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-			if(config1.currentSortOrder != config2.currentSortOrder || config1.currentFilterType != config2.currentFilterType)
-				return false
-			for(i in config1.categories.indices) {
-				if(config1.categories[i] != config2.categories[i])
-					return false
-				if(config1.subcategories[i] != config2.subcategories[i])
-					return false
-			}
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Configurations are the same")
-			return true
-		}
 	}
 }

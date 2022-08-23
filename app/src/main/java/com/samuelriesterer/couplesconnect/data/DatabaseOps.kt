@@ -41,7 +41,7 @@ class DatabaseOps {
 		/*=======================================================================================================*/
 		fun getConfiguration() : EntityConfiguration {
 			Logger.log(C.LOG_I, TAG, object{}.javaClass.enclosingMethod?.name, "start")
-			var config = Settings.getEmptyConfiguration()
+			var config = Data.getEmptyConfiguration()
 			val thread = Thread{
 				config = ActivityMain.databaseApp.daoDatabase().returnConfiguration(0)
 			}

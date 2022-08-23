@@ -1,161 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	 xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	 xmlns:tools="http://schemas.android.com/tools"
-	 android:background="?android:windowBackground"
-	 android:id="@+id/fragment_question_layout"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
+	 android:background="?android:windowBackground"
 	 tools:context=".fragments.FragmentQuestion">
 
   <TextView
-		android:id="@+id/questions_category"
-		style="@style/CategoryHeading"
-		android:layout_height="60dp"
-		android:background="@drawable/category_conversations_sel"
-		android:text="@string/category0" />
-
-  <ImageView
-		style="@style/CategoryIcon"
-		android:layout_alignTop="@+id/questions_category"
-		android:layout_marginTop="5dp"
-		android:src="@drawable/im_conversations" />
-
-
-  <TextView
-		android:id="@+id/questions_subcategory"
+		android:id="@+id/fragment_question_no_cats"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/questions_category"
+		android:layout_height="match_parent"
+		android:text="@string/no_cat_turned_on"
 		android:gravity="center"
-		android:padding="5dp"
-		android:text="Life" />
+		android:padding="35dp"
+		android:textSize="25sp"
+		>
+  </TextView>
 
-  <TextView
-		android:id="@+id/questions_position"
+
+  <RelativeLayout
+		android:id="@+id/fragment_question_layout"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/questions_subcategory"
-		android:gravity="center"
-		android:text="12/37" />
+		android:layout_height="match_parent">
 
-  <androidx.viewpager.widget.ViewPager
-		android:id="@+id/pager"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_above="@id/questions_bottom_border"
-		android:layout_below="@id/questions_position"
-		android:layout_marginStart="10dp"
-		android:layout_marginTop="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginBottom="10dp"
-		android:background="@drawable/im_parchment"
-		android:gravity="center"
- />
+	 <TextView
+		  android:id="@+id/questions_category"
+		  style="@style/CategoryHeading"
+		  android:layout_height="60dp"
+		  android:background="@drawable/category_conversations_sel"
+		  android:text="@string/category0" />
 
-<!--  <TextView-->
-<!--		android:id="@+id/question_question"-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="wrap_content"-->
-<!--		android:layout_above="@id/questions_dice"-->
-<!--		android:layout_below="@id/questions_position"-->
-<!--		android:layout_marginStart="10dp"-->
-<!--		android:layout_marginTop="10dp"-->
-<!--		android:layout_marginEnd="10dp"-->
-<!--		android:layout_marginBottom="10dp"-->
-<!--		android:background="@drawable/im_parchment"-->
-<!--		android:gravity="center"-->
-<!--		android:text="This is a question?"-->
-<!--		android:textSize="20sp" />-->
+	 <ImageView
+		  style="@style/CategoryIcon"
+		  android:layout_alignTop="@+id/questions_category"
+		  android:layout_marginTop="5dp"
+		  android:src="@drawable/im_conversations" />
+
+	 <TextView
+		  android:id="@+id/questions_subcategory"
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:layout_below="@+id/questions_category"
+		  android:gravity="center"
+		  android:padding="5dp"
+		  android:text="Life" />
+
+	 <TextView
+		  android:id="@+id/questions_position"
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:layout_below="@+id/questions_subcategory"
+		  android:gravity="center"
+		  android:text="12/37" />
+
+	 <androidx.viewpager.widget.ViewPager
+		  android:id="@+id/pager"
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:layout_above="@id/questions_bottom_border"
+		  android:layout_below="@id/questions_position"
+		  android:layout_marginStart="10dp"
+		  android:layout_marginTop="10dp"
+		  android:layout_marginEnd="10dp"
+		  android:layout_marginBottom="10dp"
+		  android:background="@drawable/im_parchment"
+		  android:gravity="center" />
+
+	 <TextView
+		  android:id="@+id/question_id"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_alignLeft="@+id/pager"
+		  android:layout_alignTop="@id/pager"
+		  android:padding="20dp"
+		  android:soundEffectsEnabled="true"
+		  android:text="134"
+		  android:textSize="10sp" />
 
 
-  <TextView
-		android:id="@+id/question_id"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignLeft="@+id/pager"
-		android:layout_alignTop="@id/pager"
-		android:padding="20dp"
-		android:textSize="10sp"
-		android:soundEffectsEnabled="true"
-		android:text="134" />
+	 <ImageView
+		  android:id="@+id/question_favorite"
+		  style="@style/ShareFavoriteSortButton"
+		  android:layout_centerHorizontal="true"
+		  android:src="@drawable/ic_heart_off_sel" />
 
-<!--  <ImageView-->
-<!--		android:id="@+id/question_filter"-->
-<!--		android:layout_width="60dp"-->
-<!--		android:layout_height="60dp"-->
-<!--		android:layout_alignTop="@+id/pager"-->
-<!--		android:layout_alignRight="@id/pager"-->
-<!--		android:padding="20dp"-->
-<!--		android:scaleType="center"-->
-<!--		android:soundEffectsEnabled="true"-->
-<!--		android:src="@drawable/ic_filter_sel" />-->
+	 <ImageView
+		  android:id="@+id/question_share"
+		  style="@style/ShareFavoriteSortButton"
+		  android:layout_toLeftOf="@+id/question_favorite"
+		  android:src="@drawable/ic_share_sel" />
 
-  <ImageView
-		android:id="@+id/question_favorite"
-		style="@style/ShareFavoriteSortButton"
-		android:layout_centerHorizontal="true"
-		android:src="@drawable/ic_heart_off_sel" />
+	 <ImageView
+		  android:id="@+id/question_sort"
+		  style="@style/ShareFavoriteSortButton"
+		  android:layout_toRightOf="@+id/question_favorite"
+		  android:src="@drawable/ic_sort_sel" />
 
-  <ImageView
-		android:id="@+id/question_share"
-		style="@style/ShareFavoriteSortButton"
-		android:layout_toLeftOf="@+id/question_favorite"
-		android:src="@drawable/ic_share_sel" />
+	 <ImageView
+		  android:id="@+id/questions_bottom_border"
+		  android:layout_width="match_parent"
+		  android:layout_height="100dp"
+		  android:layout_alignParentBottom="true" />
 
-  <ImageView
-		android:id="@+id/question_sort"
-		style="@style/ShareFavoriteSortButton"
-		android:layout_toRightOf="@+id/question_favorite"
-		android:src="@drawable/ic_sort_sel" />
-
-  <ImageView
-		android:id="@+id/questions_bottom_border"
-		android:layout_width="match_parent"
-		android:layout_height="100dp"
-		android:layout_alignParentBottom="true" />
-<!--  <ImageView-->
-<!--		android:id="@+id/questions_dice"-->
-<!--		android:layout_width="50dp"-->
-<!--		android:layout_height="50dp"-->
-<!--		android:layout_alignParentBottom="true"-->
-<!--		android:layout_centerHorizontal="true"-->
-<!--		android:layout_marginLeft="10dp"-->
-<!--		android:layout_marginRight="10dp"-->
-<!--		android:layout_marginBottom="20dp"-->
-<!--		android:backgroundTint="@null"-->
-<!--		android:padding="5dp"-->
-<!--		android:soundEffectsEnabled="true"-->
-<!--		android:src="@drawable/im_dice" />-->
-
-<!--  <Button-->
-<!--		android:id="@+id/questions_back"-->
-<!--		android:layout_width="50dp"-->
-<!--		android:layout_height="50dp"-->
-<!--		android:layout_alignParentBottom="true"-->
-<!--		android:layout_marginBottom="20dp"-->
-<!--		android:layout_toLeftOf="@+id/questions_dice"-->
-<!--		android:background="@color/transparent"-->
-<!--		android:backgroundTint="@null"-->
-<!--		android:drawableTop="@drawable/ic_back_sel" />-->
-
-<!--  <Button-->
-<!--		android:id="@+id/questions_forward"-->
-<!--		android:layout_width="50dp"-->
-<!--		android:layout_height="50dp"-->
-<!--		android:layout_alignParentBottom="true"-->
-<!--		android:layout_marginBottom="20dp"-->
-<!--		android:layout_toRightOf="@+id/questions_dice"-->
-<!--		android:background="@color/transparent"-->
-<!--		android:backgroundTint="@null"-->
-<!--		android:drawableTop="@drawable/ic_forward_sel" />-->
-
-<!--  <Button-->
-<!--		style="@style/ConfirmationButton"-->
-<!--		android:layout_width="wrap_content"-->
-<!--		android:layout_height="@dimen/ConfirmationButtonHeight"-->
-<!--		android:text="Button"-->
-<!--		app:backgroundTint="@null" />-->
-
+  </RelativeLayout>
 </RelativeLayout>

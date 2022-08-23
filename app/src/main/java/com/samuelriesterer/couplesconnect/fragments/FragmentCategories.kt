@@ -104,7 +104,7 @@ class FragmentCategories : Fragment() {
 
 	/*=======================================================================================================*/
 	fun dialogInfo(title: String, message: String) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, ": start")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		val builder = AlertDialog.Builder(requireContext())
 
 		builder.setTitle(title)

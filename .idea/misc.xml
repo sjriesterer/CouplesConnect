@@ -24,6 +24,9 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual_on.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual_sel.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_back_sel.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_check_sel.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_collapse_sel.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_expand_sel.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_filter_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_forward_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_heart_off_sel.xml" value="0.3195" />
@@ -33,6 +36,8 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/activity_main.xml" value="0.32222222222222224" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/app_bar_main.xml" value="0.3385416666666667" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/content_main.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/custom_elv_group.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/custom_elv_row.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/dialog_sort.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_categories.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_custom.xml" value="0.34322916666666664" />

@@ -41,8 +41,8 @@ class C {
 		const val SUB_LIFE = 0
 		const val SUB_LOVE = 1
 		const val SUB_RELATIONSHIPS = 2
-		const val SUB_RELIGION = 3
-		const val SUB_SELF = 4
+		const val SUB_SELF = 3
+		const val SUB_RELIGION = 4
 		const val SUB_GOVERNMENT = 5
 
 		const val SUB_FUN = 6

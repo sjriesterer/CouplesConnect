@@ -15,7 +15,6 @@
   <color name="button_outline">#123181</color>
   <color name="button_rounded_selected">#87CEEB</color>
   <color name="button_confirm"></color>
-
   <color name="button_outline_off">#123181</color>
   <color name="button_outline_on">#123181</color>
   <color name="confirmation_button">#000000</color>
@@ -24,6 +23,8 @@
   <color name="button_gradient_bottom_off">#FFFFFF</color>
   <color name="button_gradient_bottom_on">#FFFFFF</color>
 
+<!--  Button Bar-->
+  <color name="button_bar">#C3CBDA</color>
 
   <!--Category Colors -->
   <color name="category1">#F1ECEC</color>
@@ -37,7 +38,6 @@
 	 <item>@color/category3</item>
 	 <item>@color/category4</item>
   </array>
-
 
   <!--Category Colors -->
   <color name="category_light1">#F8F5F5</color>

@@ -102,7 +102,7 @@
   </ScrollView>
 
   <LinearLayout
-		android:id="@+id/create_plan_confirmation_layout"
+		android:id="@+id/custom_confirmation_layout"
 		style="@style/ConfirmationButtonLayout"
 		>
 
