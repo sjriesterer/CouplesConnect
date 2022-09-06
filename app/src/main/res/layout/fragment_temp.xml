@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
+	 android:orientation="vertical"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
 	 android:background="?android:windowBackground"
-	 android:orientation="vertical">
+	 >
 
-  <ExpandableListView
-		android:id="@+id/custom_expandable_list_view"
+  <ListView
+		android:id="@+id/temp_list"
+		android:layout_above="@+id/temp_confirmation_layout"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_above="@+id/custom_confirmation_layout"
-		android:layout_alignParentTop="true"
-		android:divider="#000000"
-		android:dividerHeight="2dp" />
+		android:layout_height="match_parent"/>
 
   <LinearLayout
-		android:id="@+id/custom_confirmation_layout"
+		android:id="@+id/temp_confirmation_layout"
 		style="@style/ConfirmationIconLayout"
-		android:background="@color/button_bar">
+		android:background="@color/button_bar"
+		>
 
 	 <Space
 		  android:layout_width="0dp"
@@ -25,9 +25,9 @@
 		  android:layout_weight="1"></Space>
 
 	 <Button
-		  android:id="@+id/custom_collapse"
+		  android:id="@+id/temp_share"
 		  style="@style/customButtons"
-		  android:background="@drawable/ic_collapse_sel" />
+		  android:background="@drawable/ic_share_sel" />
 
 	 <Space
 		  android:layout_width="0dp"
@@ -35,9 +35,9 @@
 		  android:layout_weight="1"></Space>
 
 	 <Button
-		  android:id="@+id/custom_expand"
+		  android:id="@+id/temp_sort"
 		  style="@style/customButtons"
-		  android:background="@drawable/ic_expand_sel" />
+		  android:background="@drawable/ic_sort_sel" />
 
 	 <Space
 		  android:layout_width="0dp"
@@ -45,7 +45,7 @@
 		  android:layout_weight="1"></Space>
 
 	 <Button
-		  android:id="@+id/custom_ok"
+		  android:id="@+id/temp_add"
 		  style="@style/customButtons"
 		  android:background="@drawable/ic_check_sel" />
 
@@ -55,5 +55,4 @@
 		  android:layout_weight="1"></Space>
 
   </LinearLayout>
-
 </RelativeLayout>

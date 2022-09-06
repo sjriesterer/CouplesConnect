@@ -9,14 +9,14 @@ import com.samuelriesterer.couplesconnect.data.Category
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.data.EntityConfiguration
 import com.samuelriesterer.couplesconnect.data.Subcategory
-import com.samuelriesterer.couplesconnect.databinding.ListGroupBinding
-import com.samuelriesterer.couplesconnect.databinding.ListItemBinding
+import com.samuelriesterer.couplesconnect.databinding.CustomGroupBinding
+import com.samuelriesterer.couplesconnect.databinding.CustomItemBinding
 
 class AdapterCustomList internal constructor(private val context: Context, private val categoryList: List<Category>, private val dataHashMap: HashMap<String, List<Subcategory>>) : BaseExpandableListAdapter() {
 	val TAG: String = "~*ADAPTER_CUSTOM_LIST"
 	private val inflater: LayoutInflater = LayoutInflater.from(context)
-	private lateinit var groupBinding: ListGroupBinding
-	private lateinit var itemBinding: ListItemBinding
+	private lateinit var groupBinding: CustomGroupBinding
+	private lateinit var itemBinding: CustomItemBinding
 
 	/*=======================================================================================================*/
 	/* GROUP METHODS                                                                                         */
@@ -41,7 +41,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 		val holder: GroupViewHolder
 		/* Setup View */
 		if(convertView == null) {
-			groupBinding = ListGroupBinding.inflate(inflater)
+			groupBinding = CustomGroupBinding.inflate(inflater)
 			convertView = groupBinding.root
 			holder = GroupViewHolder()
 			holder.layout = groupBinding.customElvGroup
@@ -63,23 +63,9 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 
 		/* Listeners */
 		holder.checkbox!!.setOnClickListener{
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category clicked: ${Data.categoryNames[categoryPosition]}")
-			// Set settings:
-			Data.changedConfiguration.categoriesTurnedOn[categoryPosition] = holder.checkbox!!.isChecked
-//			categoryList[categoryPosition].isChecked = holder.checkbox!!.isChecked
-
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category checked : ${Data.categoryNames[categoryPosition]} ${Data.changedConfiguration.categoriesTurnedOn[categoryPosition]}")
+			Data.changedConfiguration.categoriesTurnedOn[categoryPosition] = holder.checkbox!!.isChecked
 			markAllSubcategories(categoryPosition, Data.changedConfiguration.categoriesTurnedOn[categoryPosition])
-
-
-//			if(Data.changedConfiguration.categoriesTurnedOn[categoryPosition]) { // If this category is checked
-//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category checked on: ${Data.categoryNames[categoryPosition]}")
-//				markAllSubcategories(categoryPosition, true) // Check all subcategories
-//			}
-//			else {
-//				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category checked off: ${Data.categoryNames[categoryPosition]}")
-//				markAllSubcategories(categoryPosition, false) // Uncheck all subcategories
-//			}
 			notifyDataSetChanged()
 			Data.changedConfiguration.print()
 		}
@@ -105,7 +91,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 
 		/* Setup View */
 		if(convertView == null) {
-			itemBinding = ListItemBinding.inflate(inflater)
+			itemBinding = CustomItemBinding.inflate(inflater)
 			convertView = itemBinding.root
 			holder = ItemViewHolder()
 			holder.label = itemBinding.customElvTextview

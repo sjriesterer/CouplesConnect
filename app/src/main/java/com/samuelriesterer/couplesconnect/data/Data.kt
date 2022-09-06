@@ -28,6 +28,8 @@ class Data {
 
 		lateinit var currentConfiguration: EntityConfiguration
 		lateinit var changedConfiguration: EntityConfiguration // The configuration the user is editing in FragmentCustom
+
+		lateinit var savedQuestions: MutableList<EntityQuestion>
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
@@ -41,12 +43,15 @@ class Data {
 			{
 				savedFavorites = initFavoritesFirstTime()
 				DatabaseOps.insertFavorites(savedFavorites)
+				savedQuestions = initQuestionsFirstTime()
+				DatabaseOps.insertQuestions(savedQuestions)
 				currentConfiguration = getDefaultConfiguration()
 				DatabaseOps.insertConfiguration(currentConfiguration)
 			}
 			else
 			{
 				savedFavorites = DatabaseOps.getFavorites()
+				savedQuestions = DatabaseOps.getQuestions()
 				copyFavoritesToList()
 				currentConfiguration = DatabaseOps.getConfiguration()
 			}
@@ -120,6 +125,23 @@ class Data {
 
 			/* Make the Deck */
 			makeDeck(currentConfiguration)
+		}
+		/*=======================================================================================================*/
+		/* QUESTIONS                                                                                             */
+		/*=======================================================================================================*/
+		fun initQuestionsFirstTime() : MutableList<EntityQuestion> {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			val list : MutableList<EntityQuestion> = mutableListOf()
+			list.add(EntityQuestion(0, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life1 question"))
+			list.add(EntityQuestion(1, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life2 question"))
+			list.add(EntityQuestion(2, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life3 question"))
+			return list
+		}
+		/*=======================================================================================================*/
+		fun questionsToString(list: MutableList<EntityQuestion>) : String {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+
+			return ""
 		}
 		/*=======================================================================================================*/
 		/* FAVORITES                                                                                             */

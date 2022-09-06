@@ -9,6 +9,6 @@ import androidx.room.PrimaryKey
 class EntityFavorites
 	(
 	@PrimaryKey
-	var questionID: Int,
+	var id: Int,
 	var favorite: Boolean
 )

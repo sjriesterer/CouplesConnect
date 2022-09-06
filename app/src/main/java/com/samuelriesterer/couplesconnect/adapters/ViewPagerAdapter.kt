@@ -33,6 +33,7 @@ class ViewPagerAdapter(val context: Context, val imageList: MutableList<Question
 	override fun instantiateItem(container: ViewGroup, position: Int): Any {
 		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Viewpager position = $position")
 
+
 		val mLayoutInflater =
 			context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 

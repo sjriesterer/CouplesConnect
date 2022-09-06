@@ -6,13 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.navigation.ui.*
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.DatabaseApp
 import com.samuelriesterer.couplesconnect.data.Data
@@ -25,10 +23,16 @@ import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 import java.util.*
 
+//TODO Settings page
+//TODO Home page
+//TODO persist groups expanded in custom page
+//TODO delete fragSTack (make just a stack of fragments)
+//TODO change title bar
 
 class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNavigationItemSelectedListener {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
+	lateinit var toolbar: Toolbar
 	lateinit var drawerLayout: DrawerLayout
 	private lateinit var fragmentStack: Stack<FragStack>
 	lateinit var navView: NavigationView
@@ -56,17 +60,19 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.appBarMain.toolbar)
+		toolbar = binding.appBarMain.toolbar
 		drawerLayout = binding.drawerLayout
 		navView = binding.navView
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
 		appBarConfiguration = AppBarConfiguration(setOf(
-			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom, R.id.nav_settings), drawerLayout)
+			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom, R.id.nav_settings, R.id.nav_temp), drawerLayout)
 
-		setupActionBarWithNavController(navController, appBarConfiguration)
+//		setupActionBarWithNavController(navController, appBarConfiguration) // enable to set ActionBar with nav menu icon
 		navView.setupWithNavController(navController)
 		navView.setNavigationItemSelectedListener(this)
+
 		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
 
 		Settings.settingsBoolean[C.SETTING_APP_INITIALIZED] = true
@@ -74,24 +80,33 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	}
 
 	/*=======================================================================================================*/
-	/* ON CREATE OPTIONS                                                                                     */
+	/* OPTIONS MENU                                                                                          */
 	/*=======================================================================================================*/
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		menuInflater.inflate(R.menu.main, menu)
+		menuInflater.inflate(R.menu.main_menu, menu)
 		return true
 	}
-
+	/*=======================================================================================================*/
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		when (item.itemId) {
+			R.id.action_open_nav_drawer -> toggleNavDrawer()
+		}
+		return super.onOptionsItemSelected(item)
+	}
 	/*=======================================================================================================*/
 	/* ON SUPPORT NAVIGATE UP                                                                                */
 	/*=======================================================================================================*/
 	override fun onSupportNavigateUp(): Boolean {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
-		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+		return NavigationUI.navigateUp(navController, drawerLayout)
+//		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 
 	/*=======================================================================================================*/
-	/* ON NAVIGATION ITEM SELECTED                                                                           */
+	/* NAVIGATION DRAWER/ACTION BAR                                                                          */
 	/*=======================================================================================================*/
 		override fun onNavigationItemSelected(item: MenuItem): Boolean {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
@@ -106,26 +121,63 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 					switchFragments(C.FRAG_CATEGORY)
 				}
 				R.id.nav_subcategories -> {
-					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment subcategories clicked: ")
 					switchFragments(C.FRAG_SUBCATEGORY)
 				}
 				R.id.nav_questions -> {
-					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment questions clicked: ")
 					switchFragments(C.FRAG_QUESTION)
 				}
 				R.id.nav_custom -> {
-					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment custom clicked: ")
 					switchFragments(C.FRAG_CUSTOM)
 				}
 				R.id.nav_settings -> {
-					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment home clicked: ")
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment settings clicked: ")
 					switchFragments(C.FRAG_SETTINGS)
-
+				}
+				R.id.nav_temp -> {
+					Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "fragment temp clicked: ")
+					switchFragments(C.FRAG_TEMP)
 				}
 			}
 			drawerLayout.closeDrawer(GravityCompat.START)
 			return true
 		}
+	/*=======================================================================================================*/
+	override fun disableNavDrawer() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		toolbar.navigationIcon = null
+		drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // Disable the nav drawer
+	}
+
+	/*=======================================================================================================*/
+	override fun enableNavDrawer() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		toolbar.setNavigationIcon(R.drawable.ic_nav_menu_d)
+		drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // Enable the nav drawer
+	}
+	/*=======================================================================================================*/
+	override fun hideActionBar() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		toolbar.visibility = Toolbar.GONE
+	}
+	/*=======================================================================================================*/
+	override fun showActionBar() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		toolbar.visibility = Toolbar.VISIBLE
+	}
+	/*=======================================================================================================*/
+	fun toggleNavDrawer() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		if(drawerLayout.isDrawerOpen(GravityCompat.START)) // Drawer is open
+		{
+			drawerLayout.closeDrawer(GravityCompat.START) // Close drawer
+		}
+		else
+			drawerLayout.openDrawer((GravityCompat.START)) // Open drawer
+
+	}
 	/*=======================================================================================================*/
 	/* FRAGMENT METHODS                                                                                      */
 	/*=======================================================================================================*/
@@ -171,6 +223,12 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 			C.FRAG_CUSTOM -> {
 				return FragStack(fragmentID, FragmentCustom())
 			}
+			C.FRAG_SETTINGS -> {
+				return FragStack(fragmentID, FragmentSettings())
+			}
+			C.FRAG_TEMP -> {
+				return FragStack(fragmentID, FragmentTemp())
+			}
 		}
 		return FragStack(fragmentID, FragmentHome())
 	}
@@ -191,31 +249,6 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		// Push fragment to top of stack:
 		fragmentStack.push(fragStack)
 		Settings.currentFragment = fragStack.id
-
-		// Remove all fragments from container:
-//		for(fragment in supportFragmentManager.fragments) {
-//			if(fragment != null) {
-//				supportFragmentManager.beginTransaction().remove(fragment).commit()
-//			}
-//		}
-		// Set navigation drawer checked item:
-//		when (fragStack.id) {
-//			C.FRAG_HOME -> {
-//				navView.setCheckedItem(R.id.nav_home)
-//			}
-//			C.FRAG_CATEGORY -> {
-//				navView.setCheckedItem(R.id.nav_categories)
-//			}
-//			C.FRAG_SUBCATEGORY -> {
-//				navView.setCheckedItem(R.id.nav_subcategories)
-//			}
-//			C.FRAG_QUESTION -> {
-//				navView.setCheckedItem(R.id.nav_questions)
-//			}
-//		}
-		// Save backstack state:
-		//		Settings.saveState.fragmentList = fragStackToIntArray(fragmentStack)
-		//		DatabaseOps.databaseSaveSaveState(Settings.saveState)
 
 		// Switch fragments:
 		val transition = this.supportFragmentManager.beginTransaction()
@@ -247,6 +280,12 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 				C.FRAG_CUSTOM -> {
 					list.add(C.FRAG_CUSTOM)
 				}
+				C.FRAG_SETTINGS -> {
+					list.add(C.FRAG_SETTINGS)
+				}
+				C.FRAG_TEMP -> {
+					list.add(C.FRAG_TEMP)
+				}
 			}
 		}
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, " ${list}")
@@ -277,6 +316,14 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 					i++
 					stack.add(FragStack(C.FRAG_CUSTOM, FragmentCustom()))
 				}
+				C.FRAG_SETTINGS -> {
+					i++
+					stack.add(FragStack(C.FRAG_SETTINGS, FragmentCustom()))
+				}
+				C.FRAG_TEMP -> {
+					i++
+					stack.add(FragStack(C.FRAG_TEMP, FragmentCustom()))
+				}
 			}
 			i++
 		}
@@ -285,9 +332,6 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 	}
 	/*=======================================================================================================*/
 	/* SHARED PREFERENCES                                                                                    */
-	/*=======================================================================================================*/
-	/*=======================================================================================================*/
-	/* SHARED PREFERENCES METHODS                                                                            */
 	/*=======================================================================================================*/
 	//<editor-fold desc="Shared Preference Methods">
 	/*=======================================================================================================*/
@@ -307,17 +351,12 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		editor.putInt(stringID, value)
 		editor.apply()
 	}
-
-	//</editor-fold>
-
-
 	//</editor-fold>
 	/*=======================================================================================================*/
 	/* COMPANION OBJECTS                                                                                     */
 	/*=======================================================================================================*/
 		companion object {
 		lateinit var databaseApp: DatabaseApp /// The master database
-
 		}
 	/*=======================================================================================================*/
 	/* OVERRIDE LIFECYCLE METHODS                                                                            */

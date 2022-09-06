@@ -9,7 +9,10 @@ import androidx.room.TypeConverters
 import com.samuelriesterer.couplesconnect.general.Settings
 
 @Database(
-	entities = [EntityFavorites::class, EntityConfiguration::class
+	entities = [
+		EntityFavorites::class,
+		EntityConfiguration::class,
+		EntityQuestion::class
 	],
 	version = 1,
 	exportSchema = false) @TypeConverters(Converters::class) abstract class DatabaseApp : RoomDatabase()

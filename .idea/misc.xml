@@ -31,6 +31,7 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_forward_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_heart_off_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_heart_on_sel.xml" value="0.3195" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_nav_menu_sel.xml" value="0.2395" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_share_sel.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_sort_sel.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/activity_main.xml" value="0.32222222222222224" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/content_main.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/custom_elv_group.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/custom_elv_row.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/custom_group.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/dialog_sort.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_categories.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_custom.xml" value="0.34322916666666664" />
@@ -46,10 +48,15 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_question.xml" value="0.33" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_subcategories.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/fragment_temp.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/nav_header_main.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/question_layout.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/subcategory_conversations.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/layout/temp_row.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/activity_main_drawer.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/fragment_temp_menu.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/main.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/main_menu.xml" value="0.34322916666666664" />
       </map>
     </option>
   </component>

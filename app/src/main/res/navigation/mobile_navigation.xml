@@ -42,4 +42,11 @@
 		android:label="@string/fragment_settings"
 		tools:layout="@layout/fragment_settings" />
 
+  <fragment
+	 android:id="@+id/nav_temp"
+		android:name="com.samuelriesterer.couplesconnect.fragments.FragmentTemp"
+		android:label="@string/fragment_temp"
+		tools:layout="@layout/fragment_temp" />
+
+
 </navigation>
