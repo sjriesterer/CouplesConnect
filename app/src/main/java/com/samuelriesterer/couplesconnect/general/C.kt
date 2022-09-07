@@ -7,7 +7,7 @@ class C {
 	companion object {
 
 		/* Int Settings */
-		const val SETTING_INT1 = 0
+		const val SETTING_SAVED_QUESTION_ID = 0
 		const val SETTING_INT2 = 1
 		const val SETTING_INT3 = 2
 

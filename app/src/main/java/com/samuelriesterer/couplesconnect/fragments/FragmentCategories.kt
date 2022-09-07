@@ -56,6 +56,7 @@ class FragmentCategories : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
+		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Category Click */

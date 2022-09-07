@@ -12,4 +12,6 @@ class EntityQuestion	(
 	var subcategory: Int,
 	var topic: Int,
 	var question: String
-)
+) {
+//	@PrimaryKey(autoGenerate = true) var questionID: Int = 0
+}

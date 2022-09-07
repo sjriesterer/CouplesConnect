@@ -132,9 +132,9 @@ class Data {
 		fun initQuestionsFirstTime() : MutableList<EntityQuestion> {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			val list : MutableList<EntityQuestion> = mutableListOf()
-			list.add(EntityQuestion(0, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life1 question"))
-			list.add(EntityQuestion(1, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life2 question"))
-			list.add(EntityQuestion(2, C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life3 question"))
+//			list.add(EntityQuestion(C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life1 question"))
+//			list.add(EntityQuestion(C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life2 question"))
+//			list.add(EntityQuestion(C.CAT_CONVERSATION, C.SUB_LIFE, 0, "This is a life3 question"))
 			return list
 		}
 		/*=======================================================================================================*/

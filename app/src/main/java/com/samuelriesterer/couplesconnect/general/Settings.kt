@@ -31,7 +31,7 @@ class Settings {
 		/* Int Settings */
 		lateinit var settingsInt: IntArray
 		val settingsIntKeys = arrayOf(
-			"SETTING_INT1",
+			"SAVED_QUESTION_ID",
 			"SETTING_INT2",
 			"SETTING_INT3"
 		)

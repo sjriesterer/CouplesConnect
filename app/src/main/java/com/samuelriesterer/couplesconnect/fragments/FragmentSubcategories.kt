@@ -55,6 +55,7 @@ class FragmentSubcategories : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
+		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Subcategory Click */

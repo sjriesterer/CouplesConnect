@@ -71,6 +71,7 @@ class FragmentQuestion : Fragment() {
 		viewPagerAdapter = ViewPagerAdapter(requireContext(), Data.currentDeck)
 		viewPager.adapter = viewPagerAdapter
 		/* Setup Views */
+		interfaceMain.showActionBar()
 		// Displays a text message if there are no categories/subcategories selected:
 		if(Data.currentDeck.isEmpty()) {
 			binding.fragmentQuestionLayout.visibility = RelativeLayout.GONE

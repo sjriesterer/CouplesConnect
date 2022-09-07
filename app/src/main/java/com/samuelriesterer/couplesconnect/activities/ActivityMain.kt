@@ -72,7 +72,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 //		setupActionBarWithNavController(navController, appBarConfiguration) // enable to set ActionBar with nav menu icon
 		navView.setupWithNavController(navController)
 		navView.setNavigationItemSelectedListener(this)
-
+		hideActionBar()
 		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
 
 		Settings.settingsBoolean[C.SETTING_APP_INITIALIZED] = true

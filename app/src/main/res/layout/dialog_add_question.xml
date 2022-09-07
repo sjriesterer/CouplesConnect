@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent"
+	 android:orientation="vertical">
+
+  <RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+	 <Spinner
+		  android:id="@+id/dialog_add_question_spinner_cat"
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:entries="@array/category_names"
+		  android:minHeight="50dp" />
+
+	 <Spinner
+		  android:id="@+id/dialog_add_question_spinner_sub"
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:layout_below="@id/dialog_add_question_spinner_cat"
+		  android:entries="@array/subcategory_names"
+		  android:minHeight="50dp" />
+
+	 <EditText
+		  android:id="@+id/dialog_add_question_edit_text"
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_above="@+id/dialog_add_question_confirmation_layout"
+		  android:layout_below="@+id/dialog_add_question_spinner_sub" />
+
+	 <LinearLayout
+		  android:id="@+id/dialog_add_question_confirmation_layout"
+		  style="@style/ConfirmationButtonLayout">
+
+		<Button
+			 android:id="@+id/dialog_add_question_next"
+			 style="@style/ConfirmationButton"
+			 android:text="Next" />
+
+		<Button
+			 android:id="@+id/dialog_add_question_del"
+			 style="@style/ConfirmationButton"
+			 android:text="Del" />
+
+		<Button
+			 android:id="@+id/dialog_add_question_ok"
+			 style="@style/ConfirmationButton"
+			 android:text="@string/ok" />
+	 </LinearLayout>
+  </RelativeLayout>
+</LinearLayout>

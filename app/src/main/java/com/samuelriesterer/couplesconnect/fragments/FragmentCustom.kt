@@ -68,6 +68,7 @@ class FragmentCustom : Fragment() {
 		Data.changedConfiguration = Data.currentConfiguration.copy()
 		/* Setup Views */
 		setupExpandableListView()
+		interfaceMain.showActionBar()
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		binding.customExpand.setOnClickListener {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Expand clicked")
