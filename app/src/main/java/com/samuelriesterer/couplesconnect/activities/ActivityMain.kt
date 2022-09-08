@@ -76,13 +76,14 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
 
 		Settings.settingsBoolean[C.SETTING_APP_INITIALIZED] = true
-		Settings.saveSettingBoolean(Settings.settingsBoolean[C.SETTING_APP_INITIALIZED], C.SETTING_APP_INITIALIZED)
+		Settings.saveSetting(Settings.settingsBoolean[C.SETTING_APP_INITIALIZED], C.SETTING_APP_INITIALIZED)
 	}
 
 	/*=======================================================================================================*/
 	/* OPTIONS MENU                                                                                          */
 	/*=======================================================================================================*/
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		// Inflate the menu; this adds items to the action bar if it is present.
 		menuInflater.inflate(R.menu.main_menu, menu)
 		return true

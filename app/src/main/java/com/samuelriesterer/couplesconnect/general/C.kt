@@ -8,8 +8,10 @@ class C {
 
 		/* Int Settings */
 		const val SETTING_SAVED_QUESTION_ID = 0
-		const val SETTING_INT2 = 1
-		const val SETTING_INT3 = 2
+		const val SETTING_LAST_CAT = 1
+		const val SETTING_LAST_SUB = 2
+		const val SETTING_LAST_TOPIC = 3
+		const val SETTING_CURRENT_SORT_ORDER = 4
 
 		/* Boolean Settings */
 		const val SETTING_APP_INITIALIZED = 0

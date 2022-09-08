@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+		android:id="@+id/sort_title"
+		android:checkable="false"
+		android:enabled="false"
+		android:title="@string/sort_by"
+
+		/>
+  <group android:id="@+id/sort_group">
+
+	 <item
+		  android:id="@+id/sort_cat"
+		  android:title="Cat"
+		  app:showAsAction="never" />
+	 <item
+		  android:id="@+id/sort_sub"
+		  android:title="Sub"
+		  app:showAsAction="never" />
+
+	 <item
+		  android:id="@+id/sort_id"
+		  android:title="ID"
+		  app:showAsAction="never" />
+
+	 <item
+		  android:id="@+id/sort_az"
+		  android:title="A-Z"
+		  app:showAsAction="never" />
+
+  </group>
+</menu>

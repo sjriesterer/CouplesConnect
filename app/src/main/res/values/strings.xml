@@ -107,6 +107,7 @@
 	 <item>@string/subcategory20</item>
   </string-array>
 
+
   <!--  Subcategory Info-->
   <string name="subcategory_info0">Life info</string>
   <string name="subcategory_info1">Love info</string>
@@ -156,6 +157,138 @@
 	 <item>@string/subcategory_info19</item>
 	 <item>@string/subcategory_info20</item>
   </string-array>
+
+
+<!--  Topics-->
+
+  <string name = "Topic_0">Love"</string>
+  <string name = "Topic_1">Life Cycle"</string>
+  <string name = "Topic_2">The Universe"</string>
+  <string name = "Topic_3">People"</string>
+  <string name = "Topic_4">Special Days"</string>
+  <string name = "Topic_5">Communication"</string>
+  <string name = "Topic_6">Attraction"</string>
+  <string name = "Topic_7">Sex"</string>
+  <string name = "Topic_8">Commitment"</string>
+  <string name = "Topic_9">Relationships"</string>
+  <string name = "Topic_10">Connection"</string>
+  <string name = "Topic_11">Friends"</string>
+  <string name = "Topic_12">Family"</string>
+  <string name = "Topic_13">Kids"</string>
+  <string name = "Topic_14">Partners"</string>
+  <string name = "Topic_15">Strangers"</string>
+  <string name = "Topic_16">Humankind"</string>
+  <string name = "Topic_17">Parenting"</string>
+  <string name = "Topic_18">Coworkers"</string>
+  <string name = "Topic_19">Engagement"</string>
+  <string name = "Topic_20">Nature"</string>
+  <string name = "Topic_21">Animals/Pets"</string>
+  <string name = "Topic_22">Business"</string>
+  <string name = "Topic_23">Learning"</string>
+  <string name = "Topic_24">Shop"</string>
+  <string name = "Topic_25">Work"</string>
+  <string name = "Topic_26">Travel"</string>
+  <string name = "Topic_27">Home"</string>
+  <string name = "Topic_28">Self"</string>
+  <string name = "Topic_29">Personal space and care"</string>
+  <string name = "Topic_30">Sleep"</string>
+  <string name = "Topic_31">Fitness"</string>
+  <string name = "Topic_32">Health"</string>
+  <string name = "Topic_33">Food"</string>
+  <string name = "Topic_34">Hobbies"</string>
+  <string name = "Topic_35">Hobbies (categories)"</string>
+  <string name = "Topic_36">Subjects"</string>
+  <string name = "Topic_37">Entertainment"</string>
+  <string name = "Topic_38">Art"</string>
+  <string name = "Topic_39">Fashion"</string>
+  <string name = "Topic_40">Sports"</string>
+  <string name = "Topic_41">Technology"</string>
+  <string name = "Topic_42">Values"</string>
+  <string name = "Topic_43">God"</string>
+  <string name = "Topic_44">Sin"</string>
+  <string name = "Topic_45">Finality"</string>
+  <string name = "Topic_46">Morality"</string>
+  <string name = "Topic_47">Human Qualities"</string>
+  <string name = "Topic_48">Humanness"</string>
+  <string name = "Topic_49">Organized religion"</string>
+  <string name = "Topic_50">Spacer"</string>
+  <string name = "Topic_51">Tenants"</string>
+  <string name = "Topic_52">Objects"</string>
+  <string name = "Topic_53">Written texts"</string>
+  <string name = "Topic_54">Science/Creation"</string>
+  <string name = "Topic_55">Legislature"</string>
+  <string name = "Topic_56">Leadership"</string>
+  <string name = "Topic_57">Defense"</string>
+  <string name = "Topic_58">Economy"</string>
+  <string name = "Topic_59">Judicial"</string>
+  <string name = "Topic_60">Enforcement"</string>
+  <string name = "Topic_61">Types"</string>
+
+
+  <string-array name="topic_names">
+  <item>@string/Topic_0</item>
+  <item>@string/Topic_1</item>
+  <item>@string/Topic_2</item>
+  <item>@string/Topic_3</item>
+  <item>@string/Topic_4</item>
+  <item>@string/Topic_5</item>
+  <item>@string/Topic_6</item>
+  <item>@string/Topic_7</item>
+  <item>@string/Topic_8</item>
+  <item>@string/Topic_9</item>
+  <item>@string/Topic_10</item>
+  <item>@string/Topic_11</item>
+  <item>@string/Topic_12</item>
+  <item>@string/Topic_13</item>
+  <item>@string/Topic_14</item>
+  <item>@string/Topic_15</item>
+  <item>@string/Topic_16</item>
+  <item>@string/Topic_17</item>
+  <item>@string/Topic_18</item>
+  <item>@string/Topic_19</item>
+  <item>@string/Topic_20</item>
+  <item>@string/Topic_21</item>
+  <item>@string/Topic_22</item>
+  <item>@string/Topic_23</item>
+  <item>@string/Topic_24</item>
+  <item>@string/Topic_25</item>
+  <item>@string/Topic_26</item>
+  <item>@string/Topic_27</item>
+  <item>@string/Topic_28</item>
+  <item>@string/Topic_29</item>
+  <item>@string/Topic_30</item>
+  <item>@string/Topic_31</item>
+  <item>@string/Topic_32</item>
+  <item>@string/Topic_33</item>
+  <item>@string/Topic_34</item>
+  <item>@string/Topic_35</item>
+  <item>@string/Topic_36</item>
+  <item>@string/Topic_37</item>
+  <item>@string/Topic_38</item>
+  <item>@string/Topic_39</item>
+  <item>@string/Topic_40</item>
+  <item>@string/Topic_41</item>
+  <item>@string/Topic_42</item>
+  <item>@string/Topic_43</item>
+  <item>@string/Topic_44</item>
+  <item>@string/Topic_45</item>
+  <item>@string/Topic_46</item>
+  <item>@string/Topic_47</item>
+  <item>@string/Topic_48</item>
+  <item>@string/Topic_49</item>
+  <item>@string/Topic_50</item>
+  <item>@string/Topic_51</item>
+  <item>@string/Topic_52</item>
+  <item>@string/Topic_53</item>
+  <item>@string/Topic_54</item>
+  <item>@string/Topic_55</item>
+  <item>@string/Topic_56</item>
+  <item>@string/Topic_57</item>
+  <item>@string/Topic_58</item>
+  <item>@string/Topic_59</item>
+  <item>@string/Topic_60</item>
+	 <item>@string/Topic_61</item>
+</string-array>
 
   <!--General-->
   <string name="all">All</string>

@@ -3,7 +3,6 @@ package com.samuelriesterer.couplesconnect.general
 import android.content.Context
 import android.graphics.Typeface
 import com.samuelriesterer.couplesconnect.R
-import com.samuelriesterer.couplesconnect.data.EntityConfiguration
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class Settings {
@@ -31,9 +30,11 @@ class Settings {
 		/* Int Settings */
 		lateinit var settingsInt: IntArray
 		val settingsIntKeys = arrayOf(
-			"SAVED_QUESTION_ID",
-			"SETTING_INT2",
-			"SETTING_INT3"
+			"SETTING_SAVED_QUESTION_ID",
+			"SETTING_LAST_CAT",
+			"SETTING_LAST_SUB",
+			"SETTING_LAST_TOPIC",
+			"SETTING_CURRENT_SORT_ORDER"
 		)
 
 		/* Boolean Settings */
@@ -48,6 +49,7 @@ class Settings {
 		/* SETUP                                                                                                 */
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			/* Interface */
 			try {
 				interfaceMain = context as InterfaceMain
@@ -99,7 +101,9 @@ class Settings {
 			return intArrayOf(
 				0,
 				0,
-				0
+				0,
+				0,
+				2
 			)
 			//@formatter:on
 		}
@@ -118,14 +122,14 @@ class Settings {
 		}
 
 		/*=======================================================================================================*/
-		fun saveSettingInt(value: Int, id: Int) {
+		fun saveSetting(value: Int, id: Int) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: value = $value, id = $id")
 			settingsInt[id] = value
 			interfaceMain.putSettingInt(sharedPreferenceKey, settingsIntKeys[id], settingsInt[id])
 		}
 
 		/*=======================================================================================================*/
-		fun saveSettingBoolean(value: Boolean, id: Int) {
+		fun saveSetting(value: Boolean, id: Int) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: value = $value, id = $id")
 			settingsBoolean[id] = value
 			interfaceMain.putSettingBoolean(sharedPreferenceKey, settingsBooleanKeys[id], settingsBoolean[id])
@@ -135,9 +139,9 @@ class Settings {
 		fun saveSettings() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			for(i in settingsBoolean.indices)
-				saveSettingBoolean(settingsBoolean[i], i)
+				saveSetting(settingsBoolean[i], i)
 			for(i in settingsInt.indices)
-				saveSettingInt(settingsInt[i], i)
+				saveSetting(settingsInt[i], i)
 		}
 
 		/*=======================================================================================================*/

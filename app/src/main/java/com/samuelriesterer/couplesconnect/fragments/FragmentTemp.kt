@@ -2,9 +2,16 @@ package com.samuelriesterer.couplesconnect.fragments
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.*
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.adapters.AdapterTemp
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.data.DatabaseOps
@@ -22,6 +29,8 @@ class FragmentTemp : Fragment() {
 	val TAG: String = "~*FRAGMENT_TEMP"
 	private lateinit var adapterTemp: AdapterTemp
 	val fragmentID = C.FRAG_TEMP
+	var currentSortOrderIDAsc = false
+	var currentSortOrderAZAsc = true
 
 	/*=======================================================================================================*/
 	/* INTERFACE                                                                                             */
@@ -47,6 +56,7 @@ class FragmentTemp : Fragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onCreate(savedInstanceState)
+		sortSaveQuestions(Settings.settingsInt[C.SETTING_CURRENT_SORT_ORDER])
 		adapterTemp = AdapterTemp(requireContext(), Data.savedQuestions)
 	}
 
@@ -86,6 +96,7 @@ class FragmentTemp : Fragment() {
 		binding.tempShare.setOnClickListener {
 		}
 		binding.tempSort.setOnClickListener {
+			showPopupSortMenu(binding.tempSort)
 		}
 
 		return root
@@ -98,78 +109,53 @@ class FragmentTemp : Fragment() {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onViewCreated(view, savedInstanceState)
 	}
-
 	/*=======================================================================================================*/
-	fun dialogAddQuestion(position: Int?) {
-		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		/* Setup */
-		val dialog = Dialog(requireContext())
-		val bind: DialogAddQuestionBinding = DialogAddQuestionBinding.inflate(LayoutInflater.from(activity))
-		dialog.setContentView(bind.root)
-		bind.dialogAddQuestionEditText.requestFocus()
-		if(position != null)
-			bind.dialogAddQuestionEditText.setText(Data.savedQuestions[position].question)
+	fun showPopupSortMenu(v: View?) {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		val popup = PopupMenu(requireContext(), v!!)
+		popup.inflate(R.menu.popup_sort)
+		// Make popup title black:
+		val popupTitle = SpannableString(getString(R.string.sort_by) + ":")
+		popupTitle.setSpan(ForegroundColorSpan(Color.BLACK), 0, popupTitle.length, 0)
+		popupTitle.setSpan(StyleSpan(Typeface.BOLD), 0, popupTitle.length, 0)
+		popup.menu.findItem(R.id.sort_title).title = popupTitle
 
-		/* Methods */
-		fun makeQuestion(id: Int) : EntityQuestion {
-			return EntityQuestion(id, bind.dialogAddQuestionSpinnerCat.selectedItemPosition, bind.dialogAddQuestionSpinnerSub.selectedItemPosition, 0, bind.dialogAddQuestionEditText.text.toString())
-		}
-
-		fun addQuestion() {
-			Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "adding question ${bind.dialogAddQuestionEditText.text.toString()}")
-			val q = makeQuestion(Settings.settingsInt[C.SETTING_SAVED_QUESTION_ID])
-			DatabaseOps.insertQuestion(q)
-			Data.savedQuestions.add(0, q)
-			Settings.settingsInt[C.SETTING_SAVED_QUESTION_ID]++
-			Settings.saveSettingInt(Settings.settingsInt[C.SETTING_SAVED_QUESTION_ID], C.SETTING_SAVED_QUESTION_ID)
+		popup.setOnMenuItemClickListener { item ->
+			when (item.itemId) {
+				R.id.sort_cat -> sortSaveQuestions(0)
+				R.id.sort_sub -> sortSaveQuestions(1)
+				R.id.sort_id -> sortSaveQuestions(2)
+				R.id.sort_az -> sortSaveQuestions(3)
+			}
 			adapterTemp.notifyDataSetChanged()
-		}
 
-		fun saveQuestion() {
-			val q = makeQuestion(Data.savedQuestions[position!!].id)
-			Data.savedQuestions[position] = q
-			DatabaseOps.insertQuestion(q)
-			adapterTemp.notifyDataSetChanged()
+			true
 		}
-		/* Listeners */
-		bind.dialogAddQuestionDel.setOnClickListener {
-			if(position == null) {
-				bind.dialogAddQuestionEditText.text.clear()
-			}
-			else {
-				bind.dialogAddQuestionEditText.text.clear()
-				DatabaseOps.deleteQuestion(Data.savedQuestions[position].id)
-				Data.savedQuestions.removeAt(position)
-				adapterTemp.notifyDataSetChanged()
-			}
-		}
-		bind.dialogAddQuestionNext.setOnClickListener {
-			if(position == null) {
-				if(bind.dialogAddQuestionEditText.text.isNotEmpty())
-					addQuestion()
-				bind.dialogAddQuestionEditText.text.clear()
-			}
-			else {
-				saveQuestion()
-			}
-		}
-		bind.dialogAddQuestionOk.setOnClickListener {
-			if(bind.dialogAddQuestionEditText.text.isNotEmpty()) {
-				if(position == null)
-					addQuestion()
-				else
-					saveQuestion()
-			}
-			dialog.dismiss()
-		}
-		dialog.show()
+		popup.show()
 	}
 
 	/*=======================================================================================================*/
-	fun addQuestion2(q: EntityQuestion) {
+	fun sortSaveQuestions(method: Int) {
 		Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		Data.savedQuestions.add(0, q)
-		adapterTemp.notifyDataSetChanged()
+		when(method) {
+			0 -> Data.savedQuestions.sortBy { it.category }
+			1 -> Data.savedQuestions.sortBy { it.subcategory }
+			2 -> {
+				if(currentSortOrderIDAsc)
+					Data.savedQuestions.sortByDescending { it.id }
+				else
+					Data.savedQuestions.sortBy { it.id }
+				currentSortOrderAZAsc = !currentSortOrderIDAsc
+			}
+			3 -> {
+				if(currentSortOrderAZAsc)
+					Data.savedQuestions.sortByDescending { it.question }
+				else
+					Data.savedQuestions.sortBy { it.question }
+				currentSortOrderAZAsc = !currentSortOrderAZAsc
+			}
+		}
+		Settings.saveSetting(method, C.SETTING_CURRENT_SORT_ORDER)
 	}
 
 	/*=======================================================================================================*/

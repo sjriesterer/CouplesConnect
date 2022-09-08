@@ -23,6 +23,7 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual_on.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/category_sensual_sel.xml" value="0.2985" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_add_sel.xml" value="0.2395" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_back_sel.xml" value="0.3195" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_check_sel.xml" value="0.2985" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/drawable/ic_collapse_sel.xml" value="0.2985" />
@@ -60,6 +61,7 @@
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/fragment_temp_menu.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/main.xml" value="0.34322916666666664" />
         <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/main_menu.xml" value="0.34322916666666664" />
+        <entry key="..\:/Computer Projects/Android/CouplesConnect/app/src/main/res/menu/popup_sort.xml" value="0.34322916666666664" />
       </map>
     </option>
   </component>
