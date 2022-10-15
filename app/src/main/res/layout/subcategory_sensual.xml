@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	 android:id="@+id/main"
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent"
+	 android:orientation="vertical">
+
+  <!--  Top Row-->
+  <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+	 <!--	 Romance -->
+	 <RelativeLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_weight="1">
+
+		<TextView
+			 android:id="@+id/subcategories_sensual_romance"
+			 style="@style/SubcategoryHeading"
+			 android:background="@drawable/category_sensual_sel"
+			 android:text="@string/subcategory17" />
+
+		<ImageView
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_sensual_romance"
+			 android:src="@drawable/im_romance" />
+
+		<ImageView
+			 android:id="@+id/subcategories_romance_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_sensual_romance"
+			 android:layout_alignBottom="@+id/subcategories_sensual_romance"
+			 android:src="@drawable/im_question" />
+
+	 </RelativeLayout>
+
+	 <!--	 Flirtation -->
+	 <RelativeLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_weight="1">
+
+		<TextView
+			 android:id="@+id/subcategories_sensual_flirtations"
+			 style="@style/SubcategoryHeading"
+			 android:background="@drawable/category_sensual_sel"
+			 android:text="@string/subcategory18" />
+
+		<ImageView
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_sensual_flirtations"
+			 android:src="@drawable/im_flirt" />
+
+		<ImageView
+			 android:id="@+id/subcategories_flirtation_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_sensual_flirtations"
+			 android:layout_alignBottom="@+id/subcategories_sensual_flirtations"
+			 android:src="@drawable/im_question" />
+
+	 </RelativeLayout>
+
+  </LinearLayout>
+
+  <!--  Second Row-->
+  <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+	 <!--	 Foreplay -->
+	 <RelativeLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_weight="1">
+
+		<TextView
+			 android:id="@+id/subcategories_sensual_romantic"
+			 style="@style/SubcategoryHeading"
+			 android:background="@drawable/category_sensual_sel"
+			 android:text="@string/subcategory19" />
+
+		<ImageView
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_sensual_romantic"
+			 android:src="@drawable/im_foreplay" />
+
+		<ImageView
+			 android:id="@+id/subcategories_foreplay_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_sensual_romantic"
+			 android:layout_alignBottom="@+id/subcategories_sensual_romantic"
+			 android:src="@drawable/im_question" />
+
+	 </RelativeLayout>
+
+	 <!--	Sex -->
+	 <RelativeLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="match_parent"
+		  android:layout_weight="1">
+
+		<TextView
+			 android:id="@+id/subcategories_sensual_sex"
+			 style="@style/SubcategoryHeading"
+			 android:background="@drawable/category_sensual_sel"
+			 android:text="@string/subcategory20" />
+
+		<ImageView
+			 style="@style/SubcategoryIcon"
+			 android:layout_alignBottom="@+id/subcategories_sensual_sex"
+			 android:src="@drawable/im_sex" />
+
+		<ImageView
+			 android:id="@+id/subcategories_sex_question"
+			 style="@style/CategoryQuestionIconSmall"
+			 android:layout_alignRight="@+id/subcategories_sensual_sex"
+			 android:layout_alignBottom="@+id/subcategories_sensual_sex"
+			 android:src="@drawable/im_question" />
+
+	 </RelativeLayout>
+
+	 <!--  </LinearLayout>-->
+
+  </LinearLayout>
+
+</LinearLayout>

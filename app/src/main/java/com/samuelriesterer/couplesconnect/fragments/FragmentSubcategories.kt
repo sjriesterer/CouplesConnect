@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.samuelriesterer.couplesconnect.R
@@ -12,6 +13,7 @@ import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentSubcategories : Fragment() {
@@ -56,8 +58,34 @@ class FragmentSubcategories : Fragment() {
 
 		/* Setup Views */
 		interfaceMain.showActionBar()
+		when (Settings.currentCategory) {
+			C.CAT_CONVERSATION -> {
+				binding.subcategoryConversations.main.visibility = LinearLayout.VISIBLE
+				binding.subcategoryDates.main.visibility = LinearLayout.GONE
+				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
+				binding.subcategorySensual.main.visibility = LinearLayout.GONE
+			}
+			C.CAT_DATE -> {
+				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
+				binding.subcategoryDates.main.visibility = LinearLayout.VISIBLE
+				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
+				binding.subcategorySensual.main.visibility = LinearLayout.GONE
+			}
+			C.CAT_INTIMACY -> {
+				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
+				binding.subcategoryDates.main.visibility = LinearLayout.GONE
+				binding.subcategoryIntimacy.main.visibility = LinearLayout.VISIBLE
+				binding.subcategorySensual.main.visibility = LinearLayout.GONE
+			}
+			C.CAT_SENSUAL -> {
+				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
+				binding.subcategoryDates.main.visibility = LinearLayout.GONE
+				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
+				binding.subcategorySensual.main.visibility = LinearLayout.VISIBLE
+			}
+		}
 
-		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* CONVERSATIONS LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Subcategory Click */
 		binding.subcategoryConversations.subcategoriesConversationsLife.setOnClickListener {v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
@@ -116,6 +144,32 @@ class FragmentSubcategories : Fragment() {
 			dialogInfo(getString(R.string.subcategory_info5), "")
 		}
 
+		/* DATES LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Subcategory Click */
+
+		/* Question Click */
+
+		/* INTIMACY LISTENERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Subcategory Click */
+
+		/* Question Click */
+
+		/* SENSUAL LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/* Subcategory Click */
+
+		/* Question Click */
+
+
+		/* Buttons Click */
+		binding.subcategoriesCustom.setOnClickListener { v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			interfaceMain.switchFragments(C.FRAG_CUSTOM)
+		}
+		binding.subcategoriesAll.setOnClickListener { v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Data.makeDeckSingleCategory(Settings.currentCategory)
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
 
 		return root
 	}

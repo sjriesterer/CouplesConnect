@@ -12,6 +12,7 @@ import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.FragmentCategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentCategories : Fragment() {
@@ -62,22 +63,23 @@ class FragmentCategories : Fragment() {
 		/* Category Click */
 		binding.categoriesConversations.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Settings.currentCategory = C.CAT_CONVERSATION
 			interfaceMain.switchFragments(C.FRAG_SUBCATEGORY)
 		}
 		binding.categoriesDates.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleCategory(C.CAT_DATE)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
+			Settings.currentCategory = C.CAT_DATE
+			interfaceMain.switchFragments(C.FRAG_SUBCATEGORY)
 		}
 		binding.categoriesIntimacy.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleCategory(C.CAT_INTIMACY)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
+			Settings.currentCategory = C.CAT_INTIMACY
+			interfaceMain.switchFragments(C.FRAG_SUBCATEGORY)
 		}
 		binding.categoriesSensual.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleCategory(C.CAT_SENSUAL)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
+			Settings.currentCategory = C.CAT_SENSUAL
+			interfaceMain.switchFragments(C.FRAG_SUBCATEGORY)
 		}
 
 		/* Question Click */
@@ -93,6 +95,18 @@ class FragmentCategories : Fragment() {
 		binding.categoriesSensualQuestion.setOnClickListener {
 			dialogInfo(getString(R.string.category3), getString(R.string.category_info3))
 		}
+
+		/* Buttons Click */
+		binding.categoriesCustom.setOnClickListener { v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			interfaceMain.switchFragments(C.FRAG_CUSTOM)
+		}
+		binding.categoriesAll.setOnClickListener { v ->
+			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
+			Data.makeDeckAll()
+			interfaceMain.switchFragments(C.FRAG_QUESTION)
+		}
+
 		return root
 	}
 	/*=======================================================================================================*/

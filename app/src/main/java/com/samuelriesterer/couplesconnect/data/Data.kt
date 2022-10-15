@@ -427,6 +427,17 @@ class Data {
 				else -> currentDeck.shuffle()
 			}
 		}
+		/*=======================================================================================================*/
+		fun makeDeckAll() {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+
+			for(i in currentConfiguration.categoriesTurnedOn.indices)
+				currentConfiguration.categoriesTurnedOn[i] = true
+
+			for(i in currentConfiguration.subcategoriesTurnedOn.indices) {
+				currentConfiguration.subcategoriesTurnedOn[i] = true
+			}
+		}
 
 		/*=======================================================================================================*/
 		fun makeDeckSingleCategory(category: Int) {

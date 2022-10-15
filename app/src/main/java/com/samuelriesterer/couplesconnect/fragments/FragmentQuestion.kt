@@ -72,6 +72,7 @@ class FragmentQuestion : Fragment() {
 		viewPager.adapter = viewPagerAdapter
 		/* Setup Views */
 		interfaceMain.showActionBar()
+
 		// Displays a text message if there are no categories/subcategories selected:
 		if(Data.currentDeck.isEmpty()) {
 			binding.fragmentQuestionLayout.visibility = RelativeLayout.GONE
@@ -80,6 +81,9 @@ class FragmentQuestion : Fragment() {
 			binding.fragmentQuestionLayout.visibility = RelativeLayout.VISIBLE
 			setFavoriteIcon(0)
 			setQuestionPositionText(currentPosition)
+
+			setCategoryIcon()
+
 			/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 			viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 				override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -140,16 +144,28 @@ class FragmentQuestion : Fragment() {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onViewCreated(view, savedInstanceState)
 	}
+	/*=======================================================================================================*/
+	fun setCategoryIcon() {
+		// Sets the top category title and icon and subcategory
+		//TODO set category icon
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		binding.questionsCategory.text = ""
+		binding.questionsCategory.background
+		binding.questionsCategoryIcon
+		binding.questionsSubcategory.text = ""
 
+	}
 	/*=======================================================================================================*/
 	fun setQuestionPositionText(position: Int) {
+		// Sets the text display of the current question position and total questions in the deck (e.g. "1/12")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		binding.questionsPosition.text = "${position + 1}/${Data.currentDeck.size}"
 		binding.questionId.text = "${Data.currentDeck[position].id + 1}"
 	}
 
 	/*=======================================================================================================*/
 	fun setFavoriteIcon(position: Int) {
-		// Sets the favorite icon and returns value
+		// Sets the favorite icon for the current question
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		//		val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_on_sel)
 		if(Data.currentDeck[position].favorite)

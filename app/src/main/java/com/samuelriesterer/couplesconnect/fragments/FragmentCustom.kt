@@ -66,9 +66,11 @@ class FragmentCustom : Fragment() {
 		for(i in Data.categoryNames.indices) categoryList.add(Category(i, Data.categoryNames[i], Data.categoryIcons[i], Data.categoryColors[i]))
 		dataHashMap = getCustomHashMap()
 		Data.changedConfiguration = Data.currentConfiguration.copy()
+
 		/* Setup Views */
 		setupExpandableListView()
 		interfaceMain.showActionBar()
+
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		binding.customExpand.setOnClickListener {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Expand clicked")
@@ -82,8 +84,9 @@ class FragmentCustom : Fragment() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "OK clicked")
 			// If configurations are not the same:
 			if(!Data.currentConfiguration.compare(Data.changedConfiguration)) {
-				// Save Setting:
+				// Set Setting:
 				Data.currentConfiguration = Data.changedConfiguration.copy()
+				// Save Setting:
 				DatabaseOps.insertConfiguration(Data.currentConfiguration)
 			}
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
