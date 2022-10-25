@@ -7,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
-import android.widget.Toast
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.*
 import com.samuelriesterer.couplesconnect.databinding.FragmentCustomBinding
-import com.samuelriesterer.couplesconnect.general.AdapterCustomList
+import com.samuelriesterer.couplesconnect.adapters.AdapterCustomList
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
@@ -23,9 +20,6 @@ class FragmentCustom : Fragment() {
 	private val binding get() = _binding!!
 	val TAG: String = "~*FRAGMENT_CUSTOM"
 	private var customListAdapter: ExpandableListAdapter? = null
-
-	private var titleList: List<String>? = null
-//	val categoryList: MutableList<Category> = mutableListOf()
 	private lateinit var dataHashMap: HashMap<String, List<Subcategory>>
 
 	/*=======================================================================================================*/
@@ -63,13 +57,11 @@ class FragmentCustom : Fragment() {
 		val root: View = binding.root
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
-//		for(i in Data.categories.indices) categoryList.add(Category(i, Data.categoryNames[i], Data.categoryIcons[i], Data.categoryColors[i]))
 		dataHashMap = getCustomHashMap()
 		Data.changedConfiguration = Data.currentConfiguration.copy()
 
 		/* Setup Views */
 		setupExpandableListView()
-		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		binding.customExpand.setOnClickListener {
@@ -111,9 +103,7 @@ class FragmentCustom : Fragment() {
 		val hash: HashMap<String, List<Subcategory>> = hashMapOf()
 //		val subcategoryList: MutableList<Subcategory> = mutableListOf() // The list of all subcategories
 		val childList: MutableList<List<Subcategory>> = mutableListOf() // A list of subcategories for each category
-		/* Add the subcategories */
-//		for(i in Data.subcategories.indices)
-//			subcategoryList.add(Subcategory(i, Data.subcategoryGroupings[i], Data.subcategoryNames[i], Data.subcategoryIcons[i]))
+
 		/* Make a list of subcategories for each category */
 		for(i in Data.categories.indices) {
 			val list: MutableList<Subcategory> = mutableListOf()
@@ -125,6 +115,7 @@ class FragmentCustom : Fragment() {
 			}
 			childList.add(list)
 		}
+
 		/* Build the HashMap */
 		for(i in Data.categories.indices) hash[Data.categories[i].heading] = childList[i]
 

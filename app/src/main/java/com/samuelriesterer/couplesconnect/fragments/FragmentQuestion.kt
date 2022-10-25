@@ -13,21 +13,20 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.samuelriesterer.couplesconnect.R
-import com.samuelriesterer.couplesconnect.adapters.ViewPagerAdapter
+import com.samuelriesterer.couplesconnect.adapters.AdapterViewPageQuestions
 import com.samuelriesterer.couplesconnect.data.DatabaseOps
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.DialogSortBinding
 import com.samuelriesterer.couplesconnect.databinding.FragmentQuestionBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
-import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentQuestion : Fragment() {
 	private var _binding: FragmentQuestionBinding? = null
 	private val binding get() = _binding!!
 	lateinit var viewPager: ViewPager
-	lateinit var viewPagerAdapter: ViewPagerAdapter
+	lateinit var adapterViewPageQuestions: AdapterViewPageQuestions
 	var currentPosition = 0
 	val TAG: String = "~*FRAGMENT_QUESTION"
 
@@ -68,10 +67,10 @@ class FragmentQuestion : Fragment() {
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
 		viewPager = binding.pager
-		viewPagerAdapter = ViewPagerAdapter(requireContext(), Data.currentDeck)
-		viewPager.adapter = viewPagerAdapter
+		adapterViewPageQuestions = AdapterViewPageQuestions(requireContext(), Data.currentDeck)
+		viewPager.adapter = adapterViewPageQuestions
 		/* Setup Views */
-		interfaceMain.showActionBar()
+//		interfaceMain.showActionBar()
 
 		// Displays a text message if there are no categories/subcategories selected:
 		if(Data.currentDeck.isEmpty()) {
@@ -227,7 +226,7 @@ class FragmentQuestion : Fragment() {
 				// Save Setting:
 				DatabaseOps.insertConfiguration(Data.currentConfiguration)
 				Data.makeDeck(Data.currentConfiguration)
-				viewPagerAdapter.notifyDataSetChanged()
+				adapterViewPageQuestions.notifyDataSetChanged()
 				currentPosition = 0
 				viewPager.setCurrentItem(currentPosition)
 				setQuestionPositionText(currentPosition)

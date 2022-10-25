@@ -52,7 +52,7 @@ class FragmentSettings : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
-		interfaceMain.showActionBar()
+//		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 

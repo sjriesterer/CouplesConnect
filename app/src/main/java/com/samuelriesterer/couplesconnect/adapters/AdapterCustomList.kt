@@ -1,4 +1,4 @@
-package com.samuelriesterer.couplesconnect.general
+package com.samuelriesterer.couplesconnect.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.*
 import com.samuelriesterer.couplesconnect.data.Category
 import com.samuelriesterer.couplesconnect.data.Data
-import com.samuelriesterer.couplesconnect.data.EntityConfiguration
 import com.samuelriesterer.couplesconnect.data.Subcategory
 import com.samuelriesterer.couplesconnect.databinding.CustomGroupBinding
 import com.samuelriesterer.couplesconnect.databinding.CustomItemBinding
+import com.samuelriesterer.couplesconnect.general.C
+import com.samuelriesterer.couplesconnect.general.Logger
 
 class AdapterCustomList internal constructor(private val context: Context, private val categoryList: List<Category>, private val dataHashMap: HashMap<String, List<Subcategory>>) : BaseExpandableListAdapter() {
 	val TAG: String = "~*ADAPTER_CUSTOM_LIST"
@@ -164,10 +165,6 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 				Data.changedConfiguration.subcategoriesTurnedOn[i] = isChecked
 		}
 
-//		for(i in dataHashMap[this.categoryList[categoryPosition].heading]!!.indices) {
-//			Data.changedConfiguration.subcategoriesTurnedOn[categoryPosition] = isChecked
-//			dataHashMap[this.categoryList[categoryPosition].heading]!![i].isChecked = isChecked
-//		}
 	}
 	/*=======================================================================================================*/
 	fun allSubcategoriesAreChecked(categoryPosition: Int) : Boolean {
@@ -178,12 +175,6 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 			if(Data.subcategories[i].category == categoryPosition && !Data.changedConfiguration.subcategoriesTurnedOn[i])
 				return false
 		}
-
-
-//		for(i in dataHashMap[this.categoryList[categoryPosition].heading]!!.indices) {
-//			if(!dataHashMap[this.categoryList[categoryPosition].heading]!![i].isChecked)
-//				return false
-//		}
 
 		return true
 	}

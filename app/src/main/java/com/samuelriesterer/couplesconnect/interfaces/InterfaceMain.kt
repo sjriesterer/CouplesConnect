@@ -7,8 +7,8 @@ interface InterfaceMain {
 	fun getFragment(fragmentID: Int): FragStack
 	fun putSettingBoolean(key: String, stringID: String, value: Boolean)
 	fun putSettingInt(key: String, stringID: String, value: Int)
-	fun disableNavDrawer()
-	fun enableNavDrawer()
-	fun hideActionBar()
-	fun showActionBar()
+//	fun disableNavDrawer()
+//	fun enableNavDrawer()
+//	fun hideActionBar()
+//	fun showActionBar()
 }

@@ -57,7 +57,7 @@ class FragmentSubcategories : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
-		interfaceMain.showActionBar()
+//		interfaceMain.showActionBar()
 		when (Settings.currentCategory) {
 			C.CAT_CONVERSATION -> {
 				binding.subcategoryConversations.main.visibility = LinearLayout.VISIBLE

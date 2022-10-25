@@ -15,7 +15,7 @@ import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 import java.util.*
 
-class ViewPagerAdapter(val context: Context, val imageList: MutableList<Question>) : PagerAdapter() {
+class AdapterViewPageQuestions(val context: Context, val imageList: MutableList<Question>) : PagerAdapter() {
 	val TAG: String = "~*VIEW_PAGER_ADAPTER"
 
 	/*=======================================================================================================*/

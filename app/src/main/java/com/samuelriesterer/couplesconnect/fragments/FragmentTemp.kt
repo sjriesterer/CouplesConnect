@@ -51,7 +51,7 @@ class FragmentTemp : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
-		interfaceMain.showActionBar()
+//		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
