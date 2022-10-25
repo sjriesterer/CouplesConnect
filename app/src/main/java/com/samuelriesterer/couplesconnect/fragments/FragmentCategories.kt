@@ -57,7 +57,7 @@ class FragmentCategories : Fragment() {
 		/* Variables */
 
 		/* Setup Views */
-		interfaceMain.showActionBar()
+//		interfaceMain.showActionBar()
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Category Click */
@@ -83,28 +83,31 @@ class FragmentCategories : Fragment() {
 		}
 
 		/* Question Click */
-		binding.categoriesConversationsQuestion.setOnClickListener {
+		binding.categoriesConversations.setOnLongClickListener {
 			dialogInfo(getString(R.string.category0), getString(R.string.category_info0))
+			true
 		}
-		binding.categoriesDatesQuestion.setOnClickListener {
+		binding.categoriesDates.setOnLongClickListener {
 			dialogInfo(getString(R.string.category1), getString(R.string.category_info1))
+			true
 		}
-		binding.categoriesIntimacyQuestion.setOnClickListener {
+		binding.categoriesIntimacy.setOnLongClickListener {
 			dialogInfo(getString(R.string.category2), getString(R.string.category_info2))
+			true
 		}
-		binding.categoriesSensualQuestion.setOnClickListener {
+		binding.categoriesSensual.setOnLongClickListener {
 			dialogInfo(getString(R.string.category3), getString(R.string.category_info3))
+			true
+		}
+		binding.categories4.setOnLongClickListener {
+			dialogInfo(getString(R.string.category0), getString(R.string.category_info0))
+			true
 		}
 
 		/* Buttons Click */
 		binding.categoriesCustom.setOnClickListener { v ->
 			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
 			interfaceMain.switchFragments(C.FRAG_CUSTOM)
-		}
-		binding.categoriesAll.setOnClickListener { v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckAll()
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 
 		return root

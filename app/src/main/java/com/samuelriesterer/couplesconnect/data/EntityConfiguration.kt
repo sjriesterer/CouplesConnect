@@ -51,11 +51,11 @@ class EntityConfiguration (
 		println("Sort order = ${this.currentSortOrder}; Filter type = ${this.currentFilterType}")
 		println("Categories:")
 		for(i in this.categoriesTurnedOn.indices)
-			println("Cat $i : ${Data.categoryNames[i]} = ${this.categoriesTurnedOn[i]}")
+			println("Cat $i : ${Data.categories[i].heading} = ${this.categoriesTurnedOn[i]}")
 
 		println("Subcategories:")
 		for(i in this.subcategoriesTurnedOn.indices)
-			println("Cat $i : ${Data.subcategoryNames[i]} = ${this.subcategoriesTurnedOn[i]}")
+			println("Cat $i : ${Data.subcategories[i].heading} = ${this.subcategoriesTurnedOn[i]}")
 
 	}
 	/*=======================================================================================================*/

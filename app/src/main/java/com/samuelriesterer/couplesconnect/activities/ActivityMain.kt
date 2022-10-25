@@ -48,6 +48,7 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 		logger = Logger(this, Settings.sharedPreferenceKey, Settings.appDirectory, false)
 		Logger.deleteLog()
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+
 		/* Setup Settings & Data */
 		super.onCreate(savedInstanceState)
 		databaseApp = DatabaseApp.getDatabase(this)!! /// Inits the database (Call this first)
@@ -67,14 +68,14 @@ class ActivityMain : AppCompatActivity(), InterfaceMain, NavigationView.OnNaviga
 
 		// Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
 		appBarConfiguration = AppBarConfiguration(setOf(
-			R.id.nav_home, R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom, R.id.nav_settings, R.id.nav_temp), drawerLayout)
+			R.id.nav_categories, R.id.nav_subcategories, R.id.nav_questions, R.id.nav_custom, R.id.nav_settings, R.id.nav_temp), drawerLayout)
 
-//		setupActionBarWithNavController(navController, appBarConfiguration) // enable to set ActionBar with nav menu icon
+		setupActionBarWithNavController(navController, appBarConfiguration) // enable to set ActionBar with nav menu icon
 		navView.setupWithNavController(navController)
 		navView.setNavigationItemSelectedListener(this)
 		hideActionBar()
-		fragmentStack.add(FragStack(C.FRAG_HOME, FragmentHome()))
-
+		fragmentStack.add(FragStack(C.FRAG_CATEGORY, FragmentCategories()))
+		disableNavDrawer()
 		Settings.settingsBoolean[C.SETTING_APP_INITIALIZED] = true
 		Settings.saveSetting(Settings.settingsBoolean[C.SETTING_APP_INITIALIZED], C.SETTING_APP_INITIALIZED)
 	}

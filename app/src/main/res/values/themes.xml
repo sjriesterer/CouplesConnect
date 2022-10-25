@@ -53,18 +53,26 @@
   </style>
 
 <!--  Categories-->
-  <style name="CategoryHeading">
+
+  <style name="CategoryFrame">
 	 <item name="android:layout_height">100dp</item>
+	 <item name="android:layout_width">match_parent</item>
+	 <item name="android:layout_marginLeft">15dp</item>
+	 <item name="android:layout_marginRight">15dp</item>
+	 <item name="android:layout_marginTop">25dp</item>
+	 <item name="android:paddingTop">3dp</item>
+	 <item name="android:paddingLeft">3dp</item>
+	 <item name="android:backgroundTint">#6E6A6A</item>
+  </style>
+
+  <style name="CategoryHeading">
+	 <item name="android:layout_height">match_parent</item>
 	 <item name="android:layout_width">match_parent</item>
 	 <item name="android:textSize">15sp</item>
 	 <item name="android:textColor">@color/black</item>
 	 <item name="android:clickable">true</item>
 	 <item name="android:soundEffectsEnabled">true</item>
-	 <item name="android:layout_centerHorizontal">true</item>
-	 <item name="android:layout_marginLeft">15dp</item>
-	 <item name="android:layout_marginRight">15dp</item>
-	 <item name="android:layout_marginTop">25dp</item>
-	 <item name="android:gravity">center</item>
+	 <item name="android:gravity">center|bottom</item>
   </style>
 
   <style name="CategoryQuestionIcon">
@@ -78,8 +86,9 @@
   <style name="CategoryIcon">
 	 <item name="android:layout_height">50dp</item>
 	 <item name="android:layout_width">50dp</item>
-	 <item name="android:layout_marginTop">25dp</item>
+	 <item name="android:layout_marginTop">10dp</item>
 	 <item name="android:layout_marginLeft">25dp</item>
+	 <item name="android:layout_centerHorizontal">true</item>
   </style>
 
 <!--  Subcategories-->

@@ -56,14 +56,14 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 		val category = getGroup(categoryPosition)
 
 		/* Setup Views */
-		holder.layout!!.setBackgroundColor(Data.categoryColors[categoryPosition])
+		holder.layout!!.setBackgroundColor(Data.categories[categoryPosition].color)
 		holder.icon!!.setImageDrawable(category.icon)
 		holder.label!!.text = category.heading
 		holder.checkbox!!.isChecked = Data.changedConfiguration.categoriesTurnedOn[categoryPosition]
 
 		/* Listeners */
 		holder.checkbox!!.setOnClickListener{
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category checked : ${Data.categoryNames[categoryPosition]} ${Data.changedConfiguration.categoriesTurnedOn[categoryPosition]}")
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "category checked : ${Data.categories[categoryPosition].heading} ${Data.changedConfiguration.categoriesTurnedOn[categoryPosition]}")
 			Data.changedConfiguration.categoriesTurnedOn[categoryPosition] = holder.checkbox!!.isChecked
 			markAllSubcategories(categoryPosition, Data.changedConfiguration.categoriesTurnedOn[categoryPosition])
 			notifyDataSetChanged()
@@ -113,7 +113,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 
 		/* Listeners */
 		holder.checkbox!!.setOnClickListener{
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "subcategory clicked: ${Data.categoryNames[listPosition]} - ${Data.subcategoryNames[Data.getSubcategoryID(listPosition, expandedListPosition)]}")
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "subcategory clicked: ${Data.categories[listPosition].heading} - ${Data.subcategories[Data.getSubcategoryID(listPosition, expandedListPosition)].heading}")
 
 			// Set settings:
 			Data.changedConfiguration.subcategoriesTurnedOn[Data.getSubcategoryID(listPosition, expandedListPosition)] = holder.checkbox!!.isChecked
@@ -127,7 +127,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 			}
 
 			if(!holder.checkbox!!.isChecked) { // If this subcategory is not checked
-				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "subcategory checked off: ${Data.categoryNames[listPosition]} - ${Data.subcategoryNames[Data.getSubcategoryID(listPosition, expandedListPosition)]}")
+				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "subcategory checked off: ${Data.categories[listPosition].heading} - ${Data.subcategories[Data.getSubcategoryID(listPosition, expandedListPosition)].heading}")
 				Data.changedConfiguration.categoriesTurnedOn[listPosition] = false
 //				categoryList[listPosition].isChecked = false // Uncheck the category
 				needToRefresh = true
@@ -157,10 +157,10 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 	/*=======================================================================================================*/
 	fun markAllSubcategories(category: Int, isChecked: Boolean) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Category: ${Data.categoryNames[category]} = $isChecked")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Category: ${Data.categories[category].heading} = $isChecked")
 
 		for(i in Data.changedConfiguration.subcategoriesTurnedOn.indices) {
-			if(Data.getCategory(i) == category)
+			if(Data.subcategories[i].category == category)
 				Data.changedConfiguration.subcategoriesTurnedOn[i] = isChecked
 		}
 
@@ -172,10 +172,10 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 	/*=======================================================================================================*/
 	fun allSubcategoriesAreChecked(categoryPosition: Int) : Boolean {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Category: ${Data.categoryNames[categoryPosition]}")
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "Category: ${Data.categories[categoryPosition].heading}")
 
 		for(i in Data.changedConfiguration.subcategoriesTurnedOn.indices) {
-			if(Data.getCategory(i) == categoryPosition && !Data.changedConfiguration.subcategoriesTurnedOn[i])
+			if(Data.subcategories[i].category == categoryPosition && !Data.changedConfiguration.subcategoriesTurnedOn[i])
 				return false
 		}
 

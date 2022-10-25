@@ -60,12 +60,32 @@
   <color name="subColor3">#673AB7</color>
   <color name="subColor4">#FFEB3B</color>
   <color name="subColor5">#FF9800</color>
-
+  <color name="subColor6">#FF9800</color>
+  <color name="subColor7">#FF9800</color>
+  <color name="subColor8">#FF9800</color>
+  <color name="subColor9">#FF9800</color>
   <color name="subColor10">#F44336</color>
   <color name="subColor11">#F44336</color>
   <color name="subColor12">#F44336</color>
+  <color name="subColor13">#F44336</color>
+  <color name="subColor14">#F44336</color>
+  <color name="subColor15">#F44336</color>
+  <color name="subColor16">#F44336</color>
+  <color name="subColor17">#F44336</color>
+  <color name="subColor18">#F44336</color>
+  <color name="subColor19">#F44336</color>
 
   <color name="subColor20">#F44336</color>
+  <color name="subColor21">#F44336</color>
+  <color name="subColor22">#F44336</color>
+  <color name="subColor23">#F44336</color>
+  <color name="subColor24">#F44336</color>
+  <color name="subColor25">#F44336</color>
+  <color name="subColor26">#F44336</color>
+  <color name="subColor27">#F44336</color>
+  <color name="subColor28">#F44336</color>
+  <color name="subColor29">#F44336</color>
+  <color name="subColor30">#F44336</color>
 
   
   <array name="subcategory_cat1_colors">
@@ -75,6 +95,21 @@
 	 <item>@color/subColor3</item>
 	 <item>@color/subColor4</item>
 	 <item>@color/subColor5</item>
+	 <item>@color/subColor6</item>
+	 <item>@color/subColor7</item>
+	 <item>@color/subColor8</item>
+	 <item>@color/subColor9</item>
+	 <item>@color/subColor10</item>
+	 <item>@color/subColor11</item>
+	 <item>@color/subColor12</item>
+	 <item>@color/subColor13</item>
+	 <item>@color/subColor14</item>
+	 <item>@color/subColor15</item>
+	 <item>@color/subColor16</item>
+	 <item>@color/subColor17</item>
+	 <item>@color/subColor18</item>
+	 <item>@color/subColor19</item>
+	 <item>@color/subColor20</item>
   </array>
 
   <!--  Basic Base Colors-->

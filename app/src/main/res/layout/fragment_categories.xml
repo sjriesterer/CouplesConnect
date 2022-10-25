@@ -1,122 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:app="http://schemas.android.com/apk/res-auto"
 	 xmlns:tools="http://schemas.android.com/tools"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
-	 android:background="?android:windowBackground"
+	 android:background="#F9F6FA"
 	 tools:context=".fragments.FragmentCategories">
 
   <ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-	 <RelativeLayout
+	 <LinearLayout
 		  android:layout_width="match_parent"
-		  android:layout_height="match_parent">
+		  android:layout_height="match_parent"
+		  android:layout_marginLeft="30dp"
+		  android:layout_marginRight="30dp"
+		  android:orientation="vertical">
 
-		<!--		Conversations-->
-		<TextView
-			 android:id="@+id/categories_conversations"
-			 style="@style/CategoryHeading"
-			 android:background="@drawable/category_conversations_sel"
-			 android:text="@string/category0" />
+		<!--		Title-->
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:id="@+id/categories_title"
+			 android:orientation="vertical">
 
-		<ImageView
-			 style="@style/CategoryIcon"
-			 android:layout_alignTop="@+id/categories_conversations"
-			 android:src="@drawable/im_conversations" />
+		  <TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:paddingTop="30dp"
+				android:paddingRight="30dp"
+				android:text="Couples"
+				android:textSize="25sp" />
 
-		<ImageView
-			 android:id="@+id/categories_conversations_question"
-			 style="@style/CategoryQuestionIcon"
-			 android:layout_alignTop="@+id/categories_conversations"
-			 android:layout_alignRight="@+id/categories_conversations"
-			 android:src="@drawable/im_question" />
+		  <TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:paddingLeft="30dp"
+				android:paddingBottom="30dp"
+				android:text="Connect"
+				android:textSize="25sp" />
+		</LinearLayout>
 
-		<!--		Dates & Fun-->
-		<TextView
-			 android:id="@+id/categories_dates"
-			 style="@style/CategoryHeading"
-			 android:layout_below="@+id/categories_conversations"
-			 android:background="@drawable/category_dates_sel"
-			 android:text="@string/category1" />
+		<!--  Top Row-->
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:orientation="horizontal">
 
-		<ImageView
-			 style="@style/CategoryIcon"
-			 android:layout_alignTop="@+id/categories_dates"
-			 android:src="@drawable/im_dates" />
+		  <!--		Conversations-->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
 
-		<ImageView
-			 android:id="@+id/categories_dates_question"
-			 style="@style/CategoryQuestionIcon"
-			 android:layout_alignTop="@+id/categories_dates"
-			 android:layout_alignRight="@+id/categories_dates"
-			 android:src="@drawable/im_question" />
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
 
-		<!--		Intimacy Builder-->
+				<TextView
+					 android:id="@+id/categories_conversations"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_conversations_sel"
+					 android:text="@string/category0" />
 
-		<TextView
-			 android:id="@+id/categories_intimacy"
-			 style="@style/CategoryHeading"
-			 android:layout_below="@+id/categories_dates"
-			 android:background="@drawable/category_intimacy_sel"
-			 android:text="@string/category2" />
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_conversations" />
+			 </RelativeLayout>
 
-		<ImageView
-			 style="@style/CategoryIcon"
-			 android:layout_alignTop="@+id/categories_intimacy"
-			 android:src="@drawable/im_intimacy" />
+		  </LinearLayout>
 
-		<ImageView
-			 android:id="@+id/categories_intimacy_question"
-			 style="@style/CategoryQuestionIcon"
-			 android:layout_alignTop="@+id/categories_intimacy"
-			 android:layout_alignRight="@+id/categories_intimacy"
-			 android:src="@drawable/im_question" />
+		  <!-- Dates & Fun-->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
 
-		<!--		Sensual-->
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
 
-		<TextView
-			 android:id="@+id/categories_sensual"
-			 style="@style/CategoryHeading"
-			 android:layout_below="@+id/categories_intimacy"
-			 android:background="@drawable/category_sensual_sel"
-			 android:text="@string/category3" />
+				<TextView
+					 android:id="@+id/categories_dates"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_dates_sel"
+					 android:text="@string/category1" />
 
-		<ImageView
-			 style="@style/CategoryIcon"
-			 android:layout_alignTop="@+id/categories_sensual"
-			 android:src="@drawable/im_sensual" />
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_dates" />
+			 </RelativeLayout>
 
-		<ImageView
-			 android:id="@+id/categories_sensual_question"
-			 style="@style/CategoryQuestionIcon"
-			 android:layout_alignTop="@+id/categories_sensual"
-			 android:layout_alignRight="@+id/categories_sensual"
-			 android:layout_marginTop="25dp"
-			 android:src="@drawable/im_question" />
+		  </LinearLayout>
 
-	 </RelativeLayout>
+		</LinearLayout>
+
+		<!--  Second Row-->
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:orientation="horizontal">
+
+		  <!--		Intimacy Builder-->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
+
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
+
+				<TextView
+					 android:id="@+id/categories_intimacy"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_intimacy_sel"
+					 android:text="@string/category2" />
+
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_intimacy" />
+			 </RelativeLayout>
+
+		  </LinearLayout>
+
+		  <!--		Sensual-->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
+
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
+
+				<TextView
+					 android:id="@+id/categories_sensual"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_sensual_sel"
+					 android:text="@string/category3" />
+
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_sensual" />
+			 </RelativeLayout>
+
+		  </LinearLayout>
+
+		</LinearLayout>
+
+		<!--  Third Row-->
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:orientation="horizontal">
+
+		  <!--		?-->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
+
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
+
+				<TextView
+					 android:id="@+id/categories_4"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_intimacy_sel"
+					 android:text="@string/category2" />
+
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_intimacy" />
+			 </RelativeLayout>
+
+		  </LinearLayout>
+
+		  <!--		Custom -->
+		  <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_weight="1"
+				android:orientation="horizontal">
+
+			 <RelativeLayout
+				  style="@style/CategoryFrame"
+				  android:background="@drawable/category_conversations_sel">
+
+				<TextView
+					 android:id="@+id/categories_custom"
+					 style="@style/CategoryHeading"
+					 android:background="@drawable/category_conversations_sel"
+					 android:text="@string/custom" />
+
+				<ImageView
+					 style="@style/CategoryIcon"
+					 android:src="@drawable/im_conversations" />
+			 </RelativeLayout>
+
+		  </LinearLayout>
+
+		</LinearLayout>
+	 </LinearLayout>
 
   </ScrollView>
-
-  <LinearLayout
-		android:id="@+id/custom_confirmation_layout"
-		style="@style/ConfirmationButtonLayout"
-		>
-
-	 <Button
-		  android:id="@+id/categories_all"
-		  style="@style/ConfirmationButton"
-		  android:text="@string/all"
-		  />
-
-	 <Button
-		  android:id="@+id/categories_custom"
-		  style="@style/ConfirmationButton"
-		  android:text="@string/custom"
-		  />
-  </LinearLayout>
 
 </RelativeLayout>

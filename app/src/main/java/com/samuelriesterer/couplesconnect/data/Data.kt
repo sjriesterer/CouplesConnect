@@ -16,22 +16,20 @@ class Data {
 		var numOfQuestions = 0
 		var currentDeck: MutableList<Question> = mutableListOf()
 		lateinit var savedFavorites: MutableList<EntityFavorites>
-
-		lateinit var categoryNames: List<String>
-		lateinit var categoryIcons: List<Drawable?>
-		lateinit var categoryColors: List<Int>
-
-		lateinit var subcategoryGroupings: List<Int>
-		lateinit var subcategoryNames: List<String>
-		lateinit var subcategoryIcons: List<Drawable?>
-		lateinit var subcategoryColors: List<Int>
-
+		lateinit var categories: List<Category>
+		lateinit var subcategories: List<Subcategory>
+//		lateinit var categoryNames: List<String>
+//		lateinit var categoryIcons: List<Drawable?>
+//		lateinit var categoryColors: List<Int>
+//		lateinit var subcategoryGroupings: List<Int>
+//		lateinit var subcategoryNames: List<String>
+//		lateinit var subcategoryIcons: List<Drawable?>
+//		lateinit var subcategoryColors: List<Int>
 		lateinit var topicNames: List<String>
-
 		lateinit var currentConfiguration: EntityConfiguration
 		lateinit var changedConfiguration: EntityConfiguration // The configuration the user is editing in FragmentCustom
 
-//		lateinit var savedQuestions: MutableList<EntityQuestion>
+		//		lateinit var savedQuestions: MutableList<EntityQuestion>
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
@@ -39,41 +37,66 @@ class Data {
 			listOfQuestionsStrings = context.resources.getStringArray(R.array.questionsStrings).toList()
 			numOfQuestions = listOfQuestionsStrings.size
 			Questions.initQuestions()
-
 			/* Init Favorites & currentConfiguration from Database */
-			if(!Settings.settingsBoolean[C.SETTING_APP_INITIALIZED])
-			{
+			if(!Settings.settingsBoolean[C.SETTING_APP_INITIALIZED]) {
 				savedFavorites = initFavoritesFirstTime()
 				DatabaseOps.insertFavorites(savedFavorites)
-//				savedQuestions = initQuestionsFirstTime()
-//				DatabaseOps.insertQuestions(savedQuestions)
+				//				savedQuestions = initQuestionsFirstTime()
+				//				DatabaseOps.insertQuestions(savedQuestions)
 				currentConfiguration = getDefaultConfiguration()
 				DatabaseOps.insertConfiguration(currentConfiguration)
 			}
-			else
-			{
+			else {
 				savedFavorites = DatabaseOps.getFavorites()
-//				savedQuestions = DatabaseOps.getQuestions()
+				//				savedQuestions = DatabaseOps.getQuestions()
 				copyFavoritesToList()
 				currentConfiguration = DatabaseOps.getConfiguration()
 			}
 
+			/*  Categories, Subcategories, Topics */
 			changedConfiguration = currentConfiguration.copy()
+			categories = getCategories(context)
+			subcategories = getSubcategories(context)
+			topicNames = context.resources.getStringArray(R.array.topic_names).toList()
 
-			/* Categories */
-			categoryNames = context.resources.getStringArray(R.array.category_names).toList()
-			categoryColors = context.resources.getIntArray(R.array.category_colors).toList()
-			categoryIcons = listOf(
+			/* Make the Deck */
+			makeDeck(currentConfiguration)
+		}
+
+		/*=======================================================================================================*/
+		fun getCategories(context: Context) : List<Category> {
+			// To add a category: Add the string in strings.xml, constant in C, color in colors.xml, and icon in drawable folder
+			/** @see com.samuelriesterer.couplesconnect.general.C */
+
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			val categoryNames = context.resources.getStringArray(R.array.category_names).toList()
+			val categoryColors = context.resources.getIntArray(R.array.category_colors).toList()
+			//@formatter:off
+			val categoryIcons = listOf(
 				AppCompatResources.getDrawable(context, R.drawable.im_conversations),
 				AppCompatResources.getDrawable(context, R.drawable.im_date),
 				AppCompatResources.getDrawable(context, R.drawable.im_intimacy),
 				AppCompatResources.getDrawable(context, R.drawable.im_sensual)
 			)
+			//@formatter:on
+			val categories : MutableList<Category> = mutableListOf()
 
-			/* Subcategories */
-			subcategoryNames = context.resources.getStringArray(R.array.subcategory_names).toList()
-			subcategoryColors = context.resources.getIntArray(R.array.subcategory_cat1_colors).toList()
-			subcategoryIcons = listOf(
+			for(i in categoryNames.indices) {
+				categories.add(Category(i, categoryNames[i], categoryIcons[i], categoryColors[i]))
+			}
+
+			return categories
+		}
+		/*=======================================================================================================*/
+		fun getSubcategories(context: Context) : List<Subcategory> {
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			// To add a subcategory: Add the string in strings.xml, constant in C, color in colors.xml, and icon in drawable folder
+			/** @see com.samuelriesterer.couplesconnect.general.C */
+
+			val subcategoryNames= context.resources.getStringArray(R.array.subcategory_names).toList()
+			val subcategoryColors = context.resources.getIntArray(R.array.subcategory_cat1_colors).toList()
+			//@formatter:off
+			val subcategoryIcons = listOf(
 				AppCompatResources.getDrawable(context, R.drawable.im_life),
 				AppCompatResources.getDrawable(context, R.drawable.im_love),
 				AppCompatResources.getDrawable(context, R.drawable.im_relationships),
@@ -96,20 +119,16 @@ class Data {
 				AppCompatResources.getDrawable(context, R.drawable.im_foreplay),
 				AppCompatResources.getDrawable(context, R.drawable.im_sex)
 			)
-
-			// These groupings are to map which category the subcategory belongs to:
-			subcategoryGroupings = listOf(
+			val subcategoryGroupings = listOf(
 				C.CAT_CONVERSATION,
 				C.CAT_CONVERSATION,
 				C.CAT_CONVERSATION,
 				C.CAT_CONVERSATION,
 				C.CAT_CONVERSATION,
 				C.CAT_CONVERSATION,
-
 				C.CAT_DATE,
 				C.CAT_DATE,
 				C.CAT_DATE,
-
 				C.CAT_INTIMACY,
 				C.CAT_INTIMACY,
 				C.CAT_INTIMACY,
@@ -118,61 +137,58 @@ class Data {
 				C.CAT_INTIMACY,
 				C.CAT_INTIMACY,
 				C.CAT_INTIMACY,
-
 				C.CAT_SENSUAL,
 				C.CAT_SENSUAL,
 				C.CAT_SENSUAL,
 				C.CAT_SENSUAL
 			)
-			/* Topics */
-			topicNames = context.resources.getStringArray(R.array.topic_names).toList()
+			//@formatter:on
 
+			val subs : MutableList<Subcategory> = mutableListOf()
 
-			/* Make the Deck */
-			makeDeck(currentConfiguration)
+			for(i in subcategoryNames.indices) {
+				subs.add(Subcategory(i, subcategoryGroupings[i], subcategoryNames[i], subcategoryIcons[i], subcategoryColors[i]))
+			}
+
+			return subs
 		}
 		/*=======================================================================================================*/
 		/* QUESTIONS                                                                                             */
 		/*=======================================================================================================*/
-
-
 		/*=======================================================================================================*/
 		/* FAVORITES                                                                                             */
 		/*=======================================================================================================*/
-		fun initFavoritesFirstTime() : MutableList<EntityFavorites> {
-			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		fun initFavoritesFirstTime(): MutableList<EntityFavorites> {
 			// Inits the favorites list upon first app run so that program can load into database first time:
-			val list : MutableList<EntityFavorites> = mutableListOf()
+			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			val list: MutableList<EntityFavorites> = mutableListOf()
 			for(i in listOfQuestionsStrings.indices) list.add(EntityFavorites(i, false))
 			return list
 		}
+
 		/*=======================================================================================================*/
 		fun copyFavoritesToList() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			// Copies the favorites list pulled from database into the current list of Questions:
 			for(i in listOfQuestionsStrings.indices) listOfQuestions[i].favorite = savedFavorites[i].favorite
 		}
+
 		/*=======================================================================================================*/
 		/* CATEGORY/SUBCATEGORY                                                                                  */
 		/*=======================================================================================================*/
-		fun getSubcategoryID(category: Int, subcategoryIndex: Int) : Int {
-//			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		fun getSubcategoryID(category: Int, subcategoryIndex: Int): Int {
+			//			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 			var index = 0
-			for(i in subcategoryGroupings.indices) {
-				if(getCategory(i) == category) {
-//					println("subcategory returned is ${index + subcategoryIndex}")
+			for(i in subcategories.indices) {
+				if(subcategories[i].category == category) {
+					//					println("subcategory returned is ${index + subcategoryIndex}")
 					return index + subcategoryIndex
 				}
 				index++
 			}
 			return -1
 		}
-		/*=======================================================================================================*/
-		fun getCategory(subcategory: Int) : Int {
-//			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-//			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "subcategory = ${subcategoryNames[subcategory]}, returning ${categoryNames[subcategoryGroupings[subcategory]]}")
-			return subcategoryGroupings[subcategory]
-		}
+
 		/*=======================================================================================================*/
 		/* CONFIGURATIONS                                                                                        */
 		/*=======================================================================================================*/
@@ -202,6 +218,7 @@ class Data {
 			)
 			//@formatter:on
 		}
+
 		/*=======================================================================================================*/
 		/* MAKE DECK                                                                                             */
 		/*=======================================================================================================*/
@@ -210,39 +227,35 @@ class Data {
 			currentConfiguration.print()
 			currentDeck.clear()
 			var include: Boolean
-
 			// Goes through each question and sets flag include if that question is to be included in this deck.
 			// If a category is turned on, it included all subcategories.
 			for(i in listOfQuestions.indices) {
 				include = false
 				/* Check for category match */
 				// Goes through each category and if a match, sets the flag:
-				for(j in categoryNames.indices) {
+				for(j in categories.indices) {
 					if(configuration.categoriesTurnedOn[j] && listOfQuestions[i].category == j) {
 						include = true
 						break
 					}
 				}
-
 				/* Check for subcategory match if no matches are found in category */
 				// Goes through each subcategory and if a match, sets the flag:
 				if(!include) // Only need to check the subcategories if no categories are turned on:
 				{
-					for(j in subcategoryNames.indices) {
+					for(j in subcategories.indices) {
 						if(configuration.subcategoriesTurnedOn[j] && listOfQuestions[i].subcategory == j) {
 							include = true
 							break
 						}
 					}
 				}
-
 				/* Check for favorite type */
 				if(include) {
 					include = configuration.currentFilterType == C.FILTER_ALL_TYPES ||
 						configuration.currentFilterType == C.FILTER_FAVORITES_ONLY && listOfQuestions[i].favorite ||
 						configuration.currentFilterType == C.FILTER_UNRATED_ONLY && !listOfQuestions[i].favorite
 				}
-
 				/* Add entry */
 				if(include)
 					currentDeck.add(listOfQuestions[i])
@@ -255,6 +268,7 @@ class Data {
 				else -> currentDeck.shuffle()
 			}
 		}
+
 		/*=======================================================================================================*/
 		fun makeDeckAll() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
@@ -270,22 +284,18 @@ class Data {
 		/*=======================================================================================================*/
 		fun makeDeckSingleCategory(category: Int) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-
 			// Turns all categories off:
 			for(i in currentConfiguration.categoriesTurnedOn.indices)
 				currentConfiguration.categoriesTurnedOn[i] = false
-
 			// Turn selected category on:
 			currentConfiguration.categoriesTurnedOn[category] = true
-
 			// Turn all subcategories off except those belonging to the single category:
 			for(i in currentConfiguration.subcategoriesTurnedOn.indices) {
-				if(getCategory(i) == category)
+				if(subcategories[i].category == category)
 					currentConfiguration.subcategoriesTurnedOn[i] = true
 				else
 					currentConfiguration.subcategoriesTurnedOn[i] = false
 			}
-
 			// If setting to keep sort settings is off, revert to default settings:
 			if(!Settings.settingsBoolean[C.SETTING_KEEP_SORT_SETTING]) {
 				currentConfiguration.currentSortOrder = Settings.getDefaultSortOrder()
@@ -294,32 +304,27 @@ class Data {
 
 			currentConfiguration.print()
 			// Make deck:
-//			makeDeck(currentConfiguration)
+			//			makeDeck(currentConfiguration)
 		}
+
 		/*=======================================================================================================*/
 		fun makeDeckSingleSubcategory(subcategory: Int) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-
 			// Turns all categories off:
 			for(i in currentConfiguration.categoriesTurnedOn.indices)
 				currentConfiguration.categoriesTurnedOn[i] = false
-
 			// Turn all subcategories off:
 			for(i in currentConfiguration.subcategoriesTurnedOn.indices)
 				currentConfiguration.subcategoriesTurnedOn[i] = false
-
 			// Turn selected subcategory on:
 			currentConfiguration.subcategoriesTurnedOn[subcategory] = true
-
 			// If setting to keep sort settings is off, revert to default settings:
 			if(!Settings.settingsBoolean[C.SETTING_KEEP_SORT_SETTING]) {
 				currentConfiguration.currentSortOrder = Settings.getDefaultSortOrder()
 				currentConfiguration.currentFilterType = Settings.getDefaultFilterType()
 			}
-
 			// Make deck:
-//			makeDeck(currentConfiguration)
-
+			//			makeDeck(currentConfiguration)
 		}
 	}
 }
