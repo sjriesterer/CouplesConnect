@@ -1,51 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	 android:layout_width="match_parent"
 	 android:layout_height="match_parent"
-	 android:background="?android:windowBackground">
+	 android:background="?android:windowBackground"
+	 android:orientation="vertical">
 
-  <ScrollView
+  <TextView
+		android:id="@+id/subcategory_category_title"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:text="Category"
+		android:gravity="center"
+		android:textSize="50sp" />
 
-	 <LinearLayout
-		  android:layout_width="match_parent"
-		  android:layout_height="match_parent"
-		  android:orientation="vertical">
+  <ListView
+		android:id="@+id/subcategories_list_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
 
-		<include
-			 android:id="@+id/subcategory_conversations"
-			 layout="@layout/subcategory_conversations" />
-
-		<include
-			 android:id="@+id/subcategory_dates"
-			 layout="@layout/subcategory_dates" />
-
-		<include
-			 android:id="@+id/subcategory_intimacy"
-			 layout="@layout/subcategory_intimacy" />
-
-		<include
-			 android:id="@+id/subcategory_sensual"
-			 layout="@layout/subcategory_sensual" />
-
-	 </LinearLayout>
-
-  </ScrollView>
-
-  <LinearLayout
-		android:id="@+id/custom_confirmation_layout"
-		style="@style/ConfirmationButtonLayout">
-
-	 <Button
-		  android:id="@+id/subcategories_all"
-		  style="@style/ConfirmationButton"
-		  android:text="@string/all" />
-
-	 <Button
-		  android:id="@+id/subcategories_custom"
-		  style="@style/ConfirmationButton"
-		  android:text="@string/custom" />
-  </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

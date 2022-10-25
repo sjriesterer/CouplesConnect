@@ -17,14 +17,9 @@ class Data {
 		var currentDeck: MutableList<Question> = mutableListOf()
 		lateinit var savedFavorites: MutableList<EntityFavorites>
 		lateinit var categories: List<Category>
+		lateinit var categoriesHelp: List<String>
 		lateinit var subcategories: List<Subcategory>
-//		lateinit var categoryNames: List<String>
-//		lateinit var categoryIcons: List<Drawable?>
-//		lateinit var categoryColors: List<Int>
-//		lateinit var subcategoryGroupings: List<Int>
-//		lateinit var subcategoryNames: List<String>
-//		lateinit var subcategoryIcons: List<Drawable?>
-//		lateinit var subcategoryColors: List<Int>
+		lateinit var subcategoriesHelp: List<String>
 		lateinit var topicNames: List<String>
 		lateinit var currentConfiguration: EntityConfiguration
 		lateinit var changedConfiguration: EntityConfiguration // The configuration the user is editing in FragmentCustom
@@ -33,10 +28,11 @@ class Data {
 		/*=======================================================================================================*/
 		fun setup(context: Context) {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-			/* Variables */
+			/* Questions */
 			listOfQuestionsStrings = context.resources.getStringArray(R.array.questionsStrings).toList()
 			numOfQuestions = listOfQuestionsStrings.size
 			Questions.initQuestions()
+
 			/* Init Favorites & currentConfiguration from Database */
 			if(!Settings.settingsBoolean[C.SETTING_APP_INITIALIZED]) {
 				savedFavorites = initFavoritesFirstTime()
@@ -58,6 +54,8 @@ class Data {
 			categories = getCategories(context)
 			subcategories = getSubcategories(context)
 			topicNames = context.resources.getStringArray(R.array.topic_names).toList()
+			categoriesHelp = context.resources.getStringArray(R.array.category_infos).toList()
+			subcategoriesHelp = context.resources.getStringArray(R.array.subcategory_infos).toList()
 
 			/* Make the Deck */
 			makeDeck(currentConfiguration)
@@ -153,9 +151,6 @@ class Data {
 			return subs
 		}
 		/*=======================================================================================================*/
-		/* QUESTIONS                                                                                             */
-		/*=======================================================================================================*/
-		/*=======================================================================================================*/
 		/* FAVORITES                                                                                             */
 		/*=======================================================================================================*/
 		fun initFavoritesFirstTime(): MutableList<EntityFavorites> {
@@ -189,6 +184,17 @@ class Data {
 			return -1
 		}
 
+		/*=======================================================================================================*/
+		fun getSubcategories(category: Int) : List<Subcategory> {
+			Logger.log(C.LOG_I, Settings.TAG, object {}.javaClass.enclosingMethod?.name, "start")
+			val list : MutableList<Subcategory> = mutableListOf()
+			for(i in subcategories.indices) {
+				if(subcategories[i].category == category)	{
+					list.add(subcategories[i])
+				}
+			}
+			return list
+		}
 		/*=======================================================================================================*/
 		/* CONFIGURATIONS                                                                                        */
 		/*=======================================================================================================*/

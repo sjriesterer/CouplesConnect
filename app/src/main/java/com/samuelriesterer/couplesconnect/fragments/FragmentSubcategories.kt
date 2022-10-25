@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.samuelriesterer.couplesconnect.R
+import com.samuelriesterer.couplesconnect.adapters.AdapterSubcategories
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.FragmentSubcategoriesBinding
 import com.samuelriesterer.couplesconnect.general.C
@@ -19,6 +20,7 @@ import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 class FragmentSubcategories : Fragment() {
 	private var _binding: FragmentSubcategoriesBinding? = null
 	private val binding get() = _binding!!
+	private lateinit var adapterSubcategories : AdapterSubcategories
 	val TAG: String = "~*FRAGMENT_SUBCATEGORIES"
 	/*=======================================================================================================*/
 	/* INTERFACE                                                                                             */
@@ -43,7 +45,6 @@ class FragmentSubcategories : Fragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onCreate(savedInstanceState)
-		//		setHasOptionsMenu(false)
 	}
 
 	/*=======================================================================================================*/
@@ -55,121 +56,14 @@ class FragmentSubcategories : Fragment() {
 		val root: View = binding.root
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
+		adapterSubcategories = AdapterSubcategories(requireContext(), Data.getSubcategories(Settings.currentCategory))
+		adapterSubcategories.setup(requireContext())
+		binding.subcategoriesListView.adapter = adapterSubcategories
 
 		/* Setup Views */
-//		interfaceMain.showActionBar()
-		when (Settings.currentCategory) {
-			C.CAT_CONVERSATION -> {
-				binding.subcategoryConversations.main.visibility = LinearLayout.VISIBLE
-				binding.subcategoryDates.main.visibility = LinearLayout.GONE
-				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
-				binding.subcategorySensual.main.visibility = LinearLayout.GONE
-			}
-			C.CAT_DATE -> {
-				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
-				binding.subcategoryDates.main.visibility = LinearLayout.VISIBLE
-				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
-				binding.subcategorySensual.main.visibility = LinearLayout.GONE
-			}
-			C.CAT_INTIMACY -> {
-				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
-				binding.subcategoryDates.main.visibility = LinearLayout.GONE
-				binding.subcategoryIntimacy.main.visibility = LinearLayout.VISIBLE
-				binding.subcategorySensual.main.visibility = LinearLayout.GONE
-			}
-			C.CAT_SENSUAL -> {
-				binding.subcategoryConversations.main.visibility = LinearLayout.GONE
-				binding.subcategoryDates.main.visibility = LinearLayout.GONE
-				binding.subcategoryIntimacy.main.visibility = LinearLayout.GONE
-				binding.subcategorySensual.main.visibility = LinearLayout.VISIBLE
-			}
-		}
-
-		/* CONVERSATIONS LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Subcategory Click */
-		binding.subcategoryConversations.subcategoriesConversationsLife.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_LIFE)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-		binding.subcategoryConversations.subcategoriesConversationsLove.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_LOVE)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-		binding.subcategoryConversations.subcategoriesConversationsRelationships.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_RELATIONSHIPS)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-		binding.subcategoryConversations.subcategoriesConversationsSelf.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_SELF)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-		binding.subcategoryConversations.subcategoriesConversationsReligion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_RELIGION)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-		binding.subcategoryConversations.subcategoriesConversationsGovernment.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleSubcategory(C.SUB_GOVERNMENT)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
-
-		/* Question Click */
-		binding.subcategoryConversations.subcategoriesLifeQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info0), "")
-		}
-		binding.subcategoryConversations.subcategoriesLoveQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info1), "")
-		}
-		binding.subcategoryConversations.subcategoriesRelationshipsQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info2), "")
-		}
-		binding.subcategoryConversations.subcategoriesSelfQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info3), "")
-		}
-		binding.subcategoryConversations.subcategoriesReligionQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info4), "")
-		}
-		binding.subcategoryConversations.subcategoriesGovernmentQuestion.setOnClickListener {v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			dialogInfo(getString(R.string.subcategory_info5), "")
-		}
-
-		/* DATES LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Subcategory Click */
-
-		/* Question Click */
-
-		/* INTIMACY LISTENERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Subcategory Click */
-
-		/* Question Click */
-
-		/* SENSUAL LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/* Subcategory Click */
-
-		/* Question Click */
 
 
 		/* Buttons Click */
-		binding.subcategoriesCustom.setOnClickListener { v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			interfaceMain.switchFragments(C.FRAG_CUSTOM)
-		}
-		binding.subcategoriesAll.setOnClickListener { v ->
-			v?.playSoundEffect(android.view.SoundEffectConstants.CLICK)
-			Data.makeDeckSingleCategory(Settings.currentCategory)
-			interfaceMain.switchFragments(C.FRAG_QUESTION)
-		}
 
 		return root
 	}
@@ -179,18 +73,6 @@ class FragmentSubcategories : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
 		super.onViewCreated(view, savedInstanceState)
-	}
-	/*=======================================================================================================*/
-	fun dialogInfo(title: String, message: String) {
-		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		val builder = AlertDialog.Builder(requireContext())
-
-		builder.setTitle(title)
-		builder.setMessage(message)
-		builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-			dialog.dismiss()
-		}
-		builder.show()
 	}
 
 	/*=======================================================================================================*/
