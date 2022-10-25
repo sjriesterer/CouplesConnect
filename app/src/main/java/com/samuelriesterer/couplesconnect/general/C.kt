@@ -31,7 +31,7 @@ class C {
 		const val FRAG_CUSTOM = 3
 		const val FRAG_QUESTION = 4
 		const val FRAG_SETTINGS = 5
-		const val FRAG_TEMP = 6
+		const val FRAG_DECK = 6
 
 		/* Categories */
 		const val CAT_CONVERSATION = 0

@@ -305,6 +305,7 @@
   <string name="sort_id">ID/Category</string>
   <string name="sort_alphabetically">Alphabetically</string>
   <string name="sort_favorites">Favorites</string>
+  <string name="sort_shuffle">Shuffle</string>
   <string name="filter_favorites">Favorites</string>
   <string name="filter_unrated">Unrated</string>
   <string name="filter_all">All</string>

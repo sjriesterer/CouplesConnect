@@ -234,7 +234,7 @@ class Data {
 			currentDeck.clear()
 			var include: Boolean
 			// Goes through each question and sets flag include if that question is to be included in this deck.
-			// If a category is turned on, it included all subcategories.
+			// If a category is turned on, it includes all subcategories.
 			for(i in listOfQuestions.indices) {
 				include = false
 				/* Check for category match */
@@ -273,8 +273,13 @@ class Data {
 				C.SORT_FAVORITES -> currentDeck.sortByDescending { it.favorite }
 				else -> currentDeck.shuffle()
 			}
+			printQuestions()
 		}
-
+		/*=======================================================================================================*/
+		fun printQuestions() {
+			for (i in currentDeck.indices)
+				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, currentDeck[i].question)
+		}
 		/*=======================================================================================================*/
 		fun makeDeckAll() {
 			Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
@@ -308,9 +313,9 @@ class Data {
 				currentConfiguration.currentFilterType = Settings.getDefaultFilterType()
 			}
 
-			currentConfiguration.print()
-			// Make deck:
-			//			makeDeck(currentConfiguration)
+//			currentConfiguration.print()
+//			Make deck:
+			makeDeck(currentConfiguration)
 		}
 
 		/*=======================================================================================================*/
@@ -329,8 +334,8 @@ class Data {
 				currentConfiguration.currentSortOrder = Settings.getDefaultSortOrder()
 				currentConfiguration.currentFilterType = Settings.getDefaultFilterType()
 			}
-			// Make deck:
-			//			makeDeck(currentConfiguration)
+//			Make deck:
+			makeDeck(currentConfiguration)
 		}
 	}
 }

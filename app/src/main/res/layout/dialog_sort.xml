@@ -38,32 +38,37 @@
 			 style="@style/SortCheckBox"
 			 android:text="@string/sort_favorites" />
 
+		<CheckBox
+			 android:id="@+id/dialog_sort_shuffle2"
+			 style="@style/SortCheckBox"
+			 android:text="@string/sort_shuffle" />
+
 	 </RadioGroup>
 
-	 <LinearLayout
-		  android:layout_width="match_parent"
-		  android:layout_height="wrap_content"
-		  android:layout_marginTop="2dp"
-		  android:orientation="horizontal">
+<!--	 <LinearLayout-->
+<!--		  android:layout_width="match_parent"-->
+<!--		  android:layout_height="wrap_content"-->
+<!--		  android:layout_marginTop="2dp"-->
+<!--		  android:orientation="horizontal">-->
 
-		<ImageView
-			 android:id="@+id/dialog_sort_shuffle"
-			 android:layout_width="40dp"
-			 android:layout_height="40dp"
-			 android:layout_marginLeft="20dp"
-			 android:layout_marginRight="10dp"
-			 android:backgroundTint="@null"
-			 android:padding="5dp"
-			 android:soundEffectsEnabled="true"
-			 android:src="@drawable/im_dice" />
+<!--		<ImageView-->
+<!--			 android:id="@+id/dialog_sort_shuffle"-->
+<!--			 android:layout_width="40dp"-->
+<!--			 android:layout_height="40dp"-->
+<!--			 android:layout_marginLeft="20dp"-->
+<!--			 android:layout_marginRight="10dp"-->
+<!--			 android:backgroundTint="@null"-->
+<!--			 android:padding="5dp"-->
+<!--			 android:soundEffectsEnabled="true"-->
+<!--			 android:src="@drawable/im_dice" />-->
 
-		<TextView
-			 android:layout_width="wrap_content"
-			 android:layout_height="match_parent"
-			 android:gravity="center_vertical"
-			 android:text="@string/shuffle_deck"
-			 android:textColor="@color/black" />
-	 </LinearLayout>
+<!--		<TextView-->
+<!--			 android:layout_width="wrap_content"-->
+<!--			 android:layout_height="match_parent"-->
+<!--			 android:gravity="center_vertical"-->
+<!--			 android:text="@string/shuffle_deck"-->
+<!--			 android:textColor="@color/black" />-->
+<!--	 </LinearLayout>-->
 
 	 <TextView
 		  android:layout_width="match_parent"

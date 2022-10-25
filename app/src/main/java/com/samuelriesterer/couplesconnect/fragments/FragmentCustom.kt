@@ -13,6 +13,7 @@ import com.samuelriesterer.couplesconnect.databinding.FragmentCustomBinding
 import com.samuelriesterer.couplesconnect.adapters.AdapterCustomList
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentCustom : Fragment() {
@@ -81,6 +82,7 @@ class FragmentCustom : Fragment() {
 				// Save Setting:
 				DatabaseOps.insertConfiguration(Data.currentConfiguration)
 			}
+			Settings.currentQuestion = 0
 			interfaceMain.switchFragments(C.FRAG_QUESTION)
 		}
 

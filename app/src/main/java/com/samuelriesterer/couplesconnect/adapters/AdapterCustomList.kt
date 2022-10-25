@@ -8,16 +8,16 @@ import android.widget.*
 import com.samuelriesterer.couplesconnect.data.Category
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.data.Subcategory
-import com.samuelriesterer.couplesconnect.databinding.CustomGroupBinding
-import com.samuelriesterer.couplesconnect.databinding.CustomItemBinding
+import com.samuelriesterer.couplesconnect.databinding.GroupCustomBinding
+import com.samuelriesterer.couplesconnect.databinding.RowCustomBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 
 class AdapterCustomList internal constructor(private val context: Context, private val categoryList: List<Category>, private val dataHashMap: HashMap<String, List<Subcategory>>) : BaseExpandableListAdapter() {
 	val TAG: String = "~*ADAPTER_CUSTOM_LIST"
 	private val inflater: LayoutInflater = LayoutInflater.from(context)
-	private lateinit var groupBinding: CustomGroupBinding
-	private lateinit var itemBinding: CustomItemBinding
+	private lateinit var groupBinding: GroupCustomBinding
+	private lateinit var itemBinding: RowCustomBinding
 
 	/*=======================================================================================================*/
 	/* GROUP METHODS                                                                                         */
@@ -42,7 +42,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 		val holder: GroupViewHolder
 		/* Setup View */
 		if(convertView == null) {
-			groupBinding = CustomGroupBinding.inflate(inflater)
+			groupBinding = GroupCustomBinding.inflate(inflater)
 			convertView = groupBinding.root
 			holder = GroupViewHolder()
 			holder.layout = groupBinding.customElvGroup
@@ -92,7 +92,7 @@ class AdapterCustomList internal constructor(private val context: Context, priva
 
 		/* Setup View */
 		if(convertView == null) {
-			itemBinding = CustomItemBinding.inflate(inflater)
+			itemBinding = RowCustomBinding.inflate(inflater)
 			convertView = itemBinding.root
 			holder = ItemViewHolder()
 			holder.label = itemBinding.customElvTextview

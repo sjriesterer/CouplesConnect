@@ -21,6 +21,7 @@ class Settings {
 		const val sharedPreferenceKey: String = "${appAcronym}_SP"
 		var currentFragment = C.FRAG_HOME
 		var currentCategory = C.CAT_CONVERSATION // The last category clicked by user (to determine which subcategory list to display)
+		var currentQuestion = 0 // The last question position in view
 
 		/* Debug */
 		// Debug: displays extra debugging print statements if true:

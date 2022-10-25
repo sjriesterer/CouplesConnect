@@ -13,21 +13,22 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.samuelriesterer.couplesconnect.R
-import com.samuelriesterer.couplesconnect.adapters.AdapterViewPageQuestions
+import com.samuelriesterer.couplesconnect.adapters.AdapterQuestions
 import com.samuelriesterer.couplesconnect.data.DatabaseOps
 import com.samuelriesterer.couplesconnect.data.Data
 import com.samuelriesterer.couplesconnect.databinding.DialogSortBinding
 import com.samuelriesterer.couplesconnect.databinding.FragmentQuestionBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
+import com.samuelriesterer.couplesconnect.general.Settings
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
 class FragmentQuestion : Fragment() {
 	private var _binding: FragmentQuestionBinding? = null
 	private val binding get() = _binding!!
 	lateinit var viewPager: ViewPager
-	lateinit var adapterViewPageQuestions: AdapterViewPageQuestions
-	var currentPosition = 0
+	lateinit var adapterQuestions: AdapterQuestions
+//	var Settings.currentQuestion = 0
 	val TAG: String = "~*FRAGMENT_QUESTION"
 
 	/*=======================================================================================================*/
@@ -67,28 +68,26 @@ class FragmentQuestion : Fragment() {
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
 		viewPager = binding.pager
-		adapterViewPageQuestions = AdapterViewPageQuestions(requireContext(), Data.currentDeck)
-		viewPager.adapter = adapterViewPageQuestions
-		/* Setup Views */
-//		interfaceMain.showActionBar()
+		setAdapter()
 
+		/* Setup Views */
 		// Displays a text message if there are no categories/subcategories selected:
 		if(Data.currentDeck.isEmpty()) {
 			binding.fragmentQuestionLayout.visibility = RelativeLayout.GONE
 		}
 		else {
 			binding.fragmentQuestionLayout.visibility = RelativeLayout.VISIBLE
-			setFavoriteIcon(0)
-			setQuestionPositionText(currentPosition)
-
+			setFavoriteIcon(Settings.currentQuestion)
+			setQuestionPositionText(Settings.currentQuestion)
 			setCategoryIcon()
+			viewPager.currentItem = Settings.currentQuestion
 
 			/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 			viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 				override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 				override fun onPageSelected(position: Int) {
-					currentPosition = position
-					setQuestionPositionText(currentPosition)
+					Settings.currentQuestion = position
+					setQuestionPositionText(Settings.currentQuestion)
 					setFavoriteIcon(position)
 				}
 
@@ -105,23 +104,24 @@ class FragmentQuestion : Fragment() {
 			}
 			binding.questionsPosition.setOnClickListener {
 				Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Position clicked in question")
+				interfaceMain.switchFragments(C.FRAG_DECK)
 			}
 			binding.questionId.setOnClickListener {
 				Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "ID clicked in question")
 			}
 			binding.questionFavorite.setOnClickListener {
 				Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Favorite clicked in question")
-				val newValue = !Data.currentDeck[currentPosition].favorite
-				Data.listOfQuestions.find { it.id == Data.currentDeck[currentPosition].id }?.favorite = newValue
-				Data.currentDeck[currentPosition].favorite = newValue
-				DatabaseOps.updateFavorite(Data.currentDeck[currentPosition].id, newValue)
-				setFavoriteIcon(currentPosition)
+				val newValue = !Data.currentDeck[Settings.currentQuestion].favorite
+				Data.listOfQuestions.find { it.id == Data.currentDeck[Settings.currentQuestion].id }?.favorite = newValue
+				Data.currentDeck[Settings.currentQuestion].favorite = newValue
+				DatabaseOps.updateFavorite(Data.currentDeck[Settings.currentQuestion].id, newValue)
+				setFavoriteIcon(Settings.currentQuestion)
 			}
 			binding.questionShare.setOnClickListener {
 				Logger.log(C.LOG_V, TAG, object {}.javaClass.enclosingMethod?.name, "Share clicked in question")
 				val sharingIntent = Intent(Intent.ACTION_SEND)
 				sharingIntent.type = "text/plain"
-				val shareBody = "${Data.currentDeck[currentPosition].question} (${getString(R.string.app_name)})"
+				val shareBody = "${Data.currentDeck[Settings.currentQuestion].question} (${getString(R.string.app_name)})"
 				Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, " shareBody = $shareBody")
 				sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "${getString(R.string.share_subject)} ")
 				sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
@@ -182,14 +182,14 @@ class FragmentQuestion : Fragment() {
 		val bind: DialogSortBinding = DialogSortBinding.inflate(layoutInflater)
 		dialog.setContentView(bind.root)
 		/* Variables */
-		val sortCheckBoxes = arrayListOf(bind.dialogSortId, bind.dialogSortAlphabet, bind.dialogSortFavorites)
+		val sortCheckBoxes = arrayListOf(bind.dialogSortId, bind.dialogSortAlphabet, bind.dialogSortFavorites, bind.dialogSortShuffle2)
 		val filterCheckBoxes = arrayListOf(bind.dialogFilterFavorites, bind.dialogFilterUnrated, bind.dialogFilterAll)
 		val changedConfiguration = Data.currentConfiguration.copy()
 		/* Setup Views */
-		if(Data.currentConfiguration.currentSortOrder == C.SORT_SHUFFLE)
-			toggleCheckBoxes(sortCheckBoxes, null)
-		else
-			toggleCheckBoxes(sortCheckBoxes, sortCheckBoxes[Data.currentConfiguration.currentSortOrder])
+//		if(Data.currentConfiguration.currentSortOrder == C.SORT_SHUFFLE)
+//			toggleCheckBoxes(sortCheckBoxes, null)
+//		else
+		toggleCheckBoxes(sortCheckBoxes, sortCheckBoxes[Data.currentConfiguration.currentSortOrder])
 
 		toggleCheckBoxes(filterCheckBoxes, filterCheckBoxes[Data.currentConfiguration.currentFilterType])
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -197,13 +197,13 @@ class FragmentQuestion : Fragment() {
 		bind.dialogSortId.setOnClickListener { toggleCheckBoxes(sortCheckBoxes, bind.dialogSortId) }
 		bind.dialogSortAlphabet.setOnClickListener { toggleCheckBoxes(sortCheckBoxes, bind.dialogSortAlphabet) }
 		bind.dialogSortFavorites.setOnClickListener { toggleCheckBoxes(sortCheckBoxes, bind.dialogSortFavorites) }
-		bind.dialogSortShuffle.setOnClickListener {
-			toggleCheckBoxes(sortCheckBoxes, null) // Turns all checkboxes off
+		bind.dialogSortShuffle2.setOnClickListener { toggleCheckBoxes(sortCheckBoxes, bind.dialogSortShuffle2)
 		}
 		/* Filter */
 		bind.dialogFilterFavorites.setOnClickListener { toggleCheckBoxes(filterCheckBoxes, bind.dialogFilterFavorites) }
 		bind.dialogFilterUnrated.setOnClickListener { toggleCheckBoxes(filterCheckBoxes, bind.dialogFilterUnrated) }
 		bind.dialogFilterAll.setOnClickListener { toggleCheckBoxes(filterCheckBoxes, bind.dialogFilterAll) }
+
 		/* OK */
 		bind.dialogSortOk.setOnClickListener {
 			// Set temp settings:
@@ -223,14 +223,15 @@ class FragmentQuestion : Fragment() {
 			if(!Data.currentConfiguration.compare(changedConfiguration)) {
 				// Set Setting if not the same:
 				Data.currentConfiguration = changedConfiguration.copy()
-				// Save Setting:
+				// Save Setting in database:
 				DatabaseOps.insertConfiguration(Data.currentConfiguration)
 				Data.makeDeck(Data.currentConfiguration)
-				adapterViewPageQuestions.notifyDataSetChanged()
-				currentPosition = 0
-				viewPager.setCurrentItem(currentPosition)
-				setQuestionPositionText(currentPosition)
-				setFavoriteIcon(0)
+				setAdapter()
+//				adapterQuestions.notifyDataSetChanged()
+				Settings.currentQuestion = 0
+				viewPager.currentItem = Settings.currentQuestion
+				setQuestionPositionText(Settings.currentQuestion)
+				setFavoriteIcon(Settings.currentQuestion)
 			}
 			dialog.dismiss()
 		}
@@ -246,7 +247,12 @@ class FragmentQuestion : Fragment() {
 			checkBoxes[i].isChecked = checkBoxes[i] == cb
 		}
 	}
-
+	/*=======================================================================================================*/
+	fun setAdapter() {
+		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
+		adapterQuestions = AdapterQuestions(requireContext(), Data.currentDeck)
+		viewPager.adapter = adapterQuestions
+	}
 	/*=======================================================================================================*/
 	fun randomNumber(min: Int, max: Int): Int {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start: min = $min; max = $max")

@@ -4,15 +4,18 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import com.samuelriesterer.couplesconnect.databinding.FragmentTempBinding
+import com.samuelriesterer.couplesconnect.adapters.AdapterDeck
+import com.samuelriesterer.couplesconnect.data.Data
+import com.samuelriesterer.couplesconnect.databinding.FragmentDeckBinding
 import com.samuelriesterer.couplesconnect.general.C
 import com.samuelriesterer.couplesconnect.general.Logger
 import com.samuelriesterer.couplesconnect.interfaces.InterfaceMain
 
-class FragmentTemp : Fragment() {
-	private var _binding: FragmentTempBinding? = null
+class FragmentDeck : Fragment() {
+	private var _binding: FragmentDeckBinding? = null
 	private val binding get() = _binding!!
-	val TAG: String = "~*FRAGMENT_TEMP"
+	lateinit var adapterDeck: AdapterDeck
+	val TAG: String = "~*FRAGMENT_DECK"
 
 	/*=======================================================================================================*/
 	/* INTERFACE                                                                                             */
@@ -45,13 +48,14 @@ class FragmentTemp : Fragment() {
 	/*=======================================================================================================*/
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		Logger.log(C.LOG_I, TAG, object {}.javaClass.enclosingMethod?.name, "start")
-		_binding = FragmentTempBinding.inflate(inflater, container, false)
+		_binding = FragmentDeckBinding.inflate(inflater, container, false)
 		val root: View = binding.root
 		/* INITIALIZATION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/* Variables */
 
 		/* Setup Views */
-//		interfaceMain.showActionBar()
+		adapterDeck = AdapterDeck(requireContext(), Data.currentDeck)
+		binding.deckListView.adapter = adapterDeck
 
 		/* LISTENERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 

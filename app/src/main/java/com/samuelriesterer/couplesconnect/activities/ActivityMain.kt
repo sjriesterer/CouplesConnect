@@ -2,15 +2,7 @@ package com.samuelriesterer.couplesconnect.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.navigation.ui.*
 import com.samuelriesterer.couplesconnect.R
 import com.samuelriesterer.couplesconnect.data.DatabaseApp
 import com.samuelriesterer.couplesconnect.data.Data
@@ -107,8 +99,8 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 			C.FRAG_SETTINGS -> {
 				return FragStack(fragmentID, FragmentSettings())
 			}
-			C.FRAG_TEMP -> {
-				return FragStack(fragmentID, FragmentTemp())
+			C.FRAG_DECK -> {
+				return FragStack(fragmentID, FragmentDeck())
 			}
 		}
 		return FragStack(fragmentID, FragmentHome())
@@ -162,8 +154,8 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 				C.FRAG_SETTINGS -> {
 					list.add(C.FRAG_SETTINGS)
 				}
-				C.FRAG_TEMP -> {
-					list.add(C.FRAG_TEMP)
+				C.FRAG_DECK -> {
+					list.add(C.FRAG_DECK)
 				}
 			}
 		}
@@ -199,9 +191,9 @@ class ActivityMain : AppCompatActivity(), InterfaceMain {
 					i++
 					stack.add(FragStack(C.FRAG_SETTINGS, FragmentCustom()))
 				}
-				C.FRAG_TEMP -> {
+				C.FRAG_DECK -> {
 					i++
-					stack.add(FragStack(C.FRAG_TEMP, FragmentCustom()))
+					stack.add(FragStack(C.FRAG_DECK, FragmentCustom()))
 				}
 			}
 			i++
